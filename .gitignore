@@ -1,0 +1,53 @@
+# Dependencies
+node_modules/
+dist/
+build/
+.venv/
+__pycache__/
+*.pyc
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+.claude/
+*.swp
+*.swo
+*.iml
+.DS_Store
+
+# Build outputs
+*.d.ts
+*.js
+*.js.map
+!packages/frontend/src/vite-env.d.ts
+.next/
+out/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Local generated scenario data
+codex-scenario.json
+packages/backend/scenario-exports/
+*.backup
+
+# OS
+Thumbs.db
+*.pem
+
+# Test
+.nyc_output/
+coverage/
+
+# Python
+venv/
+env/
+.mypy_cache/
+.pytest_cache/

@@ -1,0 +1,21 @@
+{
+  "opacity": 1,
+  "scale": 0.4,
+  "offsetX": -8,
+  "offsetY": 1,
+  "gridHexSize": 45,
+  "gridHexWidth": 81,
+  "gridHexHeight": 89,
+  "gridColumnStep": 80,
+  "gridRowStep": 68,
+  "gridRowShift": 41,
+  "gridOffsetX": 75,
+  "gridOffsetY": 64,
+  "gridColumns": 15,
+  "gridShortRowColumns": 15,
+  "gridRows": 14,
+  "shortRowsStart": "odd",
+  "showGrid": false,
+  "showProceduralTerrain": true,
+  "proceduralTerrainOpacity": 0.85
+}

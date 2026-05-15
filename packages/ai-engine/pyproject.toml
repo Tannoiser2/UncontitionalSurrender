@@ -1,0 +1,22 @@
+# AI Engine for USWC Digital
+# Minimax with Alpha-Beta Pruning
+
+name = "uswc-ai-engine"
+version = "0.1.0"
+description = "AI game engine with Minimax algorithm"
+authors = [{"name": "USWC Digital Team"}]
+requires-python = ">=3.10"
+
+dependencies = [
+    "numpy>=1.24.0",
+    "pydantic>=2.0.0",
+    "requests>=2.31.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "black>=23.0.0",
+    "mypy>=1.4.0",
+    "flake8>=6.0.0",
+]

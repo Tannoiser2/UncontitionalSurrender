@@ -1,0 +1,890 @@
+.panel {
+  flex-shrink: 0;
+  height: 260px;
+  background: #10181c;
+  border-top: 2px solid #d1b06b;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.4);
+}
+
+.collapsedPanel {
+  height: 46px;
+}
+
+.panelHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  min-height: 44px;
+  padding: 0.35rem 0.65rem;
+  border-bottom: 1px solid #2c3a40;
+}
+
+.tabBar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.phaseActions {
+  display: flex;
+  justify-content: flex-end;
+  min-width: 260px;
+  flex: 0 1 auto;
+}
+
+.tabBar button,
+.collapseButton {
+  min-height: 30px;
+  padding: 0.2rem 0.7rem;
+  color: #f1e7d0;
+  background: #27343a;
+  border: 1px solid #53646c;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 700;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.15rem;
+  line-height: 1.2;
+}
+
+.tabBar button:hover,
+.collapseButton:hover {
+  background: #33444c;
+}
+
+.activeTab {
+  background: #8b6f2d !important;
+  border-color: #e3c779 !important;
+  color: #fff8df !important;
+}
+
+.attentionTab {
+  border-color: #e3c779 !important;
+  box-shadow: inset 0 0 0 1px rgba(227, 199, 121, 0.55);
+}
+
+.panelBody {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  gap: 0.5rem;
+  height: 214px;
+  overflow: auto;
+  padding: 0.55rem 0.75rem 0.75rem;
+}
+
+.inspectorGrid {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.9fr) minmax(320px, 1.2fr);
+  gap: 0.7rem;
+}
+
+.infoCard {
+  min-width: 0;
+  padding: 0.75rem;
+  background: #172126;
+  border: 1px solid #405058;
+  border-radius: 4px;
+}
+
+.infoCard header {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.6rem;
+}
+
+.infoCard header span,
+.dataGrid span,
+.stackLine span {
+  color: #aeb9bf;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+}
+
+.infoCard header strong,
+.dataGrid strong,
+.stackLine strong {
+  color: #f1e7d0;
+}
+
+.infoCard p {
+  margin: 0;
+  color: #aeb9bf;
+  font-size: 0.88rem;
+}
+
+.dataGrid {
+  display: grid;
+  grid-template-columns: 92px minmax(0, 1fr);
+  gap: 0.35rem 0.65rem;
+  align-items: baseline;
+  font-size: 0.86rem;
+}
+
+.dataGrid strong,
+.stackLine strong {
+  overflow-wrap: anywhere;
+}
+
+.stackLine {
+  display: grid;
+  grid-template-columns: 92px minmax(0, 1fr);
+  gap: 0.65rem;
+  margin-top: 0.55rem;
+  padding-top: 0.55rem;
+  border-top: 1px solid #2f3e45;
+  font-size: 0.86rem;
+}
+
+.contextBox {
+  display: grid;
+  gap: 0.25rem;
+  margin-top: 0.65rem;
+  padding: 0.55rem 0.65rem;
+  background: #0b1114;
+  border: 1px solid #d1b06b;
+  border-radius: 4px;
+}
+
+.contextBox strong {
+  color: #f1e7d0;
+}
+
+.contextBox span {
+  color: #d8dee2;
+  font-size: 0.84rem;
+}
+
+.combatCard {
+  grid-column: 1 / -1;
+}
+
+.combatPreviewGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 0.55rem;
+}
+
+.combatSides {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.55rem;
+}
+
+.combatSideCard {
+  display: grid;
+  gap: 0.35rem;
+  padding: 0.55rem;
+  background: #10181c;
+  border: 1px solid #2f3e45;
+  border-radius: 4px;
+}
+
+.combatSideHeaderLine {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.combatSideTitle {
+  color: #aeb9bf;
+  font-size: 0.76rem;
+  text-transform: uppercase;
+}
+
+.combatSideCard strong {
+  color: #f1e7d0;
+  font-size: 0.92rem;
+}
+
+.combatSideCard em {
+  color: #d8dee2;
+  font-style: normal;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
+
+.combatFormula {
+  color: #fff8df;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.combatPreviewCard,
+.airCombatCard,
+.combatResultBox,
+.combatStateBox {
+  display: grid;
+  gap: 0.42rem;
+  padding: 0.58rem 0.65rem;
+  background: #0b1114;
+  border: 1px solid #405058;
+  border-radius: 4px;
+}
+
+.combatPreviewCard,
+.airCombatCard {
+  margin-top: 0.55rem;
+}
+
+.combatPreviewCard header,
+.airCombatCard header {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.65rem;
+  margin: 0 0 0.1rem;
+}
+
+.combatPreviewCard header strong,
+.airCombatCard header strong,
+.combatResultBox strong,
+.combatStateBox strong {
+  color: #f1e7d0;
+}
+
+.combatPreviewCard header span,
+.airCombatCard header span {
+  color: #aeb9bf;
+  font-size: 0.76rem;
+  text-transform: uppercase;
+}
+
+.combatLine {
+  display: grid;
+  grid-template-columns: 86px 104px minmax(0, 1fr);
+  gap: 0.55rem;
+  align-items: baseline;
+  font-size: 0.82rem;
+}
+
+.combatLine span,
+.combatOutcomeLine span {
+  color: #aeb9bf;
+  text-transform: uppercase;
+}
+
+.combatLine strong,
+.combatOutcomeLine strong {
+  color: #f1e7d0;
+}
+
+.combatLine em {
+  color: #d8dee2;
+  font-style: normal;
+  overflow-wrap: anywhere;
+}
+
+.combatOutcomeLine {
+  display: grid;
+  grid-template-columns: 86px minmax(0, 1fr);
+  gap: 0.55rem;
+  align-items: baseline;
+  padding-top: 0.35rem;
+  border-top: 1px solid #2f3e45;
+  font-size: 0.82rem;
+}
+
+.combatPreviewCard p,
+.airCombatCard p,
+.combatResultBox span,
+.combatStateBox span {
+  margin: 0;
+  color: #d8dee2;
+  font-size: 0.84rem;
+  line-height: 1.3;
+}
+
+.airCombatCard {
+  border-color: #4aa3c7;
+  background: #0a1720;
+}
+
+.combatResultBox {
+  margin-top: 0.55rem;
+  border-color: #d1b06b;
+}
+
+.combatStateBox {
+  margin-top: 0.55rem;
+  border-color: #dc2626;
+}
+
+.boxGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(260px, 1fr));
+  gap: 0.65rem;
+}
+
+.weatherPanel {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(280px, 1fr));
+  gap: 0.7rem;
+}
+
+.weatherCard {
+  min-height: 110px;
+  padding: 0.75rem;
+  background: #172126;
+  border: 1px solid #405058;
+  border-radius: 4px;
+}
+
+.weatherCard header {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.65rem;
+}
+
+.weatherCard header span,
+.weatherCard em,
+.weatherLabel {
+  color: #aeb9bf;
+  font-size: 0.84rem;
+}
+
+.weatherCard header strong,
+.weatherTextBlock strong {
+  color: #f1e7d0;
+}
+
+.weatherSummary {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.weatherIcon {
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+  border-radius: 4px;
+  border: 1px solid #405058;
+  background: #0b1114;
+}
+
+.weatherTextBlock {
+  display: grid;
+  gap: 0.3rem;
+}
+
+.boxPanel,
+.countryPanel {
+  min-height: 110px;
+  padding: 0.75rem;
+  background: #172126;
+  border: 1px solid #405058;
+  border-radius: 4px;
+}
+
+.boxPanel header,
+.countryPanel header {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.65rem;
+}
+
+.boxPanel header strong,
+.countryPanel header strong {
+  color: #f1e7d0;
+}
+
+.boxPanel header span,
+.boxPanel p,
+.countryPanel header span {
+  color: #aeb9bf;
+  font-size: 0.84rem;
+}
+
+.countryGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(300px, 1fr));
+  gap: 0.65rem;
+}
+
+.countryTable {
+  display: grid;
+  grid-template-columns: minmax(96px, 1.2fr) 58px 58px 86px;
+  gap: 0.35rem 0.5rem;
+  align-items: center;
+  font-size: 0.84rem;
+}
+
+.countryTable span {
+  color: #aeb9bf;
+  font-size: 0.74rem;
+  text-transform: uppercase;
+}
+
+.countryTable strong {
+  min-height: 24px;
+  padding: 0.2rem 0.35rem;
+  color: #f1e7d0;
+  background: #0b1114;
+  border: 1px solid #2f3e45;
+  border-radius: 4px;
+  overflow-wrap: anywhere;
+}
+
+.statusAlert {
+  border-color: #e3c779 !important;
+  color: #fff8df !important;
+}
+
+.counterList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.counterList span,
+.counterList button {
+  min-height: 26px;
+  padding: 0.25rem 0.5rem;
+  color: #f1e7d0;
+  background: #0b1114;
+  border: 1px solid #2f3e45;
+  border-radius: 4px;
+  font-size: 0.82rem;
+}
+
+.counterList button {
+  cursor: pointer;
+}
+
+.counterList button:hover {
+  border-color: #e3c779;
+}
+
+.eventMarker {
+  display: grid;
+  grid-template-rows: 46px minmax(22px, auto);
+  align-items: center;
+  justify-items: center;
+  gap: 0.25rem;
+  width: 82px;
+  min-height: 78px !important;
+  padding: 0.35rem 0.3rem !important;
+  text-align: center;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+.eventMarker span,
+.eventMarker img {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  color: #111;
+  background: #f1e7d0;
+  border: 1px solid rgba(0, 0, 0, 0.45);
+  border-radius: 3px;
+}
+
+.eventMarker span {
+  font-size: 0.65rem;
+  font-weight: 900;
+  letter-spacing: 0;
+}
+
+.eventMarker img {
+  object-fit: contain;
+}
+
+.eventMarker strong {
+  color: #f8eed7;
+  font-size: 0.62rem;
+  line-height: 1;
+  overflow-wrap: anywhere;
+}
+
+.selectedEventMarker {
+  border-color: #facc15 !important;
+  box-shadow: 0 0 0 2px rgba(250, 204, 21, 0.45), inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.eventAir {
+  background: #1e3a5f !important;
+  border-color: #6fa3d2 !important;
+}
+
+.eventArmor {
+  background: #4b4228 !important;
+  border-color: #c7a74b !important;
+}
+
+.eventStrike {
+  background: #4a2525 !important;
+  border-color: #ca6b55 !important;
+}
+
+.eventIntel {
+  background: #273d36 !important;
+  border-color: #78aa8e !important;
+}
+
+.eventNaval {
+  background: #18384b !important;
+  border-color: #67b4d5 !important;
+}
+
+.eventGeneric {
+  background: #28333a !important;
+  border-color: #7b8a91 !important;
+}
+
+.logisticsPanel {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.supplyPanel {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.supplyList {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.supplyRow {
+  display: grid;
+  grid-template-columns: minmax(120px, 0.9fr) 92px minmax(96px, 0.7fr) minmax(180px, 1.6fr);
+  gap: 0.55rem;
+  align-items: center;
+  min-height: 34px;
+  padding: 0.38rem 0.55rem;
+  background: #172126;
+  border: 1px solid #405058;
+  border-radius: 4px;
+  color: #d8dee2;
+  font-size: 0.84rem;
+}
+
+.supplyRow strong {
+  color: #f1e7d0;
+}
+
+.supplyRow span {
+  overflow-wrap: anywhere;
+}
+
+.fullSupplyRow {
+  border-color: rgba(34, 197, 94, 0.65);
+}
+
+.lowSupplyRow {
+  border-color: #f59e0b;
+  background: #241c0f;
+}
+
+.noSupplyRow {
+  border-color: #dc2626;
+  background: #2a1111;
+}
+
+.logisticsHint {
+  margin: 0;
+  color: #aeb9bf;
+  font-size: 0.86rem;
+}
+
+.logisticsHint strong {
+  color: #f1e7d0;
+}
+
+.logisticsList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 0.45rem;
+}
+
+.logisticsButton {
+  display: grid;
+  gap: 0.18rem;
+  min-height: 52px;
+  padding: 0.5rem 0.6rem;
+  text-align: left;
+  color: #f1e7d0;
+  background: #172126;
+  border: 1px solid #405058;
+  border-radius: 4px;
+  cursor: default;
+}
+
+.logisticsButton:hover {
+  border-color: #e3c779;
+  background: #1d2a30;
+}
+
+.logisticsButton strong {
+  color: #f1e7d0;
+  font-size: 0.88rem;
+}
+
+.logisticsButton span {
+  color: #aeb9bf;
+  font-size: 0.78rem;
+  line-height: 1.2;
+}
+
+.logisticsButton .logisticsWarn {
+  color: #f0b75a;
+}
+
+.inlineActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: 0.15rem;
+}
+
+.inlineButton {
+  min-height: 24px;
+  padding: 0 0.45rem;
+  color: #f1e7d0;
+  background: #27343a;
+  border: 1px solid #53646c;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.inlineButton:hover {
+  border-color: #e3c779;
+}
+
+.logList {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.rulesPanel {
+  display: grid;
+  gap: 0.55rem;
+  padding: 0.75rem;
+  background: #172126;
+  border: 1px solid #405058;
+  border-radius: 4px;
+}
+
+.rulesPanel header {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.rulesPanel header strong {
+  color: #f1e7d0;
+}
+
+.rulesPanel header span,
+.rulesPanel p {
+  margin: 0;
+  color: #aeb9bf;
+  font-size: 0.86rem;
+}
+
+.timelineGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(185px, 1fr));
+  gap: 0.55rem;
+}
+
+.timelineCell {
+  min-height: 122px;
+  padding: 0.65rem;
+  background: #172126;
+  border: 1px solid #405058;
+  border-radius: 4px;
+}
+
+.timelineCell header {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.timelineCell header strong {
+  color: #f1e7d0;
+  font-size: 0.9rem;
+}
+
+.timelineCell header span {
+  color: #aeb9bf;
+  font-size: 0.76rem;
+  text-transform: uppercase;
+}
+
+.currentTimelineCell {
+  border-color: #e3c779;
+  box-shadow: inset 0 0 0 1px rgba(227, 199, 121, 0.55);
+}
+
+.pastTimelineCell {
+  opacity: 0.62;
+}
+
+.timelineItems {
+  display: grid;
+  gap: 0.28rem;
+}
+
+.timelineItems span,
+.timelineItems em {
+  display: block;
+  padding: 0.28rem 0.38rem;
+  color: #d8dee2;
+  background: #0b1114;
+  border: 1px solid #2f3e45;
+  border-radius: 4px;
+  font-size: 0.76rem;
+  line-height: 1.2;
+}
+
+.timelineItems em {
+  color: #7f8d94;
+  font-style: normal;
+}
+
+.timelineCurrent {
+  color: #fff8df !important;
+  border-color: #d1b06b !important;
+}
+
+.timelineEnd {
+  color: #fca5a5 !important;
+  border-color: #7f1d1d !important;
+}
+
+.timelineEvent {
+  display: block !important;
+  align-items: center;
+  width: 42px;
+  min-height: 42px;
+  padding: 0 !important;
+  overflow: hidden;
+}
+
+.timelineEventIcon {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.timelineEventFallback {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #7c3aed;
+  border-radius: 3px;
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.timelineUnit {
+  display: flex !important;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.1rem 0.3rem !important;
+}
+
+.timelineReinf {
+  color: #86efac !important;
+  border-color: #166534 !important;
+}
+
+.ruleList {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.ruleList p {
+  padding: 0.45rem 0.55rem;
+  color: #d8dee2;
+  background: #0b1114;
+  border: 1px solid #2f3e45;
+  border-radius: 4px;
+}
+
+.logList p {
+  display: grid;
+  grid-template-columns: 82px 1fr;
+  gap: 0.65rem;
+  margin: 0;
+  padding: 0.45rem 0.55rem;
+  background: #172126;
+  border: 1px solid #405058;
+  border-radius: 4px;
+  color: #d8dee2;
+  font-size: 0.86rem;
+}
+
+.logList strong {
+  color: #f1e7d0;
+}
+
+@media (max-width: 900px) {
+  .panelHeader {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .phaseActions {
+    justify-content: flex-start;
+    min-width: 100%;
+  }
+
+  .inspectorGrid,
+  .boxGrid,
+  .countryGrid,
+  .logList p {
+    grid-template-columns: 1fr;
+  }
+
+  .panelBody {
+    height: 38vh;
+  }
+
+  .panel {
+    height: calc(38vh + 42px);
+  }
+
+  .collapsedPanel {
+    height: auto;
+  }
+
+  .countryTable {
+    grid-template-columns: minmax(86px, 1.1fr) 48px 54px 76px;
+  }
+}
+
+.tabInfoIcon {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  display: block;
+}
+
+.tabInfoText {
+  font-size: 0.6rem;
+  font-weight: 400;
+  color: #c8d8e0;
+  white-space: nowrap;
+}

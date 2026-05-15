@@ -1,0 +1,1730 @@
+                                                          RULEBOOK
+                                                      Designers: Salvatore Vasta, Allen Hill
+                                                                Table of Contents
+1.0   General Information............................................... 2             9.0 Economy. ............................................................... 19
+2.0   Country & Factions................................................ 5             10.0 Weather. ................................................................. 20
+3.0   Markers & Units. ................................................... 5           11.0 Turn Completion.................................................... 20
+4.0   Movement. ............................................................. 7        12.0 Conditional Events................................................. 20
+5.0   Combat................................................................... 10     13.0 Event Markers........................................................ 21
+6.0   Actions................................................................... 14    14.0 Tracking Markers................................................... 23
+7.0   Supply. ................................................................... 17   Index ................................................................................ 26
+8.0   Unit Logistics......................................................... 18       USE Players: Fast Start.................................................... 28
+                                                                   GMT Games, LLC
+                                                         P.O. Box 1308, Hanford, CA 93232-1308
+                                                                 www.GMTGames.com
+
+                                                                        © 2025 GMT Games, LLC
+2                                      Unconditional Surrender: Western Campaigns ~ Rulebook
+
+
+
+               Sequence of Play (1.2)                                  1.0 General Information
+    In faction order, each faction completes one Phase before the     Unconditional Surrender! Western Campaigns (referred to as
+    next Phase is started. [Exception: Weather Phase.]                USWC) is a 2-player game covering some of the European World
+                                                                      War 2 military campaigns fought between the Axis and Western
+    Faction Order is Axis then Western.                               Allied factions.
+    Weather Phase (10.1)
+                                                                      1.1 Introduction
+     Axis faction determines the turn’s weather.
+                                                                      This Rulebook contains the game’s core rules.
+    Economy Phase (9.1)
+      Determine production points for each country.                   If you are viewing the game for the first time, start with the
+                                                                      Guidebook. The Guidebook contains a list of game components,
+    Strategic Movement Phase (4.1)                                    different methods of learning how to play, game scale, the writing
+      An air or ground unit moves using Strategic Movement.           style used, designer’s notes, etc.
+    Operations Phase* (1.2.1)                                         Rules Priority: Rules in this rulebook apply to all scenarios unless
+     Actions Sub-Phase: Units perform Actions to move and             noted otherwise within a scenario. If a rules disagreement arises
+     fight.                                                           that cannot be resolved through discussion, roll a die. High roller
+     Supply Check Sub-Phase: Units trace a supply line.               wins. It’s a game, folks.
+     *Each faction completes both Sub-Phases of the Operations        1.2 Sequence of Play
+     Phase before the next faction starts its Operations Phase.
+                                                                      A game turn follows a specific Sequence of Play, made up of Phases
+    No Supply Phase (7.5)                                             and possibly Sub-Phases. The faction performing its part in the
+     Unsupplied units are reduced in strength or eliminated.          Sequence of Play is referred to as the phasing faction. The other
+    Replacements Phase (8.1)                                          faction is referred to as the non-phasing faction.
+      Factions may pay to increase reduced strength ground             In USWC, a non-phasing faction will have opportunities to
+      units to full strength and remove up to two Sorties each         interact while the phasing faction is playing.
+      from air units.
+                                                                       Important: Each faction completes one Phase in the faction
+    Mobilization Phase (8.2)                                           order listed before the next faction completes that same Phase.
+     Factions may pay to take units in their Faction Card’s            Faction order is Axis then Western.
+     Mobilization box and place them onto the map.
+                                                                      Example: In the No Supply Phase, the Axis faction reduces all
+    Victory Check Phase (11.1)                                        its unsupplied units first, followed by the Western faction. The
+      Check if Victory Conditions have been achieved.                 Axis faction then starts the Replacements Phase.
+    End of Turn Phase (11.2)                                          [Exception: Only the Axis faction performs the Weather Phase.]
+     Advance the Turn marker one turn.                                The Operations Phase has two Sub-Phases: Actions and Supply
+     Place counters from the new Turn box in their respective         Check. In faction order, one faction completes both Sub-Phases
+     locations.                                                       before the next faction starts its Operations Phase.
+     Move all units in a Faction Card’s Eliminated Box to its         Flowcharts for the Sequence of Play and Operations Phase are on
+     Mobilization Box.                                                the Player Aid Sheet.
+                                                                      1.2.1 Operations Phase
+Important notes are highlighted in blue-shaded boxes.
+                                                                       USWC does not use a “Move everyone; fight everyone” system.
+Game Designer comments appear in italics, usually in tan-              Instead, a faction activates one unit to move and/or fight (pos-
+shaded boxes.                                                          sibly multiple times within a single activation). When the faction
+                                                                       completes that unit’s activation, it then activates another unit.
+                                                                      The Operations Phase is when air and ground units move, fight,
+                                                                      and check if they can trace a supply line.
+                                                                      Actions Sub-Phase: The phasing faction may perform Actions
+                                                                      (6.0) with its units. When all Actions are done, remove any Air-
+                                                                      drop, Assault, Partisans, or Surprise Attack marker in a hex. See
+                                                                      the marker’s rule to determine where it goes.
+                                                                      Supply Check Sub-Phase: After completing its Actions Sub-
+                                                                      Phase, the phasing faction checks if its units in a hex can trace a
+                                                                      supply line (7.4).
+
+
+                                                          © 2025 GMT Games, LLC
+                                         Unconditional Surrender: Western Campaigns ~ Rulebook                                                3
+
+Example: The Axis faction completed its Actions Sub-Phase in               Prohibited Hex/Hexside: A hex that is striped (see the FC’s Ter-
+which it moved and fought with its units. It is now the Supply             rain Key), or any hex designated as “prohibited” by a rule. A unit
+Check Sub-Phase in which it checks if Axis units can trace a               or marker cannot move into, be placed in, or trace a path through
+supply line. It does not check if Western units can trace supply.          a prohibited hex.
+After the Axis faction is done checking supply, the Western fac-           Water Hex/Hexside: A hex or hexside that has only water. A canal
+tion does its Actions Sub-Phase. When done, it checks if Western           or river hexside is not considered a water hexside.
+units can trace a supply line. The Western faction does not check
+if Axis units can trace supply.                                                                                France Map
+1.3 Map                                                                                                        Example: Hexes 3011-3012
+                                                                                                               are land hexes.
+Each map is overlaid with a hexagonal (hex) grid. The following
+                                                                                                               Example: Hex 2911 is a wa-
+are key elements and rules related to the maps.
+                                                                                                               ter hex; 2912 is not. Hexside
+1.3.1 Capital, City, Factory, Port                                                                             2911/2912 is a water hexside;
+See the Terrain Key on the Faction Card to identify which symbol                                               2912/3011 is not.
+represents a capital, city, factory, or port. The distinctions are         1.3.4 Map Box
+important for different game mechanics.
+                                                                           A map may contain a labeled Map Box on it. Unless otherwise
+City: A hex with one or more of these symbols is considered to             noted in a scenario, the rules written within a Map Box are in effect
+have a city in it: capital, city, factory, or port.                        for any scenario using that map. Only those rules apply to that box
+Graniti: This reference location in Sicily is not a city and is ignored    and they may have exceptions to the standard rules.
+for all game purposes.                                                     Example: Stacking Limits do not apply for units in the Western
+ It’s there because that is where Salvatore Vasta’s parents are            Mediterranean Map Box located on the France map.
+ from. It’s good to be the designer.                                       1.3.5 Transport Line
+1.3.2 Faded Dot Hex                                                        A “Transport Line” refers to either a rail (dashed) or road (solid)
+                                                                           line running through a hex on the map. Rules-wise there is no dif-
+                            A hex that is faded in color and has a
+                                                                           ference between them. They are different for historical reference.
+                             dot in the middle is called a Faded Dot
+                             hex. Example: Hex 1922.                       A Transport Line provides a benefit in ground movement (4.2.3.4)
+                                                                           and may be required to trace a supply line (7.4).
+                             A Faded Dot hex is prohibited for
+                             ground movement and Amphibious                A Transport Line in adjacent hexes is connected if its symbol
+Invasion but is allowed for air movement.                                  crosses a mutual hexside.
+Example: A German ground unit cannot move into or perform
+an Amphibious Invasion into hex 1922. A German air can move
+through it.
+ Some areas, such as Scandinavia, had too little infrastructure
+ to support many ground forces. By prohibiting ground move-
+ ment in them, the quantity of units and their operations fall             Example: The lines in hexes 4528 and 4529 are connected; the
+ more within historical limits.                                            lines in 2125 and 2126 are not.
+
+1.3.3 Other Hex/Hexside Definitions                                        1.4 Range
+                                Coastal Hex: A land hex that has land      Some activities require counting out a range of hexes. The
+                                and water in it, and the water area of     ranges are stated within those rules and on the Player Aid Sheet’s
+                                the hex is adjacent to an all-water hex    Ranges table.
+                                or another coastal hex.                    When counting out a range of hexes from a counter, do not include
+                                Example: On the France map, hexes          that counter’s hex.
+2517-2518 and 2616-2617 are coastal hexes. On the Balkans
+map, hexes 3331-3431 are not.
+Inland Port: A port that is not a coastal hex, e.g., London in hex 2611.
+Rough Hex: A hex that has Desert, Hills, Woods, or Swamp terrain
+in it, either fully or partially.
+                                                                           Example: A 5-hex range from an air unit in hex 3115 goes out
+Example: On the France map, hexes 2717, 3120, and 3219 are
+                                                                           to and includes hex 3120.
+rough hexes.
+                                                                           Even though it is not counted, the counter’s location is part of
+Land Hex/Hexside: A hex or hexside that has land terrain in it,
+                                                                           that range.
+either fully or partially.
+
+                                                              © 2025 GMT Games, LLC
+4                                      Unconditional Surrender: Western Campaigns ~ Rulebook
+
+Example continued: Hex 3115 is within the range.                        Ground Movement EZOC Restrictions (4.2.3.1)
+A Faded Dot hex can be counted as part of a range of hexes.             Examples for these restrictions appear in rule 4.2.3.1.
+                                                                        • A unit cannot move directly between hexes which contain an
+1.5 Sorties                                                               EZOC exerted by the same enemy unit.
+The effectiveness of an air unit is tracked using Sorties markers,      • At the start of its activation, a unit in an EZOC can move into
+valued at 1 through 6. A unit with no Sorties is fully effective. A       a hex containing an EZOC exerted by a different unit, provided
+unit with 6 Sorties cannot be activated.                                  that move does not violate the same unit EZOC rule above.
+As an air unit conducts actions or is involved in combat, it will add   • At the start of its activation, a unit in an EZOC can move into
+Sorties to its total. When an air unit receives replacements (8.1),       a hex containing no EZOC and then later move into a hex
+it reduces Sorties from its total.                                        containing an EZOC exerted by any unit (even the enemy unit
+When a unit adds or reduces its Sorties, put the respective Sorties       that exerted the original EZOC).
+marker equal to the total on the unit (or under the unit, whichever      Very Important: At any point during its activation (except at
+you prefer – just be consistent).                                        the start of its activation as per above), if a ground unit is in a
+Example: A unit with 2 Sorties suffers a combat result that adds         hex containing an EZOC, it must do one of the following.
+two Sorties.Replace the 2 Sorties marker with a 4 Sorties marker.
+                                                                        • End its activation. If the hex contains a fort of the same
+The highest Sorties value a unit can be marked with is 6, even if         nationality and the unit did not occupy the fort earlier in the
+it suffers a total greater than 6.                                        turn, it may occupy the fort before ending its activation.
+1.6 Turn Counting                                                       • If it has not performed a Mobile attack in this activation, it can
+                                                                          designate an Assault (5.3.3) against an adjacent enemy ground
+When you are instructed to put a counter a certain number of turns
+                                                                          unit. If it designates an Assault, the unit’s activation ends.
+later on a Track, do not count the current turn.
+                                                                        • If the defender’s hex is affected by Fair weather, it can initiate
+1.7 Zone of Control                                                       a Mobile attack (5.3.2) against an adjacent enemy ground unit
+                                                                          that does not occupy a fort (4.2.3.5). It can do this even if it
+A ground unit exerts a Zone of Control (ZOC) into each of the six
+                                                                          already resolved another Mobile attack in the same activation
+adjacent hexes around its current location. More than one ZOC
+                                                                          (even against the same enemy unit). Remember to pay all the
+from different units can be exerted into the same hex.
+                                                                          movement costs for each attack.
+[Exceptions:
+                                                                        No EZOC Marker (14.8)
+• A unit occupying a fort (i.e., under a fort marker) does not exert
+                                                                        No EZOC is exerted into a hex containing a No EZOC marker.
+  any ZOC. An enemy ZOC is exerted into a hex with a fort.
+                                                                        Retreat Prohibitions (5.3.5.1)
+• No ZOC is exerted into or across a ground movement Prohibited
+  hex or hexside. (Player Aid Sheet: Movement table)                    A unit cannot retreat into a hex containing an EZOC unless it
+                                                                        contains a friendly: city or fort, and the unit is also putting a one
+  Example: In the France 1940 scenario, a French unit’s ZOC
+                                                                        hex gap between it and the attacker.
+  does not extend into Italy, which is prohibited per the scenario.
+                                                                        Supply Line Prohibitions (7.4)
+• No enemy ZOC is exerted into a hex with a No EZOC marker.]
+                                                                        A Supply Line trace cannot enter an EZOC unless it contains a
+1.7.1 Enemy Zone of Control                                             friendly: city, fort, or ground unit.
+A ZOC exerted by an enemy unit is referred to as an Enemy Zone
+of Control (EZOC).                                                      1.8 Rounding
+An EZOC may affect movement, supply, and retreats in combat.            If instructed to round up, a fractional value is increased to the next
+The effects are found below and within their respective rules.          higher whole number. If instructed to round down, a fractional
+                                                                        value is decreased to its lower whole number. If rounding is done
+1.7.1.1 EZOC Effects Summary
+                                                                        more than once, apply the rounding each time.
+Air Movement Prohibitions (4.2.2.1)
+                                                                        Example: A German infantry unit marked with a No Supply
+An air unit cannot end its movement in a hex containing an EZOC         marker fights a ground combat in a hex affected by Severe
+unless the hex contains a friendly: city, fort, or unit.                weather. For each of those conditions, its modified die result is
+Amphibious Invasion Resolution (6.3.2.2)                                divided by two and rounded up for each division. If the initial
+If the invading ground unit is put in a hex containing an EZOC, it      modified die result was 5, then it first becomes 3 (5/2 = 2½) and
+must either end its activation or immediately resolve an Assault        then 3 becomes 2 (3/2 = 1½).
+attack against an enemy ground unit in an adjacent hex.
+                                                                        1.9 Die Roll Modifier
+Ground Movement Prohibitions (4.2.3.2)
+                                                                        When rolling a die to resolve a game mechanic, one or more Die
+A ground unit cannot enter a hex containing a friendly ground
+                                                                        Roll Modifiers (DRM) may be applied to it. The DRM is added
+unit and an EZOC.
+                                                                        to the die result before any other modification (e.g. rounding) is
+                                                                        applied to the result.
+
+                                                           © 2025 GMT Games, LLC
+                                       Unconditional Surrender: Western Campaigns ~ Rulebook                                                     5
+
+                                                                         Players separately control these factions in the game.
+2.0 Country & Factions                                                   Friendly / Enemy: A unit, marker, or city that belongs to, or is
+                                                                         under the control of, one faction is “friendly” to all units and
+2.1 Country                                                              markers of that faction. If it belongs to a different faction, it is
+A country is a group of land hexes encompassed by an International       “enemy” to that faction. Therefore, Axis and Western factions are
+border (see Faction Card Terrain Key).                                   enemies to each other.
+2.1.1 Active/Inactive Country                                            A country (even if it is conquered) is always considered part of
+                                                                         the faction that it joined.
+A country is considered active or inactive. An active country has
+joined a faction and has units in play. An inactive country is neutral   2.3.1 City Control
+or conquered. It has no units in play.                                   A city is under the control of one faction at a time (i.e., it is friendly
+2.1.2 National Will                                                      to the Axis or Western faction). The control of a city immediately
+                                                                         changes if an enemy ground unit moves into the hex. It may also
+National Will represents a country’s willingness to continue fight-      change because of an Airdrop (13.1).
+ing. A country’s starting National Will is listed in a scenario’s
+instructions and it may vary during play.                                When a city’s control changes, put or remove the respective Con-
+                                                                         trol [Faction] marker in the hex. If needed, adjust the respective
+Will Markers: National Will is tracked using a country’s Will            country’s National Will as per the National Will Effects list.
+markers on the Faction Card’s National Will & Production Track.
+A Will 1s marker is put in the Ones row. A Will 10s marker (if
+any) is put in the Tens row.
+A country’s National Will cannot be less than zero. If a country’s       3.0 Markers & Units
+National Will drops to zero, it collapses (12.1). A collapsed country
+                                                                         A counter is either a marker or a unit. They are different from each
+that has at least one of its cities under enemy control is considered
+                                                                         other, so rules are specific to each type. Markers track economic,
+conquered (12.1.2).
+                                                                         military, or political conditions. Units represent military forces.
+2.1.2.1 National Will Effects                                            If a counter specifically belongs to a country or faction, its country
+Per the Player Aid Sheet’s National Will Effects list, some events       name abbreviation is on the bottom of the counter.
+cause a country’s National Will to decrease or increase. National
+                                                                         What-if counters: A counter with a triangle symbol ( ) is a
+Will is affected immediately when these events occur and its Will
+                                                                         “What-if” counter. These alternative forces or events are not in-
+markers are moved on the Track accordingly.
+                                                                         cluded in historical scenarios. They may be used due to optional
+ If you forget to do that and cannot easily fix it, just play on         rules, hypothetical scenarios, or unofficial player modifications.
+ and have fun.                                                           Use them at your own discretion.
+Example: France’s National Will is 15. A German ground unit              3.1 Markers
+eliminates a French field ground unit in Paris. Before the German
+unit advances after combat, France’s National Will is reduced            There are two kinds of markers, Event (13.0) and Tracking (14.0).
+by one to 14. Then, after the German ground unit advances into           A list of each marker is found in its respective rules section.
+Paris, France’s capital goes under enemy control and its National        A marker may have one or more of the following reminder sym-
+Will is decreased by four more down to 10.                               bols on them.
+                                                                             A small die indicates to roll a die after using the marker and
+2.2 Disputed Area                                                        put the marker that many turns later on the Turn Track. [Excep-
+A Disputed Area is a group of land hexes encompassed by a Dis-           tion: Airdrop (13.1).]
+puted and/or International border (see Faction Card Terrain Key).            A #T indicates that after using it, the marker is put the listed
+Scenario rules will state how to handle a Disputed Area that may         number of turns later on the Turn Track.
+be on that scenario’s map.
+ A Disputed Area is territory that was part of one country, but          3.2 Units
+ was later ceded to another country; e.g., the Alsace-Lorraine            Unlike some other wargames, USWC does not use combat
+ area between France and Germany. It also may represent a                 factors to rate the fighting effectiveness of different units and
+ new country formed during the war, e.g., Vichy.                          nationalities. Instead, those qualities are reflected in various
+                                                                          die roll modifiers. Also, there is no movement factor number
+2.3 Factions                                                              on the counters as there are only two values to remember,
+                                                                          eight and ten: Eight for Leg ground units and ten for every
+There are two factions in the game: Axis and Western. The Axis
+                                                                          other kind of unit.
+faction consists of countries allied with Germany. The Western
+faction consists of countries allied with the United Kingdom (UK).       There are two kinds of units: Air and Ground.
+                                                                         Within each kind of there are different types or other distinctions.
+
+
+                                                            © 2025 GMT Games, LLC
+6                                       Unconditional Surrender: Western Campaigns ~ Rulebook
+
+
+ The distinction between the different types of units (e.g., fighter     Within each type there are different sub-types which are identified
+ or bomber air units) is based on the predominant equipment              by the NATO military symbol on the counter.
+ and tactics used. It is not the only type of equipment in that unit.    Leg:
+                                                                                     Infantry           Paratroop          Garrison
+The center of a unit’s counter contains a NATO military symbol or
+an image. The symbol or image indicates the unit’s type.
+                                                                         Mobile:
+A historical ID appears along one side of a unit’s counter (left for                            Motorized           Tank
+air, right for ground). Unless specifically required to identify a
+unit, the ID has no impact on play.                                      3.3 Stacking Limits
+ Because of the basic nature of USWC units, some of the units            Stacking refers to having more than one counter in a hex.
+ in a USWC scenario may have an incorrect historical ID. This
+ was done to reduce the number of counters in the game and                Stacking has to do with assigned areas of operation, not man-
+ will not impact a scenario’s play balance.                               power. A reduced ground unit may have fewer soldiers than
+                                                                          a full-strength unit, but two reduced units cannot occupy the
+      A unit with a star symbol is considered an Elite unit and re-       same hex. The same concept applies to air units.
+ceives the Elite unit combat DRM on the Ground Combat DRM
+list (Player Aid Sheet).                                                 Markers have no stacking limit and they do not impact the stacking
+                                                                         limit of units. Units do have stacking limits.
+            Example: In ground combat, a German 1 Para ground            A hex can have one of each of the following units: bomber, fighter,
+            unit receives the +1 Elite unit DRM.                         and ground. This stacking limit cannot be violated at any point
+                                                                         in a turn.
+3.2.1 Air Units
+                                                                         [Exceptions:
+There are two types of air units: Fighter and Bomber.                    • A ground unit can temporarily violate stacking if it is moving
+                                                                            through (i.e., not ending in) a hex containing another friendly
+                                                                            unit and there is no enemy Zone of Control (EZOC) in that hex.
+                                                                         • An air unit can temporarily violate stacking if it is moving
+                   Fighter              Bomber                              through (i.e., not ending in) a hex containing another friendly
+                                                                            air unit (regardless of any EZOC in that hex).
+A fighter or bomber can attack an air unit or provide air support
+to a ground combat.                                                      • Stacking limits are ignored when tracing a supply line.]
+Unlike a ground unit, an air unit does not have strength sides.          Examples: German infantry units are in hexes 2915, 3015, and
+                                                                         3116 (one in each hex). German air units are in hexes 3015 and
+3.2.2 Ground Units                                                       3016 (one in each hex). A French infantry unit is in Paris.
+There are two categories of ground units: Field and Garrison. Both                                        The German infantry unit in 3015
+categories may move and attack other ground units.                                                        can move into hex 3116 (which is
+Field:                                                                                                    not in an EZOC) and then con-
+                                                                                                          tinue moving. It cannot move into
+                                                                                                          and through 2915 because 2915
+                Full Strength      Reduced Strength                                                       has both a friendly ground unit
+                                                                                                          and an EZOC (from the unit in
+A field unit has two different sides to indicate the strength of the                                      Paris). It could not do this even if
+unit. A full-strength side has no stripe across the bottom of the        it moved out of the EZOC in 3015 by first moving into hex 2916.
+counter; a reduced strength side has a stripe at the bottom across
+                                                                         Using the same set up, the German air unit in 3016 can move into
+its nationality name.
+                                                                         3015 and then continue moving. It cannot end movement there.
+A reduced strength unit represents forces of significantly lower
+                                                                         Using the same set up, the German unit in 3015 can trace a
+quality and/or quantity.
+                                                                         supply line through hex 2915 or 3116.
+Garrison:                                                                Subject to the above restrictions, friendly units of different coun-
+                                                                         tries can stack.
+                                                                          Important: Enemy units cannot share the same hex. A ground
+               Reduced Strength (front side only)
+                                                                          unit can move into a hex containing an enemy air unit and no
+A garrison unit has only one side and is always considered a re-          enemy ground unit, but that will force the air to immediately
+duced strength unit.                                                      displace out of the hex (4.2.3.7).
+3.2.2.1 Ground Unit Types
+                                                                         [Exception: An air unit can temporarily violate stacking if it is
+Ground units are broken down into two types: Leg and Mobile.
+                                                                         moving through (i.e., not ending in) a hex containing an enemy
+                                                                         counter.]
+
+                                                             © 2025 GMT Games, LLC
+                                       Unconditional Surrender: Western Campaigns ~ Rulebook                                              7
+
+
+                                                                        4.2 Operational Movement
+4.0 Movement
+                                                                        There are two types of Operational movement: Air (4.2.2) and
+ Important: The Player Aid Sheet’s Movement table lists infor-          Ground (4.2.3). Each one allows a supplied or unsupplied unit
+ mation related to unit movement points, movement point costs,          to move.
+ and Prohibited hexes.
+                                                                        All types of Operational movement use the Operational Movement
+There are two kinds of movement: Strategic and Operational.             Procedure listed below. However, each type also has specific rules
+                                                                        (found in their own section) that need to be followed.
+Strategic movement only occurs in the Strategic Movement Phase.
+Unlike operational movement, it does not cost movement or pro-          Movement Path Trace: A game mechanic may require a unit to
+duction points, and it does not add a Sortie.                           trace a “movement path” from one location to another without
+                                                                        physically moving the counter. Unless stated otherwise, the path
+Operational movement only occurs in the Operations Phase. Unlike
+                                                                        traced must follow the rules for the specified movement type.
+Strategic movement, it costs movement points, and it may cost
+production points or add a Sortie.                                      Movement Points: With each activation, a unit receives a maxi-
+                                                                        mum number of movement points (MP) it can expend to move. The
+4.1 Strategic Movement Phase                                            amount received depends on the unit type and its Supply State (7.1).
+ Strategic Movement is not used in most scenarios to reduce             • Leg ground unit with: Full Supply 8 MP / Low or No Supply 4 MP
+ play time and because it did not impact the scenario greatly.          • Any other unit type with: Full Supply 10 MP / Low or No Supply
+ Therefore, you may ignore this rule and come back to it when              5 MP
+ it is needed for a scenario.                                           Movement points cannot be saved from turn to turn.
+Strategic movement allows one friendly supplied air or ground unit      4.2.1 Operational Movement Procedure
+to move any distance along a contiguous Transport Line.
+                                                                        As a unit moves, it will pay an MP cost to enter or cross a hexside,
+In this Phase, the phasing faction does the following.                  or hex. A ground unit also pays an MP cost to attack an enemy
+Step 1) It removes its Strategic Move marker (if any) from the          ground unit (4.2.3.3). After a unit pays the MP cost, its total MP
+          map and puts it in its Faction Card’s Events box.             for the turn is reduced accordingly.
+Step 2) It may put its Strategic Move marker on one friendly,           The MP cost paid to move (and attack) is subtracted before the
+          supplied air or ground unit in a hex containing a Trans-      unit moves. If a unit does not have enough MP left to pay the total
+          port Line. That hex can contain an EZOC. The unit then        cost, it cannot move (and attack) into that location.
+          performs strategic movement (see below). The Strategic        Example: The weather is Fair and the German 8 Army has spent
+          Move marker stays on the unit until the next turn.            six of its eight MP. It cannot attack a French ground unit in a
+4.1.1 Strategic Movement Procedure                                      clear hex across a river hexside because the total movement point
+                                                                        cost of three (1 MP for Clear hex, +1 MP for Moving across a
+A unit marked with Strategic Move may move any distance from            river hexside, and +1 MP for Attacking a hex affected by Fair
+hex to hex across hexsides that are connected by a Transport Line.      weather) exceeds the Germany army’s remaining two MP.
+When done, keep the Strategic Move marker on the unit.
+                                                                        MP costs are on the Player Aid Sheet’s Movement table.
+A unit marked with a Strategic Move marker that is attacked or
+                                                                        Only MP costs beginning with a “+” are cumulative with other
+displaced in an enemy Actions Sub-Phase does not suffer a pen-
+                                                                        MP costs.
+alty related to the Strategic Move marker. If the unit retreats or is
+displaced, keep the Strategic Move marker on the unit.                  Example: A ground unit moving across a river hexside (+1 MP)
+                                                                        into a hex with an enemy city (2 MP) and rough terrain (2 MP)
+4.1.2 Strategic Movement Prohibitions                                   pays three movement points, not five.
+A unit marked with Strategic Move:                                      4.2.2 Air Movement
+• Cannot enter or cross a ground movement Prohibited hex or
+                                                                        An air unit can use air movement to move across hexes; or if in
+  hexside (Player Aid Sheet: Movement).
+                                                                        a port, it can use Naval Transport (4.2.4) to move between ports.
+• Cannot enter an enemy: city, fort, unit, or ZOC. Per above, it
+                                                                        Only an air unit can perform air movement.
+  can start in an EZOC.
+                                                                        An air unit moves from hex to adjacent hex using the Operational
+• Cannot occupy a fort.
+                                                                        Movement Procedure (4.2.1).
+• Cannot violate stacking limits.
+                                                                         Important: Air movement must end in a friendly city, or in a
+• Cannot move into, out of, or between a Map Box.                        hex containing a Transport Line and no enemy unit or enemy
+• Cannot be activated in its faction’s Operation-Phase.                  marker. In addition, a supply line (7.4) must be able to be traced
+• Cannot be improved in the Replacements Phase.                          from the ending location to a Supply Source for the unit. Just
+                                                                         confirm that a valid supply line can be traced.
+                                                                        Sorties: When the unit’s movement is done, add one Sortie to
+                                                                        its total.
+
+                                                           © 2025 GMT Games, LLC
+8                                     Unconditional Surrender: Western Campaigns ~ Rulebook
+
+4.2.2.1 Air Movement Prohibitions                                                                             Example continued: The 2
+• A unit cannot enter an air movement Prohibited hex. (Player Aid                                             Pz Army can move from
+  Sheet: Movement)                                                                                            2915 into 2815 (which has
+• A unit cannot end in a hex that violates stacking limits (3.3).                                             no EZOC), and then into
+                                                                                                              2814 (which has an EZOC).
+• A unit cannot end in a hex containing an EZOC unless the hex
+  contains a friendly: city, fort, or unit.
+• A unit cannot end in a hex containing an enemy: city, fort, unit,     Very Important: At any point during its activation (except at
+  Airdrop or Partisans marker.                                          the start of its activation as per above), if a ground unit is in a
+                                                                        hex containing an EZOC, it must do one of the following.
+• In the same activation, a unit cannot combine hex to adjacent
+  hex movement with Naval Transport.                                   • End its activation. If the hex contains a fort of the same
+4.2.3 Ground Movement                                                    nationality and the unit did not occupy the fort earlier in its
+                                                                         activation, it may occupy the fort before ending its activation.
+ USWC has an integrated movement and combat system. Basi-
+                                                                       • If it has not performed a Mobile attack in this activation, it can
+ cally, one ground unit moves and fights (sometimes multiple
+                                                                         designate an Assault (5.3.3) against an adjacent enemy ground
+ times) before the next ground unit moves and fights.
+                                                                         unit. If it designates an Assault, the unit’s activation ends.
+A ground unit can use ground movement to move across hexes; or if        Remember to pay all the movement costs to designate the Assault
+in a port, it can use Naval Transport (4.2.4) to move between ports.     (4.2.3.3).
+Only a ground unit can perform ground movement.                        • It can initiate a Mobile attack (5.3.2) against an adjacent enemy
+A ground unit can move from hex to adjacent hex using the Op-            ground unit that does not occupy a fort (4.2.3.5). It can do
+erational Movement Procedure (4.2.1).                                    this even if it had resolved another Mobile attack in the same
+                                                                         activation (even against the same enemy unit). Remember to pay
+4.2.3.1 Ground Movement EZOC Restrictions                                all the movement costs for each Mobile attack (4.2.3.3).
+The following applies to a ground unit in an EZOC, including one
+                                                                        The basic concept of these restrictions is that except for a
+that occupies a fort in an EZOC.
+                                                                        ground unit’s initial move, if a ground unit finds itself in an
+ Because these restrictions are important to how the game plays         EZOC, it must either end its activation or attack an adjacent
+ out, it is recommended you set up the example below on the             enemy unit. An EZOC is very sticky in USWC.
+ map to physically go through it.
+                                                                                                            Example continued: The 2 Pz
+• A unit cannot move directly between hexes which contain an                                                Army starts its activation by
+  EZOC exerted by the same enemy unit.                                                                      resolving a Mobile attack
+                                     Example: The French 10                                                 against 10 Army. The combat
+                                     Army is in hex 2914 and the                                            result was DR and the Western
+                                     French 6 Army is in hex 3115.                                          Faction retreats 10 Army into
+                                     The German 2 Pz Army starts                                            2813 (Calais). 2 Pz performs
+                                     its activation in hex 2915.                                            an Advance after Combat into
+                                     The 2 Pz Army cannot move                                              2914. It is now in the EZOC
+                                     from 2915 directly into 3014                                           of 10 Army in Calais. As it is
+                                     (an empty Paris) because the      no longer the start of its activation and 2 Pz is in an EZOC from
+                                     10 Army exerts an EZOC in         10 Army in Calais, 2 Pz must either end its activation or attack
+                                     both hexes.                       an adjacent ground unit. It cannot leave the EZOC to move into
+• At the start of its activation, a unit in an EZOC can move into      Paris. 2 Pz continues its activation by attacking 10 Army in
+  a hex containing an EZOC exerted by a different unit, provided       Calais.
+  that move does not violate the same unit EZOC rule above.                                                 Example continued: Alterna-
+                                        Example continued: The 2                                            tively, after 10 Army retreats
+                                        Pz Army can move from                                               into Calais, 2 Pz does not
+                                        2915 into 3015 as the                                               Advance after Combat. By
+                                        EZOC in 3015 does not                                               doing this, it is no longer in
+                                        belong to 10 Army.                                                  an EZOC and can continue its
+                                                                                                            activation by moving into
+                                                                                                            Paris. When it does, it is now
+                                                                                                            in the EZOC of 6 Army and so
+• At the start of its activation, a unit in an EZOC can move into      must either end its activation or attack an adjacent ground unit.
+  a hex containing no EZOC and then later move into a hex
+  containing an EZOC exerted by any unit (even the enemy unit
+  that exerted the original EZOC).
+
+
+                                                           © 2025 GMT Games, LLC
+                                        Unconditional Surrender: Western Campaigns ~ Rulebook                                                   9
+
+4.2.3.2 Ground Movement Prohibitions                                     The Western faction can choose to resolve the Assault now (5.3.3)
+• A unit cannot enter or cross a ground movement Prohibited hex          or continue activating other units to do something else. When
+  or hexside. (Player Aid Sheet: Movement.)                              the Western faction wants to resolve the Assault that phase, it
+• A unit cannot violate stacking limits (3.3).                           declares it is doing so.
+• A unit cannot enter a hex containing a friendly ground unit and        4.2.3.4 Transport Line
+  an EZOC. You can move through a friendly unit if there is no           Any time during a unit’s movement across hexes, it may use a
+  EZOC in its hex.                                                       Transport Line connecting the unit’s current hex with an adjacent
+• In the same activation, a unit cannot combine hex to adjacent          hex. While moving along a Transport Line, treat the terrain of the
+  hex movement with Naval Transport.                                     hexside being crossed and the hex being entered as Clear terrain.
+                                                                         A unit does not receive this benefit if it is moving or attacking
+4.2.3.3 Ground Movement and Attack
+                                                                         into a hex containing an enemy: city, fort, or ground unit. A unit
+At any point in its movement, any type of ground unit (e.g., in-         not receiving this benefit ignores the Transport Line and pays full
+fantry, tank, full or reduced strength, field or garrison, supplied or   movement point costs.
+unsupplied, etc.) may do the following against an enemy ground
+unit in an adjacent hex that it can move into.                           4.2.3.5 Fort Occupation
+• It may initiate and resolve a Mobile attack (5.3.2).                   A brief list of fort effects is also in Fort (14.5).
+• If it did not already initiate a Mobile attack in its current          A ground unit must occupy a fort to receive its combat benefits as
+  activation, it may designate an Assault attack (5.3.3).                found on the Player Aid Sheet’s Ground Combat tables.
+                                                                         An air unit cannot occupy a fort.
+ Important: To initiate a Mobile attack or designate an Assault
+ attack, the phasing unit must pay the full terrain cost to enter        To show a unit occupies a fort, put it under the fort marker. A unit
+ the defending hex plus the additional “Attacking a unit…”               on top of a fort marker does not occupy that fort.
+ movement point cost. This cost is paid before the attack is re-         A unit can choose to occupy a fort only while performing the Army
+ solved. After paying the cost, the attacker does not move into          Operations Action (6.3.1) or Mobilization (8.2). The decision to
+ the defender’s hex. It will have the option to advance into the         occupy a fort is made at the time a unit starts in, moves into, ends in,
+ hex if it wins the combat and the defender is no longer in the          or is initially set up in a fort hex. The sole purpose of performing the
+ defending hex.                                                          Army Operations Action can be simply to occupy or to exit a fort.
+Example continued: At the start of 2 Pz Army’s activation it had         A unit can choose to exit a fort only while performing the Army
+ten movement points because it is a Mobile unit. To attack the           Operations Action (6.3.1) or a Retreat (5.3.5).
+10 Army in hex 2914, 2 Pz spent three MP (1 for the defender’s           Occupying or exiting a fort (i.e., putting it under or on top of a fort
+clear hex, +1 for the river hexside, and +1 for Attacking a unit         marker) does not cost movement points.
+in a hex affected by Fair weather). 2 Pz remained in hex 2915            A unit occupying a fort in an EZOC is considered to be in an EZOC.
+and resolved the Mobile attack. 10 Army retreated into Calais            An EZOC in a fort hex does not impact a unit’s ability to occupy
+and 2 Pz performed an Advance after Combat into 2914. 2 Pz               or exit a fort. Also, a unit that starts its activation by exiting a fort
+continued its activation by attacking 10 Army in Calais. This            in an EZOC may continue to move per ground unit rules.
+attack cost four MP (2 for the defender’s hex that contains an           While a unit is occupying a fort, it cannot attack an enemy unit.
+enemy city, +1 for the river hexside, and +1 for Attacking a unit        Therefore, a unit must first exit the fort before it can attack.
+in a hex affected by Fair weather). 2 Pz has three MP left out
+of its starting ten.                                                     4.2.3.6 Fort Occupation Restrictions
+Placing an Assault marker on a phasing unit ends that unit’s activa-     Only a ground unit of the same nationality as a fort can occupy it.
+tion. Therefore, it cannot continue moving that phase.                   Another friendly country’s unit can be in the hex (provided there
+                                                                         is no other ground unit already in the hex), but it cannot occupy
+More than one unit can designate an Assault against the same             the fort.
+enemy ground unit.
+                                                                         A unit occupying a fort cannot exit it and then occupy any fort in
+Example: The Western faction activates a French infantry unit            the same movement activation.
+and moves it next to a German infantry unit. It has enough
+movement points left to attack into the German unit’s hex so it          Example: A French army occupies the Maginot Fort in Metz. It
+designates an Assault by placing an Assault marker on the French         cannot move out of the fort, attack a German unit, and then oc-
+unit and pointing the marker’s arrow to the defender’s hex. The          cupy the Metz fort (or any other Maginot Fort) in that activation.
+French infantry unit’s activation ends. It could not do a Mobile          Why not? Because we’re not talking about a hundred soldiers
+attack first and then designate an Assault.                               sallying forth from a castle.
+The Western faction then activates another French infantry unit,         If an enemy unit moves into a hex containing a fort, remove that
+moves it adjacent to the same German unit, and designates an             fort from the scenario.
+Assault against it. That French unit’s activation is over. The
+Western faction does the same thing again but with a British
+Motorized unit.
+
+
+                                                            © 2025 GMT Games, LLC
+10                                    Unconditional Surrender: Western Campaigns ~ Rulebook
+
+4.2.3.7 Air Displacement                                               5.1 Combat Resolution Sequence
+If a ground unit enters a hex containing an enemy air unit, that en-
+                                                                       Use the following sequence to determine the result of any type
+emy unit immediately moves out of the hex per air (4.2.2) movement
+                                                                       of combat. If a step does not apply in the combat fought, skip it.
+rules. [Exception: The unit cannot move using Naval Transport.]
+                                                                       Step 1) Ground Combat Only: If it is a Mobile attack, the attack-
+The enemy unit moves even if it has 6 Sorties. The displaced unit
+                                                                                ing unit is the Primary Attacker. If it is an Assault attack
+is not considered activated.
+                                                                                involving multiple attacking units, the attacker declares
+The air unit’s faction moves it. Multiple displaced enemy units                 one unit as the Primary Attacker and up to two others as
+in the entered hex may move to the same or different locations.                 Additional Attacker units.
+When the displaced air unit is done moving, if it has less than 6      Step 2) Each side uses a Will Commit/Will not Commit marker
+Sorties, add one Sortie to its total.                                           to secretly decide if it commits any of the following
+If the air unit has no location where it can end its movement,                  to the combat. Both sides then simultaneously reveal
+remove its Sorties and put it in its Faction Card’s Eliminated box.             their marker.
+4.2.4 Naval Transport                                                            • Any number of Event markers (13.0) as per their rules.
+                                                                                 • Ground Combat Only: One air unit.
+If a Western phasing air or ground unit in a port activates to move,
+it can use Naval Transport to be put in any other friendly port hex             If a side reveals Will not Commit, it cannot commit
+regardless of distance.                                                         anything to the combat, even if the other side does.
+No movement path is traced. Instead take the unit from its current              If a side reveals Will Commit, it must commit at least
+hex and put it in the destination hex.                                          one eligible event marker or air unit to the combat.
+When placed in its destination hex, the transported unit’s activa-              If both sides reveal Will Commit, start with the attacker.
+tion ends.                                                                      Each side alternates declaring one event marker or air unit
+                                                                                to be committed. Continue this until both sides consecu-
+Remember, a ground unit cannot activate again in that phase,                    tively stop committing. As long as one side commits, the
+but an air unit could if it had less than 6 Sorties.                            other side can also, even if it did not commit something
+4.2.4.1 Naval Transport Prohibitions                                            earlier.
+• In the same activation, a unit cannot combine hex to adjacent        Step 3) Ground Combat Only: If both sides committed an air unit,
+  hex movement with Naval Transport.                                            temporarily stop the ground combat sequence. Resolve
+• A unit cannot end in a hex that violates stacking limits (3.3).               an air combat (5.2) between the air units to determine
+• A unit cannot end in a hex containing an enemy: city, fort, unit,             which side might apply the Air Support ground combat
+  Airdrop or Partisans marker.                                                  DRM. The ground combat attacker is also the attacker
+                                                                                in the air combat.
+                                                                                After the air combat has been resolved, continue the
+                                                                                ground combat with Step 4.
+5.0 Combat                                                             Step 4) Each side determines its own die roll modifiers as per the
+ The combat resolution sequence is simple despite the number                    Die Roll Modifiers list for the type of combat fought.
+ of steps. You should remember it after a few combats.                          After adding all modifiers for a side, the maximum DRM
+                                                                                that can be applied to that side is + or – 10.
+There are two types of combat: Air and Ground.
+                                                                                Do not combine both sides’ modifiers and apply the result
+The attacker in a combat is the faction that initiated it.
+                                                                                to only one side.
+If a combat is initiated, the defender must participate.
+                                                                                Example: If the attacker has a +2 DRM and the de-
+Example: A phasing German air unit declares an Air Strike                       fender has a –1 DRM, it is not applied as a +1 DRM.
+against a UK air unit. The defending UK unit must participate                   The reason is because CRT results are not linear.
+in the combat.
+                                                                       Step 5) Each side rolls one die and applies its own DRM to the
+The same Combat Resolution Sequence (5.1) and Combat Results                    result to determine its “modified die result”.
+Table (CRT) are used to resolve all types of combat. However, each
+                                                                                Each side then looks at the “After Rolling Combat Die…”
+type of combat has its own Die Roll Modifiers (DRM) list and its
+                                                                                section of the respective Die Roll Modifiers list to see if
+own Combat Results list.
+                                                                                its modified die result is divided by two (possibly more
+ The Combat Results Table and the specific Combat Results                       than once).
+ lists are different things.                                                    After applying all adjustments, each side has determined
+All combat lists and tables are on the Player Aid Sheet.                        its “final value”. A final value less than one is changed
+                                                                                to one.
+
+
+
+
+                                                           © 2025 GMT Games, LLC
+                                       Unconditional Surrender: Western Campaigns ~ Rulebook                                                 11
+
+Step 6) On the Combat Results Table, cross-reference the at-                     Each side looks at the “After Rolling Combat Die…”
+        tacker’s final value across the top with the defender’s                  section of the Ground Combat DRM list. None of its three
+        final value down the side. The CRT’s shaded areas are a                  bullets applies so no other adjustment is made to their
+        visual reference highlighting similar results. They serve                modified die results determined above.
+        no other purpose.                                                Step 6) The attacker’s final value of 4 is found across the top
+        Look up the CRT result on the respective Combat Results                  of the Combat Results Table and then cross-referenced
+        list for the type of combat and apply that result. After                 down the column with the defender’s final value of 7.
+        applying all results, the combat is over.                                The combat result is AS+2. Since it is a ground combat,
+Combat Resolution Sequence Example:                                              the “+2” part of the result is ignored. The result is AS.
+                                                                                 The AS result is then located on the Player Aid Sheet’s
+A German tank unit initiates an Assault attack against a reduced
+                                                                                 Ground Combat Results table.The AS or “Attacker
+strength British infantry unit in a city hex affected by Poor
+                                                                                 Stopped” result ends the German tank unit’s activation
+weather. Each side has several air units (all with less than 6
+                                                                                 for the turn. The combat is over and the British beat back
+Sorties) within five hexes of the defender’s hex.
+                                                                                 the German panzers.
+Step 1) The German tank unit is the Primary Attacker.
+Step 2) Each side takes a Will Commit/Will not Commit marker.            5.2 Air Combat
+          The Axis faction wants to commit the air unit so it secretly   An air combat is fought between air units. It occurs in the Opera-
+          places the Will Commit side face up and covers it with         tions Phase due to the following Actions: Air Strike (6.2.2) or Air
+          his hand. The Western faction wants to commit an air           Support (6.2.3). The combat is resolved using the Combat Resolu-
+          unit and a Tanks event marker, so it does the same thing       tion Sequence (5.1).
+          with its Will Commit/Will not Commit marker. Together,
+          they both reveal their markers.                                5.2.1 Air Combat Results
+          The Axis faction starts by declaring it is committing an       After determining the CRT result, perform the two steps listed on
+          air unit. The Western faction does likewise. At this point,    the Player Aid Sheet’s Air Combat Results list. Step one will add
+          no more air units can be committed because only one per        Sorties to the attacking and defending units. Step two determines
+          side is allowed in a combat.                                   the Effect on the Action that initiated the combat, e.g., if both sides
+                                                                         committed an air unit to a ground combat, which sides receive the
+          The Axis faction then says it is not committing. The
+                                                                         Air Support DRM.
+          Western faction then commits the Tanks event marker.
+          The Axis faction could now commit an event marker but          An Air unit cannot be eliminated due to an air combat. Once it is
+          chooses not to and states so. The Western faction also         marked with 6 Sorties, it remains on the map but adds no more
+          states it is not committing. Since both sides did not com-     Sorties (1.5).
+          mit consecutively, no more commitments can be made.            Air Combat Example:
+Step 3) Because both sides committed an air unit, an air combat          A ground combat is being fought between German and French
+          is fought between the air units (with the Axis unit be-        armies. The Axis faction commits the 3 Luf fighter to provide the
+          ing the attacker in this battle as well). The air combat       Air Support ground combat DRM to the combat. The Western
+          goes through its own Combat Resolution Sequence to             faction commits the French 1 Air fighter to do the same. Since
+          determine the number of Sorties added to each air unit         both sides committed an air unit to the ground combat, an air
+          and which side receives the Air Support ground combat          combat is fought first (per Combat Resolution Sequence, Step 3).
+          DRM. For this example, the air combat resulted in both         The German fighter is the attacker because it initiated the combat.
+          sides receiving the Air Support ground combat DRM.             After following the Combat Resolution Sequence and rolling the
+Step 4) Each side determines its own applicable ground combat            dice, the CRT result is DR+2.
+          die roll modifiers.                                            On the Air Combat Results list, the DR result is found under
+          The final Axis DRM is +2 (+2 Germany unit, +1 Tank unit        Step 1: Sorties. The DR result (as well as a DD or DE result)
+          and defender’s hex is affected by Poor weather, +1 Air         states the attacker adds one Sortie and the defender adds Sorties
+          Support and defender’s hex is affected by Poor weather,        equal to the +# part of the CRT result. The German fighter adds
+          –1 Attacking a defender’s hex affected by Poor weather,        one Sortie (bringing its total to 1). The French fighter adds two
+          and –1 Attacking a hex containing a city).                     Sorties (bringing its total to 2).
+          The final Western DRM is +1 (+1 UK unit, –2 Reduced            After applying the Sorties, the factions look at Step 2: Effect.
+          strength, +1 Tank unit [due to the Tanks event marker]         Since the combat was due to both sides committing an air unit
+          and defender’s hex is affected by Poor weather, and +1 Air     to a ground combat, the second bullet applies. It states look
+          Support and defender’s hex is affected by Poor weather).       below at the “Air Support” section. The DR result states each
+Step 5) The Axis faction’s die roll result was 2, to which it adds       side will receive the Air Support ground combat DRM in the
+          the Axis +2 DRM (for a modified die result of 4). The          ensuing ground combat.
+          Western faction’s die roll result was 6, to which it adds      If the CRT result had been DD+3, then the French fighter would
+          the Western +1 DRM (for a modified die result of 7).           have added 3 Sorties, the German fighter would have added 1
+
+
+                                                            © 2025 GMT Games, LLC
+12                                     Unconditional Surrender: Western Campaigns ~ Rulebook
+
+Sortie, and only the attacker (i.e., the German) would receive           Placing the Assault marker on a phasing unit ends that unit’s acti-
+the Air Support ground combat DRM.                                       vation. Therefore, it cannot continue moving and initiate a Mobile
+                                                                         attack that phase.
+5.3 Ground Combat                                                        A phasing faction may initiate and resolve a designated Assault at
+ Remember USWC is an abstract simulation. An army may                    any point during its Operations Phase.
+ fight many times and not be reduced in strength. That does              [Exceptions:
+ not mean it suffered no losses. It did, but not at a level that         • An Assault cannot be resolved during a unit’s activation.
+ was significant enough to reduce combat effectiveness at the
+                                                                            Example: The German 1Pz tank unit moves two hexes and
+ game’s scale.
+                                                                            enters a British infantry unit’s EZOC. The Axis faction can-
+A ground combat is fought between ground units. It occurs in the            not temporarily stop 1 Pz’s move to resolve a designated
+Operations Phase when the phasing faction initiates a Mobile at-            Assault somewhere else on the map and then continue to
+tack or initiates a designated Assault attack. The combat is fought         move 1Pz again.
+using the Combat Resolution Sequence (5.1).                              • An Assault due to an Amphibious Invasion must be resolved at
+ An Assault attack is a set-piece attack that may involve multiple          the time of the invasion.]
+ armies attempting to capture a main objective or put a hole in          After an Assault is resolved, remove the Assault markers from the
+ a defensive line. A Mobile attack represents an army operating          attackers involved in that combat.
+ relatively independently and in response to enemy resistance.           All Assaults do not have to be resolved at the same time.
+ So, which one should you use?
+                                                                         Example: The Western faction has five units marked to As-
+ A single unit with a positive combat DRM (e.g., a German                sault several hexes. After resolving an Assault involving three
+ Panzer unit in Fair weather has a +4 DRM) is more success-              of those units, it activates an Air unit. It then later resolves
+ ful with Mobile attacks because it can move and fight multiple          another Assault.
+ times in a single activation. The same army can attack multiple
+ enemy units and/or capture several cities.                              No matter how many Assault markers are pointing to the same hex,
+                                                                         an Assault can only have up to three attacking units in a single
+ With no positive combat DRM (e.g., a Belgian infantry army),
+                                                                         combat resolution. This restriction is to put a limit on DRM and
+ extra armies in an Assault provide a positive combat DRM.
+                                                                         represents the difficulty of battlefield coordination. Other units des-
+ The disadvantage of an Assault is that a unit attacks only one
+                                                                         ignated to Assault may resolve their own separate Assault against
+ time, so it only affects one enemy unit and hex.
+                                                                         that hex. The phasing faction decides how many and which units
+5.3.1 Ground Combat Prohibitions                                         are involved in each Assault.
+                                                                         A designated Assault attack does not have to be initiated and re-
+• A unit cannot designate an Assault attack and conduct a Mobile
+                                                                         solved. The phasing faction may choose not to initiate an Assault
+  attack in the same phase. It is one or the other.
+                                                                         combat. At the end of the phasing faction’s Operations Phase,
+• A unit cannot conduct a Mobile attack against an enemy ground          remove any remaining Assault markers on the map.
+  unit occupying a fort. A unit can only Assault it.
+                                                                         An Assault can be resolved against an enemy ground unit that was
+• A unit cannot conduct a Mobile attack against an enemy ground          not in the hex at the time the Assault was designated.
+  in a hex affected by Poor or Severe weather. A unit can only
+  Assault it.                                                             Because an Assault may be resolved after it was designated,
+                                                                          the unit intended to be attacked may not be there due to other
+5.3.2 Mobile Attack                                                       combats against it and a different enemy unit may have re-
+If a Mobile attack is initiated during a unit’s ground movement, it is    treated into the hex.
+immediately resolved. After resolving the combat, if the attacker’s      An Assault can be resolved against a hex that no longer contains
+activation has not ended; it may continue moving and initiate more       an enemy ground unit. No combat is fought, but the phasing fac-
+Mobile attacks (even against the same enemy unit). Remember to           tion may use Advance after Combat (5.3.7) to move one of the
+pay all the movement costs for each Mobile attack (4.2.3.3).             attackers into the hex. After it is done, remove the associated
+A Mobile attack against a unit defending in a hex already desig-         Assault markers.
+nated as the target of an Assault attack receives no benefit from,
+                                                                         5.3.4 Ground Combat DRM Special Cases
+nor gives any benefit to, any Assault against that hex.
+                                                                         Air Support: A unit’s Sorties or Supply State does not affect the
+5.3.3 Assault Attack
+                                                                         value of this DRM.
+An Assault attack is designated during a ground unit’s movement          Assault Attack: For an Assault, the attacker’s DRM is based on
+by placing one Assault marker on the phasing unit and pointing the       the unit that is declared the Primary Attacker, i.e. applicable DRM
+Assault marker’s arrow at the defending unit. Remember to pay all        listed under “Primary Attacker”. In addition, other attacking units
+the movement costs to designate the Assault (4.2.3.3).                   involved in the Assault apply the “Additional Attackers” DRM as
+                                                                         listed on the Ground Combat DRM list.
+
+
+
+                                                            © 2025 GMT Games, LLC
+                                        Unconditional Surrender: Western Campaigns ~ Rulebook                                               13
+
+Example: One German full-strength tank and two German re-                 Amphibious Invasion Assault: If an Assault is fought in a coastal
+duced strength infantry units marked with Assault markers attack          hex as part of an Amphibious Invasion (6.3.2), the attacker applies
+a French infantry unit in Poor weather. The German infantry               the Naval Support DRM. The defending hex does not have to be
+units are across a river, but the tank unit is not. The Axis fac-         the invaded hex.
+tion declares the tank unit as the Primary Attacker and the two
+infantry units as Additional Attackers. The Axis combat DRM is
++4 (+2 Germany unit, +1 Tank unit and defender’s hex affected
+by Poor weather, –1 Attacking a Poor weather hex, and +1 for
+each infantry unit who apply the Additional Attacker of any unit
+type). The –1 DRM for attacking across a river does not apply                                         Example: A German infantry is in
+because the tank unit (the Primary Attacker) is not attacking                                         Cherbourg and another is in hex 3111.
+across the river. Also, even though the German infantry units are                                     A UK ground unit invades hex 3010.
+reduced, the –2 DRM for being a reduced unit does not apply                                           If it attacks the German unit in Cher-
+because neither unit is the Primary Attacker.                                                         bourg, the Western faction can apply
+Event Markers: An Event marker (13.0) may be committed to a                                           the Naval Support DRM. If it attacks
+combat if the defending unit or any involved attacking unit allows                                    the German unit in 3111, it cannot
+the marker to be played.                                                                              apply the Naval Support DRM since
+Example: British and French infantry units resolve an Assault                                         it is not a coastal hex.
+against a German infantry unit in Paris. The British unit is the          5.3.5 Retreat
+Primary Attacker. The Western faction could commit a British
+                                                                          A combat result may state the defending ground unit must retreat.
+Tanks marker and a French Tanks marker.
+                                                                          A retreat is a one hex move in total. The unit is not considered
+Isolated: A defending unit is considered Isolated if it has no eligible
+                                                                          activated because of it.
+hex it can retreat into (5.3.5) and it is not adjacent to a friendly:
+city, fort, or ground unit.                                               A unit that retreats moves one hex away from the attacker, and it
+                                                                          must put a one hex gap between the attacker and defender.
+ Nearby support alleviates the “We’re surrounded!” feeling,
+ even if there is nowhere to run to.                                      [Exceptions: A one hex gap is not required for the following.
+                                                                          • The only attacking ground unit is performing an Amphibious
+A unit is not Isolated if it is in a hex along the map edge that has        Invasion Assault.
+land touching the map edge.
+                                                                          • The hex retreated into and the attacker’s hex share a ground
+Example: On the France map, a unit in hex 3815 cannot be                    movement Prohibited hexside.]
+Isolated because its southwest hexside has land touching the
+map edge. A unit in hex 3816 can be Isolated because neither of
+its map edge hexsides has land.                                                                  Example: A USA ground unit in hex 3817
+ The above exception represents the possibility that a retreat                                   attacks a German ground unit in hex 3717.
+ path or supporting unit may be present in a hex just beyond                                     The German unit can retreat into hex 3816
+ the map edge.                                                                                   because the hexside between the USA unit
+                                                                                                 and 3816 is a water hexside.
+An event marker, e.g., Naval Evacuation, cannot be used by the
+                                                                          The defending faction chooses the hex a unit retreats into.
+defender to avoid being Isolated.
+                                                                          In an Assault, the retreat is away from any one of the attacking
+An adjacent city, fort, or ground unit cannot be used by the defender
+                                                                          units. The defending faction chooses which unit it is moving away
+to avoid being Isolated if the hexside between it and the defender
+                                                                          from. It cannot choose an attacking unit that would prevent the
+is a ground movement prohibited hexside.
+                                                                          defending unit from retreating due to Retreat Prohibitions (5.3.5.1).
+                               Example: A German ground unit in           If a retreat path is available, the defender must retreat.
+                               hex 3717 attacks a French ground
+                                                                          Unless otherwise prohibited, a unit can retreat into a hex contain-
+                               unit in hex 3816. The French unit
+                                                                          ing an enemy air unit, causing it to move as per Air Displacement
+                               cannot use the adjacent city of Mar-
+                                                                          (4.2.3.7).
+                               seille to avoid being Isolated because
+                               the hexside between the French unit        An Airdrop or Partisans marker does not affect retreats into or out
+and Marseille is a water hexside.                                         of its hex. Also, that marker stays in its hex.
+A defender with no adjacent support that is in a city or occupying        A full-strength unit occupying a fort is not required to retreat.
+a fort can be considered Isolated.                                        However, if it chooses to retreat, retreat rules apply to it.
+                                                                          A unit may retreat into a hex containing a fort, but cannot occupy
+                                                                          that fort.
+
+
+
+
+                                                             © 2025 GMT Games, LLC
+14                                     Unconditional Surrender: Western Campaigns ~ Rulebook
+
+
+ This simulates the offensive or defensive posture of the army          If the attacker enters a hex containing an Airdrop or Partisans, that
+ for the month. If you want to hold a fort, occupy it first. Hav-       marker stays in the hex.
+ ing an adjacent fort (like having an adjacent city) provides
+ some benefit as it prevents the defender from being Isolated.
+
+5.3.5.1 Retreat Prohibitions                                            6.0 Actions
+• A unit cannot retreat into an enemy: city or fort.                    An Action allows a unit in a hex to move and/or fight. It may also
+• A unit cannot retreat into a hex containing an EZOC unless it         put an Airdrop or Partisans marker in a hex.
+  contains a friendly: city or fort, and the unit is also putting a     Unless stated otherwise, each Action is declared and resolved
+  one hex gap between it and the attacker.                              before another Action is declared.
+• The retreat cannot violate ground movement prohibitions or            Example: The Axis faction declares and resolves one Air Strike
+  stacking limits.                                                      before declaring another.
+5.3.5.2 Cannot Retreat                                                  The Actions listed below may be performed in any order. However,
+If a reduced unit cannot retreat, eliminate it.                         certain procedures within them may have a strict order.
+If a full-strength unit cannot retreat, or chooses not to retreat       Example: The Axis faction activates an air unit to perform an Air
+because it is occupying a fort, leave it in its hex and flip it over    Strike Action against an enemy air unit. It then activates a ground
+to its reduced side.                                                    unit for a Ground Action. This is followed by an Airdrop Action to
+                                                                        place an Airdrop marker and then by another Air Strike Action.
+5.3.6 Unit Elimination
+                                                                        Unless stated otherwise, one unit’s Action must be completed
+A ground unit may be eliminated in combat due to the combat             before another unit is activated.
+result or because it cannot retreat.
+                                                                        Example: The Axis faction cannot temporarily stop moving a
+Put an eliminated unit in its Faction Card’s Eliminated box and         ground unit in the middle of its Ground Action; activate an air
+check the Player Aid Sheet’s National Will Effects table to see if      unit to perform an Air Rebase Action; and then continue moving
+its country loses National Will.                                        that same ground unit.
+Example: A French field army is eliminated while defending in           Actions and Conditional Events:
+combat. The Western faction puts it in its Faction Card’s Elimi-
+                                                                        At some point during a unit’s Action, a Conditional Event (12.0) may
+nated box and reduces France’s National Will by one.
+                                                                        be triggered. If that happens, immediately check that event’s rules.
+If a defender is eliminated in a Mobile attack, put a No EZOC
+marker in the defender’s hex.                                           6.1 Special Marker Action
+All No EZOC markers placed are removed at the end of the moving          Important: Unlike other Event markers (13.0), an Airdrop,
+unit’s activation. Therefore, only the currently activated unit can      Partisans, or Surprise Attack marker cannot be placed during
+take advantage of the negated EZOC.                                      a unit’s activation, nor can it be committed in Step 3 of an air
+5.3.7 Advance after Combat                                               or ground combat.
+If a defending unit is eliminated or retreats out of its hex, the at-   Example: The Axis faction cannot move a ground unit, initiate
+tacking unit may choose to enter the defender’s hex at that time.       a Mobile attack with it, place an Airdrop marker, resolve that
+If it was an Assault, only one of the attacking units can advance       attack, and then continue moving that same ground unit.
+(attacker’s choice).                                                    At any point during its Actions Sub-Phase (except as noted above),
+There is no movement cost to Advance after Combat. The cost was         the phasing faction may take an Airdrop (13.1), Partisans (13.6),
+paid when the attack was initiated.                                     or Surprise Attack marker (13.9) from its Faction Card’s Events
+If a unit does not Advance after Combat, it may continue moving         box and use it as per its rules.
+provided it performed a Mobile Attack and has movement points           Example: The Axis faction activated and completed the actions
+remaining. If it is in an EZOC, see EZOC Restrictions (4.2.3.1).        of three ground units within France. Before it activates its next
+If a unit does Advance after Combat, the advancing unit ignores all     unit, it puts the German Airdrop marker in Paris. It then activates
+EZOC in its current hex and then enters the defender’s hex. After       its next unit.
+it is in that hex, it may continue moving provided it performed a       Only one of each marker may be placed in the same hex.
+Mobile Attack and has movement points remaining. If it is in an         For each marker’s placement, effects, and removal rules, see its
+EZOC, see EZOC Restrictions (4.2.3.1).                                  specific entry in the Event Markers (13.0) section.
+If the attacker enters a hex containing an enemy air unit, the enemy
+unit is moved as per Air Displacement (4.2.3.7).                        6.2 Air Actions
+                                                                        Only an air unit can be activated to perform an Air Action.
+                                                                        Air Actions are Air Rebase (6.2.1), Air Strike (6.2.2), Air Support
+                                                                        (6.2.3).
+
+
+                                                           © 2025 GMT Games, LLC
+                                      Unconditional Surrender: Western Campaigns ~ Rulebook                                               15
+
+
+ Important: An air unit with 6 Sorties cannot be activated. Check      The owning faction declares the unit it is using and traces an air
+ a unit’s Sorties each time you want to activate it. Note that Air     movement path to the defending hex. There is no physical move-
+ Displacement (4.2.3.7) does not involve activation. The air unit      ment of the air unit’s counter; it stays in its hex.
+ must move, even if it has 6 Sorties.                                  If only one side commits an air unit, that side automatically receives
+                                                                       Air Support and the air unit’s activation ends.
+Activating an air unit does not cost production points.
+                                                                       If both sides commit an air unit, then in Step 3 of the Combat
+Activating an air unit does not add Sorties to its total. However,     Resolution Sequence conduct an air combat. The ground combat
+performing the Action will add Sorties as indicated in each Action     attacker is also the air combat attacker.The final result of the air
+rule. So do not add one Sortie for activating the unit and then add    combat will determine whether either or both sides receive Air
+more Sorties based on what it did.                                     Support for the ground combat. When the air combat is done, each
+More than one air unit can be activated in a phase.                    air unit’s activation ends.
+An air unit can perform only one Action per activation.                Sorties: When the air unit’s activation ends, if it did not fight an
+An air unit can be activated multiple times in a phase.                air combat, add one Sortie to its total. If it did fight, no Sorties
+                                                                       are added to its total. It already added Sorties due to the combat.
+An air unit can perform the same Action multiple times in a phase.
+6.2.1 Air Rebase                                                       6.3 Ground Actions
+A phasing air unit can activate to move (4.2.2). When the move-        Only a ground unit can be activated to perform a Ground Action.
+ment is done, the unit’s activation ends.                              Ground Actions are Army Operations (6.3.1) and Amphibious
+Sorties: When the air unit’s activation ends, add one Sortie to        Invasion (6.3.2).
+its total.                                                             To activate a ground unit (regardless of its strength), its country
+6.2.2 Air Strike                                                       must spend its production points. This cost is paid one time at the
+                                                                       start of the ground unit’s activation.
+A phasing fighter or bomber unit in a hex can activate to attack an
+                                                                       • A Leg unit costs 1 production point to activate.
+enemy air unit within a 7-hex range of the phasing air unit.
+                                                                       • A Mobile unit costs 2 production points to activate.
+ An Air Strike’s purpose is to inflict Sorties on an enemy unit.
+ This is a way the phasing faction can attempt to suppress an          A ground unit can activate only once in a phase.
+ enemy air unit before it starts land operations.                       Tip: When a unit’s activation ends, use some method (such as
+ The 7-hex range allows striking at enemy air units far behind          rotating it or putting a small item on it, like a bead) to remind
+ front lines. If limited to five hexes (the range for Air Support),     you it cannot be activated again that turn.
+ an enemy air unit that was six hexes behind its lines would           More than one ground unit can be activated in a phase, but not at
+ be immune to attack, but still able to provide Air Support to         the same time.
+ its ground units.
+                                                                       6.3.1 Army Operations
+The phasing faction declares the enemy unit to be attacked and
+traces an air movement path from activated air unit to the de-         A phasing ground unit can be activated to move (4.2.3). During
+fender. There is no physical movement of the air unit’s counter;       movement it may initiate a Mobile attack (5.3.2) or designate an
+it stays in its hex.                                                   Assault attack (5.3.3).
+To resolve the Air Strike, conduct an air combat (5.2). When the       6.3.2 Amphibious Invasion
+combat is done, the phasing unit’s activation ends.                    After a Surprise Attack marker is put into a port hex, a phasing
+Sorties: When the air unit’s activation ends, no Sorties are added     ground unit in a different port can activate to invade a coastal
+to its total. It already added Sorties due to the combat.              hex that contains, or is adjacent to, that Surprise Attack marker.
+6.2.2.1 Air Strike Special Notes                                       A friendly port can be invaded; it is a way to get more troops
+                                                                       there quickly
+An enemy unit can be the target of more than one Air Strike in
+a Phase                                                                An Amphibious Invasion and the hex being invaded are declared
+                                                                       and resolved immediately after a phasing faction puts a Surprise
+A phasing unit can perform more than one Air Strike against the
+                                                                       Attack marker in a hex with a port (6.1).
+same enemy unit. Each Air Strike requires a separate activation.
+                                                                       The invaded hex may contain an enemy unit or EZOC.
+6.2.3 Air Support
+                                                                       After declaring the invaded hex, the phasing faction activates the
+During a ground combat, a phasing or non-phasing faction may           ground unit and resolves the Amphibious Invasion (6.3.2.2). There
+activate one of its fighter or bomber units within a 5-hex range of    is no physical movement of the ground unit before resolving the
+the defending unit to attempt to provide Air Support to the combat.    invasion; it remains in its hex or Map Box.
+Air Support is a DRM on the Ground Combat DRM list.
+                                                                       6.3.2.1 Amphibious Invasion Prohibitions
+The air unit must be in a hex and of the same nationality as the
+                                                                       • The invasion hex cannot contain a friendly ground unit.
+defending unit or one of the attacking ground units.
+                                                                       • The invasion hex cannot be affected by Severe weather.
+
+                                                           © 2025 GMT Games, LLC
+16                                     Unconditional Surrender: Western Campaigns ~ Rulebook
+
+• A coastal hex without a port                                           The Western faction declares it is performing an Amphibious In-
+  cannot be invaded if that coastal                                      vasion and that the invaded hex is 3010, southeast of Cherbourg.
+  hex and each adjacent port hex                                         Because the invaded hex does not contain an enemy unit, USA 1
+  share a ground movement                                                is put in hex 3010. Alternatively, USA 1 could have invaded the
+  Prohibited hexside.                                                    Cherbourg hex. However, if the Assault combat failed to cause
+  Example: A German unit can-                                            the retreat or elimination of the German defenders, USA 1 would
+  not invade hex 1622 because                                            remain in Plymouth rather than in France.
+  it and Oslo (the only port                                             After being put in 3010, USA 1 is now in an EZOC. The Western
+  adjacent to 1662) share a water hexside.                               faction must either end its activation or attack an adjacent enemy
+• A phasing faction cannot declare the same hex for invasion             unit. Because of that EZOC, it does not have the option to move
+  more than once per Actions Sub-Phase. It can put another               into an adjacent hex. The Western faction decides to attack the
+  Surprise Attack marker in the same port hex to perform another         4 Gar in Cherbourg. (Note: Even though there is a Surprise At-
+  Amphibious Invasion, but the invaded hex must be different.            tack marker is in the hex, the Western faction does not get a +1
+                                                                         DRM for the marker because it doesn’t apply in an Amphibious
+• Hex 2617 (near Amsterdam) cannot be declared the invasion
+                                                                         Invasion Assault. It does get the +2 DRM for Naval Support
+  hex.
+                                                                         because the combat is in a coastal hex and it also gets the +2
+6.3.2.2 Amphibious Invasion Resolution                                   DRM because the German unit is Isolated.)
+To resolve the amphibious invasion, do the following.
+• If there is no enemy ground unit in the invasion hex, put the
+   phasing ground unit in that hex.
+  ◊ If the invading ground unit is not in an EZOC, it may move
+      into an adjacent hex and its activation ends. This move cannot
+      violate ground movement prohibitions or stacking limits.
+  ◊ If the invading ground unit is in an EZOC, it must either end
+      its activation or immediately resolve an Assault against an
+      enemy ground unit in an adjacent hex. After the combat, its
+      activation ends.
+• If there is an enemy ground unit in the invasion hex, it must
+   immediately resolve an Assault against that unit. Note the
+   invading ground unit is still in its original hex at this point, so
+   it is not exerting an EZOC into or around the defending hex.          The Assault combat result is DD, which eliminates the German
+  ◊ If the Assault does not clear the hex of the defender and the        unit. Instead of advancing after combat into Cherbourg to take
+      invading ground unit survives, its activation ends. Since it has   the hex, the Western faction leaves USA 1 in hex 3010 and ends
+      not moved yet, it stays in its current hex.                        its activation. (Note that even though the German army was
+                                                                         eliminated, Cherbourg remains under Axis control because the
+  ◊ If the Assault clears the hex of the defending ground unit, the      USA 1 did not move into the hex.) Now that USA 1 has ended
+      phasing ground unit must be put in the defending hex (even if      its activation and is in a hex without a port, the Western faction
+      it attacked with other units) and its activation ends.             puts the Mulberry marker in the hex. A Western port is now in
+Surprise Attack: Immediately after resolving the invasion, a Ger-        that hex. Finally, it removes the USA Surprise Attack marker
+man or UK Surprise Attack marker is removed from the scenario;           from its hex as that specific invasion is done.
+a USA marker is put four turns later on the Turn Track.                                                         The Western faction then
+Mulberry: After an invading UK or USA ground unit’s activation                                                 puts the UK Surprise Attack
+ends, if it is in a coastal hex with no port and the Mulberry marker                                           marker in hex 2910, which
+is in the Western Faction Card’s Events box, the Western faction                                               contains the Le Havre port.
+may put the Mulberry marker (14.7) in that hex.                                                                It declares an Amphibious
+6.3.2.3 Amphibious Invasion Special Notes                                                                      Invasion and that the in-
+An Amphibious Invasion Assault may be combined with other units                                                vaded hex is 3011, south-
+marked to Assault the invaded hex. The invading ground unit is                                                 west of Le Havre. Because
+the Primary Attacker. This can only occur if the other units were                                              there is no enemy unit in the
+marked to Assault the hex before the Invasion was performed.                                                   hex, UK 2 is put in the hex.
+                                                                                                               (Note: The Surprise Attack
+Amphibious Invasion Example: D-Day, June 1944, Fair                                                            marker could have been put
+weather: The UK 2 army is in Southampton and USA 1 army is                                                     in Cherbourg again. How-
+in Plymouth. The German 4 Gar army is in Cherbourg and the               ever, hex 3010 could not be declared as the invaded hex for two
+3 Gar is in Le Havre. The Western faction puts the USA Surprise          reasons: there is a friendly unit in the hex and the same hex
+Attack marker in hex 2910, which contains the Cherbourg port.            cannot be invaded more than once in an Actions Sub-Phase.)
+
+                                                            © 2025 GMT Games, LLC
+                                      Unconditional Surrender: Western Campaigns ~ Rulebook                                                17
+
+                                     UK 2 attacks 3 Gar in Le         7.1.1 Low Supply / No Supply Effects
+                                     Havre and gets a No Effect
+                                                                      • A unit with Low Supply has a combat –2 DRM applied to it
+                                     result. The combat is over,
+                                                                        (Player Aid Sheet: Combat DRM lists).
+                                     and the UK Surprise Attack
+                                     marker is removed from its       • A unit with Low or No Supply has reduced Movement Points;
+                                     hex. The D-Day landings            i.e., four for Leg units and five for all other units (Player Aid
+                                     are done with the Western          Sheet: Movement).
+                                     armies adjacent to each          • A unit with Low or No Supply cannot be improved in the
+other and the Mulberry port. However, Cherbourg is still an Axis        Replacements Phase (8.1).
+controlled port. In the ensuing Supply Check Sub-Phase, the           • A unit with No Supply is reduced in the No Supply Phase (7.5.1).
+Western armies can trace supply to the Mulberry port, which can
+                                                                      • A unit with No Supply may be voluntarily eliminated in the No
+provide Full Supply to up to two units (7.3.1).
+                                                                        Supply Phase (7.5.2).
+Alternatively, the Western faction could have made the follow-
+                                                                      • A unit with No Supply has its combat modified die result divided
+ing choices. Instead of remaining in hex 3010, USA 1 advances
+                                                                        by two. Round up (Player Aid Sheet: Combat DRM lists). This
+after combat into Cherbourg. This puts the city under Western
+                                                                        applies to the attacker in an Assault if at least one of its attacking
+control. Also, because UK 2 ended its activation in a hex without
+                                                                        units has No Supply.
+a port, the Mulberry marker in put in its hex. With two ports
+under Western control, the Western faction rebases air units to       7.2 Supply Check
+the respective hexes because it can now supply up to four units.
+                                                                      In the Supply Check Sub-Phase, the phasing faction determines
+                                     While this situation allows
+                                                                      the Supply State for each friendly unit in a hex by tracing a supply
+                                     the Western faction to proj-
+                                                                      line (7.4) from the unit’s location to a friendly Supply Source (7.3).
+                                     ect air power deeper into
+                                     France, there is a gap be-       A supply check is not mandatory. The phasing faction may choose
+                                     tween the armies. On the         not to supply any of its units (even if a unit attempted a supply
+                                     following turn, the Axis         line trace earlier in the Sub-Phase, is in a Supply Source location,
+                                     player exploits this by mov-     or is otherwise exempt).
+                                     ing the German 5 Pz army         The phasing faction chooses the order in which units are checked
+                                     into hex 3111 and attacks        and the supply line path traced for each unit.
+                                     UK 2, which is now Iso-          A unit makes all its supply checks before another unit is checked.
+lated due to having no retreat path and not being adjacent to a
+                                                                      A unit can make more than one supply check in the Sub-Phase to
+friendly city, fort, or ground unit.
+                                                                      see if it can trace a supply line.
+                                                                      If a unit traces a supply line to an Unlimited Supply Source, it
+                                                                      has a Full Supply State. Remove any Low Supply or No Supply
+7.0 Supply                                                            marker on the unit.
+The Supply State of a unit affects its movement and combat ca-        If a unit traces a supply line to a Limited Supply Source, it has a
+pabilities. Without supply, a unit will eventually be eliminated.     Low Supply State. Place a Low Supply marker on the unit.
+A unit is either considered supplied or unsupplied based on its       If a unit cannot trace a supply line after all its supply checks or
+Supply State (7.1). If a unit’s Supply State matters for a rule, it   its faction chose not to supply it, that unit’s Supply State is im-
+will include one of the following terms.                              mediately reduced as follows.
+Supplied: A unit is supplied if it has a Full or Low Supply State.    • If it has no Low Supply or No Supply marker on it, put a Low
+                                                                         Supply marker on it.
+Unsupplied: A unit is unsupplied if it has a No Supply State.
+                                                                      • If it has a Low Supply marker on it, flip it to its No Supply side.
+7.1 Supply State                                                      • If it has a No Supply marker on it, leave the marker on it.
+There are three Supply States: Full, Low, and No. When the Supply
+State of a unit is determined for the turn, it maintains that state
+                                                                      7.3 Supply Source
+until the next turn’s supply check.                                   There are two types of Supply Sources: Limited and Unlimited.
+                  A unit with a Full Supply State is not marked       A Limited Supply Source can supply up to two units, giving each
+                  with a Supply counter. If it has a Low or No        a Low Supply State. Remember Limited = Low.
+                  Supply State, it is marked with the respective      An Unlimited Supply Source can supply any number of units, giv-
+Low Supply or No Supply counter.                                      ing each a Full Supply State. [Exception: A Western friendly port
+                                                                      outside of the UK can supply up to two Western units.]
+
+
+
+
+                                                          © 2025 GMT Games, LLC
+18                                    Unconditional Surrender: Western Campaigns ~ Rulebook
+
+7.3.1 Limited Supply Source                                           Supply Line Example:
+Each of the following is a Limited Supply Source (LSS).                                               A French unit in hex 3216 can
+                                                                                                      trace a supply line into hex
+• A friendly capital in a conquered country is an LSS for the                                         3316 and then into Vichy
+  controlling faction’s units.                                                                        because it is a Supply Source
+  Example: France is a conquered country and Paris has an                                             for French units. Alterna-
+  Axis Control marker in it. Paris is an LSS for two Axis units.                                      tively, it can trace into hex
+• A friendly capital without a port in a Western country is an LSS                                    3316 and then 3416, which
+  for a UK or USA unit.                                                                               contains a Transport Line.
+  Example: France is a Western country and Paris is Western                                           From 3416, it can then trace
+  friendly. Paris is an LSS for two UK units.                                                         along a contiguous Trans-
+                                                                                                      port Line back to any friend-
+7.3.2 Unlimited Supply Source                                                                         ly city in France. It cannot
+Each of the following is an Unlimited Supply Source (USS).                                            trace into hex 3215, 3214,
+                                                                      and then 3114 because the second hex (3214) in the path does
+• A friendly country’s city is a USS for that country’s units.
+                                                                      not have a Transport Line.
+• A friendly UK city is a USS for a USA unit.
+• A Western friendly port outside of the UK is a USS for up to two    7.5 No Supply Phase
+  Western units. That is two units per port. This capacity cannot     In the No Supply Phase, the phasing faction performs Unsupplied
+  be increased or reduced. There is no bombing of port facilities.    Attrition (7.5.1) followed by Voluntary Elimination (7.5.2)
+  Example: Cherbourg has a Western Control marker in it.              7.5.1 Unsupplied Attrition
+  Cherbourg can provide Full Supply for up to two UK units,
+  or two USA units, or one unit of each country.                      If a phasing unit has a No Supply marker, do the following.
+  This port limitation does not impact the number of units a home     Step 1) If it is a reduced strength ground unit, remove it from its
+  country city can supply.                                                      location and put it in its Faction Card’s Eliminated box.
+  Example: France is active and Calais is Western friendly.           Step 2) If it is a full strength ground unit, reduce it.
+  Calais can provide Full Supply for up to two UK units and           Step 3) If it is an air unit, remove its Sorties and put the unit in
+  any number of French units.                                                   its Faction Card’s Eliminated box.
+
+7.4 Supply Line                                                       7.5.2 Voluntary Elimination
+A supply line is traced from the hex occupied by the checking unit                 The phasing faction may eliminate a friendly ground unit
+to a friendly Supply Source for that unit.                                         that has a No Supply marker. The phasing faction may
+                                                                                   also eliminate a supplied or unsupplied friendly air unit.
+Each unit traces its own supply line.
+                                                                      An eliminated unit is placed in its Faction Card’s Eliminated box.
+More than one unit can use the same path to trace a supply line.
+                                                                      If it is an air unit, also remove its Sorties.
+All hexes that are traced out of, into, or through are considered
+                                                                      National Will is not lost if a unit is eliminated due to Unsupplied
+part of the supply line.
+                                                                      Attrition or Voluntarily Elimination.
+Supply Line Prohibitions
+• A supply line trace cannot include a hex containing an enemy:
+  city, fort, unit, or ZOC.
+• A supply line trace cannot violate movement prohibitions.
+                                                                       8.0 Unit Logistics
+[Exception: Ignore all EZOC in a hex containing a friendly: city,     In the Replacement Phase, a unit in a hex or Map Box may receive
+fort, or ground unit.]                                                replacements. In the Mobilization Phase a unit on its Faction Card
+                                                                      may be mobilized into a hex or Map Box. Pay attention to the order
+7.4.1 Supply Line Trace                                               they are performed in the Sequence of Play because it affects what
+From the checking unit, trace a ground movement path up to two        can be done to a unit.
+hexes to a hex containing a Transport Line or friendly Supply
+Source for that unit.                                                 8.1 Replacements
+If the hexes traced into did not contain a friendly Supply Source,     The Replacements Phase only deals with units already in a
+continue tracing the path along a connected Transport Line back        hex or Map Box. It is not when a unit is put into a hex. That
+to a friendly Supply Source. So the first hex of a supply line does    happens in the Mobilization Phase.
+not require a contiguous Transport Line, but the rest do.
+                                                                      In the Replacements Phase, the phasing faction may improve the
+                                                                      condition of a friendly unit in a hex or Map Box. Tip: Do not forget
+                                                                      a unit stacked under another counter.
+
+
+                                                          © 2025 GMT Games, LLC
+                                       Unconditional Surrender: Western Campaigns ~ Rulebook                                                 19
+
+
+ A friendly unit may be surrounded by enemy units by the time
+ a faction gets to this Phase. Such a unit can be improved.
+                                                                         9.0 Economy
+ This represents replacements that made it through before the            Each turn, a country receives a number of production points that it
+ unit was cut off.                                                       may spend to do certain activities such as move ground units. All
+                                                                         activities that require production points and their respective costs
+To improve a unit, its country pays the production point cost listed     are listed on the Player Aid Sheet’s Production table.
+on the Player Aid Sheet’s Production table to do the following.
+                                                                          The points received represent an estimate of the effort available
+• Flip over a friendly, reduced field ground unit to its full side.
+                                                                          for the scenario, not necessarily a country’s entire economy.
+• Remove up to two Sorties from an air unit.
+                                                                         Prod Markers: A country’s production and expenditures are
+8.1.1 Replacements Restrictions                                          tracked using Prod markers on the Faction Card’s National Will
+The unit receiving replacements must be in Full Supply and cannot        & Production Track.
+be marked with a Strategic Move marker.                                            A Prod 1s marker starts in the 0 box of the Ones row.
+A faction may spend as many production points as it has remaining,                 A Prod 10s marker (if any) starts in the 00 box of the
+but a unit can be improved only one time per turn.                                 Tens row.
+Example: A German air unit with 4 Sorties can remove only                After determining a country’s production points for the turn, its
+two of them, even if there are more production points available.         Prod markers are moved on the Track accordingly. As a faction
+                                                                         spends a country’s production points, it subtracts the amount spent
+8.2 Mobilization                                                         from that country’s current total on the Track. If you forget to do
+ The Mobilization Phase only deals with placing new or                   that and cannot easily fix it, just play on and have fun.
+ eliminated units into a hex or Map Box. It is not when units             Important: Production points are not saved from turn to turn;
+ already on the map are improved. That happens in the Re-                 unused points are lost. USWC has a “Use it or lose it” economic
+ placements Phase.                                                        system. This makes for easier accounting and prevents hoarding
+                                                                          production for unrealistic activity. There is no deficit spending.
+In the Mobilization Phase, the phasing faction may mobilize a unit
+that is in its Faction Card’s Mobilization box.                          Production points cannot be transferred from one country to an-
+To mobilize a unit, its country pays the production cost listed on       other country.
+the Player Aid Sheet’s Production table to do the following.
+                                                                         9.1 Economy Phase
+• Mobilize a reduced ground unit.
+                                                                         In the Economy Phase, the phasing faction determines how many
+• Mobilize an air unit marked with 4 Sorties.
+                                                                         production points are received by each of its active countries (9.1.1).
+A unit that is mobilized is placed in a Mobilization Location (8.2.1).
+If the location contains a fort, the unit can occupy it.                 9.1.1 Production Points
+Placement can be in an EZOC.                                             Scenario rules list how many production points each country
+Placement cannot violate stacking limits.                                receives each turn. This amount may be modified by scenario
+                                                                         special rules.
+8.2.1 Mobilization Location
+                                                                         If a scenario states a country’s Production is “NA”, that country
+• A unit can be put in a friendly city in its country.                   has an unlimited number of production points and so does not track
+• A USA unit can be put in a friendly city in Great Britain.             its expenditures throughout the scenario.
+• A UK or USA unit can be put in a Map Box that states it is a           If a country’s production is a stated number that is not based on
+  Mobilization Location.                                                 friendly factories, its production points are not modified if that
+                                                                         country loses any of its factories.
+8.2.2 Mobilization Special Notes
+                                                                         Example: A scenario states Germany receives 24 production
+A unit is put into its Faction Card’s Mobilization box from its          points per turn. If Aachen, a German factory, becomes enemy
+Faction Card’s Eliminated box (in the End of Turn Phase), from           controlled. Germany still receives 24 production points per turn.
+the Turn Track, or per scenario setup or special rules.
+                                                                         A scenario may state a country receives a number of production
+ In most cases, this means an eliminated unit cannot be mo-              points per friendly factory within that country.
+ bilized in the same turn it was eliminated. Also, due to the
+                                                                          Important: A country does not count friendly factories in a
+ order of Phases, a unit cannot receive replacements on the
+                                                                          different country, even if it occupies those hexes.
+ same turn it is mobilized.
+                                                                         If a country’s production is based on friendly factories, losing or
+                                                                         regaining control of a country’s factory does not affect the number
+                                                                         of production points that country has already received that turn.
+                                                                         Example: In the Jun-40 Economy Phase, France receives two
+                                                                         production points per friendly factory. During the Jun-40 Opera-
+
+
+                                                            © 2025 GMT Games, LLC
+20                                    Unconditional Surrender: Western Campaigns ~ Rulebook
+
+tions Phase, Lille, a French factory, becomes enemy controlled.
+France’s production points are not reduced by two. The impact          11.0 Turn Completion
+of the factory loss will be felt when calculating production in
+the Jul-40 turn.                                                      11.1 Victory Check Phase
+                                                                      Check if a faction has achieved the scenario’s victory conditions.
+                                                                      Unless the scenario states otherwise, victory can occur in any turn.
+10.0 Weather                                                          11.2 End of Turn Phase
+ Weather represents climate and ground conditions. There are          Step 1) Advance the Turn marker on the Turn Track to the next
+ not many weather specific effects, but they have a significant               turn. If a counter is in the entered Turn Track box, put it
+ impact on combat and operations.                                             in its respective location on the map, on a Track, or in a
+                                                                              Faction Card box as per its rule or its Location listed in
+There are three types of weather: Fair, Poor, or Severe.
+                                                                              the scenario setup. A marker is usually put in its Faction
+After the weather is determined, it applies to all hexes on the map           Card’s Events box. A unit is usually put in its Faction
+for the rest of the turn.                                                     Card’s Mobilization box.
+10.1 Weather Phase                                                    Step 2) Move all counters in a Faction Card’s Eliminated box to
+                                                                              its Mobilization box.
+In the Weather Phase, the Axis faction determines the weather
+affecting the whole map. The Western faction skips this phase.
+           The Axis faction rolls one die for the weather. It finds
+           the result on the Player Aid Sheet’s Weather table based
+                                                                       12.0 Conditional Events
+           on the scenario map and the turn’s month. It then puts      USWC has only one Conditional Event. USE has more.
+a Weather marker in the respective box on the Weather Track.
+                                                                      While playing, the following event may occur when its trigger
+Example: The scenario used the Balkans map and the turn is
+                                                                      condition happens. If an event’s trigger condition happens, im-
+May-40. The Axis faction rolls a die and gets a 4. On the Weather
+                                                                      mediately check its rule and perform the listed actions.
+Table, it looks on the May line under the Balkans section and
+finds the result listed is Fair.                                      If a conditional event or event marker requires an action that is
+                                                                      impossible to complete, ignore that specific action.
+When rolling weather for the Jun or Nov turns, use the row on the
+Weather Table that matches the prior month’s weather. The location    Example: If an event requires the removal of a country’s units
+of the Weather marker on the track will remind you what it was.       from the map, but there are none on the map, this is skipped and
+                                                                      play continues.
+10.2 Poor/Severe Weather Effects                                      If a Conditional Event is triggered during a unit’s activation,
+• A ground unit cannot conduct a Mobile attack against an enemy       resolve the Conditional Event first and then continue with the
+  ground unit in a hex affected by Poor or Severe weather. A unit     unit’s activation, provided the Conditional Event did not end the
+  can only Assault it.                                                unit’s activation.
+• It costs two (instead of one) additional movement points to         Example: After expending five movement points, a German
+  initiate a ground combat against a unit in a hex affected by Poor   ground unit moves into Paris and causes the collapse and
+  or Severe. Otherwise, movement is not affected by weather.          conquest of France. After performing the steps of Conquered
+                                                                      Country (12.1.2), the German ground unit can continue moving.
+• A ground unit has a combat –1 DRM if attacking a unit in a hex
+  affected by Poor.                                                   12.1 Country Collapse
+• The Tank unit, Air Support, and Naval Support ground combat
+                                                                      A country immediately collapses if its National Will drops to zero
+  DRM is +1 (instead of +2) if defending in, or attacking a unit
+                                                                      or all of its cities are under enemy control. A country that collapses
+  in, a hex affected by Poor.
+                                                                      without being conquered remains an active country (2.1.1).
+• An air unit has a combat –2 DRM if defending in, or attacking
+                                                                      When a country collapses, if at least one of its cities is under en-
+  an air unit in, a hex affected by Poor.
+                                                                      emy control and there is an enemy ground unit in any hex of that
+• An Amphibious Invasion cannot be performed in a hex affected        country, the country is conquered. If a country is conquered, see
+  by Severe.                                                          Conquered Country (12.1.2)
+• There is no Tank unit or Air Support ground combat DRM if           An active country can collapse multiple times, but it can be con-
+  defending in, or attacking a unit in, a hex affected by Severe.     quered only once.
+• A faction’s modified die result is divided by two (round up) if     Each time a country collapses without being conquered, do the
+  defending in, or attacking a unit in, a hex affected by Severe.     following.
+
+
+
+
+                                                          © 2025 GMT Games, LLC
+                                         Unconditional Surrender: Western Campaigns ~ Rulebook                                                 21
+
+
+12.1.1 Country Collapse Procedure                                         The air unit is not considered activated and does not add a Sortie
+                                                                          to its total.
+Step 1) Each of its reduced ground units in a hex or Map Box is
+        put in its Faction Card’s Eliminated box. Then, each of           The placement hex cannot be in a ground movement Prohibited
+        its full-strength ground units is reduced. Also, each of          hex, but it can contain an enemy unit.
+        its air units in a hex or Map Box has its Sorties removed         When the marker is placed if the hex contains
+        and is put in its Faction Card’s Eliminated box.                  • An enemy city and no enemy unit, the phasing faction rolls
+Step 2) Reset its National Will to one half of the value shown               a die. On a result of 1-3, put a friendly Control marker in the
+        for that country in the scenario setup. Round up.                    hex. On a result of 4-6, nothing happens. Local forces hold off
+                                                                             the paratroopers. After rolling, the marker stays in the hex until
+12.1.2 Conquered Country
+                                                                             the end of the Actions Sub-Phase.
+When a country is conquered, remove all the conquered country’s           • In all other situations, nothing happens and the marker stays
+counters from the scenario.                                                  in the hex until the end of the Actions Sub-Phase.
+After a country is conquered, it becomes inactive and is considered       If an enemy air or ground unit in the placement hex is attacked
+conquered for the rest of the scenario.                                   during the phase, the defending unit applies a combat –2 DRM.
+ This is true even if the faction it belongs to retakes all its cities.   When this marker is removed at the end of the Actions Sub-Phase,
+ You can still feel proud for liberating your ally.                       roll a die. If the result is 1-5, put the marker a number of turns later
+ Important: Until an enemy unit moves into a conquered coun-              on the Turn Track equal to the result. If the result is 6, remove it
+ try’s city, that city is still friendly to the faction that controlled   from the scenario.
+ it at the time the country collapsed. Occupation takes soldiers           This represents disasters, such as at Crete, which suspend
+ and time.                                                                 major airdrops for the rest of the war.
+
+                                                                          13.2 Free Forces
+
+13.0 Event Markers                                                         This represents troops of conquered countries, such as Poland
+                                                                           and France, which continued to fight fiercely afterwards.
+ Event markers can be looked up as needed rather than memorized.                    The Western faction may play Free Forces in a ground
+This section lists Event markers and their specific rules.                          combat involving a Western ground unit.
+An Event marker is set up as per scenario instructions. If not listed               In the combat, the Western faction applies a +1 DRM.
+in a scenario, that Event marker is not used.                             After combat, roll a die. Put this marker a number of turns later
+ Important: An Event marker in its Faction Card’s Events box is           on the Turn Track equal to the result.
+ available for use by its faction. If located somewhere else during
+ the scenario, e.g., the Turn Track, it cannot be used.                   13.3 Ground Support
+                                                                           This represents air and tank forces of smaller countries which
+Unless stated otherwise, when an Event marker is removed from
+                                                                           are too weak to constitute a nationality specific unit or event
+the Turn Track, put it in its Faction Card’s Events box.
+                                                                           marker.
+ Important: If an Event marker requires an action that is impos-
+ sible to complete, ignore that specific action.                                     A faction may play one Ground Support in a ground
+                                                                                     combat involving any of its ground units. [Exception:
+Marker Return: After being played, a marker might be placed                          The following countries cannot use the marker for its
+a number of turns later on the Turn Track. If the placement turn          units: France, Germany, Italy, UK, or USA. The air and tank
+is after the last turn of the scenario, remove the marker from the        forces for these countries are represented by their own counters.]
+scenario.                                                                 Example: The Western faction has two Ground Support mark-
+13.1 Airdrop                                                              ers in its Faction Card’s Events box. It is resolving an Assault
+                                                                          ground combat against a Germany infantry army being attacked
+            The phasing faction may put an Airdrop marker in a            by a Belgian army and a French army. The Western faction can
+            hex by performing a Special Marker Action (6.1).              play one of the Ground Support markers because of the Belgian
+            Reminder: This marker cannot be placed during a               army. If only two French armies were attacking, it could not
+unit’s activation.                                                        play the marker.
+This marker can be placed in a hex within a 3-hex range of an air         In the combat, the owning faction applies a +1 DRM.
+unit of the same nationality. The Western marker may be placed            After combat, roll a die. Put this marker a number of turns later
+within range of a UK or USA air unit.                                     on the Turn Track equal to the result.
+The phasing faction traces an air movement path from the activated
+unit to the placement hex. When the path has entered the placement
+hex, the marker is put in it.
+
+                                                              © 2025 GMT Games, LLC
+22                                      Unconditional Surrender: Western Campaigns ~ Rulebook
+
+
+13.4 Jets                                                                 13.7 Rockets
+ This represents German jet aircraft which were very effective             This represents German rockets such as the V-1 and V-2.
+ for local support, but too few in numbers to constitute a full
+                                                                                    The Axis faction may play Rockets in a ground combat
+ air unit.
+                                                                                    involving a German ground unit.
+         The Axis faction may play Jets in an air combat involv-                     In the combat, the enemy faction applies a –2 DRM.
+         ing a German air unit.                                           After combat, roll a die. Put this marker a number of turns later
+         In the combat, the Axis faction applies a +2 DRM.                on the Turn Track equal to the result.
+After combat, put this marker on the next turn on the Turn Track.
+                                                                          13.8 SNAFU
+13.5 Naval Evacuation                                                      This represents “Situation Normal: All F___ed Up.”.
+ This represents the ability of the UK to conduct emergency
+                                                                                     A faction may play a SNAFU in any type of combat.
+ naval evacuations of ground forces, such as at Dunkirk.
+                                                                                      In the combat, the enemy faction applies a -1 DRM.
+             The Western faction may play Naval Evacuation if a                       After combat, roll a die. Put this marker a number of
+             UK ground unit is in any coastal hex, there is a friend-     turns later on the Turn Track equal to the result.
+             ly port on the map (excluding a port that may be in the
+unit’s hex), and either one of the following applies.                     13.9 Surprise Attack
+• That UK unit is forced to retreat in a ground combat.                                This represents superior planning, intelligence, mate-
+• It is the Western faction’s Operations Phase and that UK unit                        riel, etc.
+   has not yet been activated that phase.                                              The phasing faction may put a Surprise Attack marker
+Put that UK ground unit in any friendly port. This placement can-         in a hex by performing a Special Marker Action (6.1). Reminder:
+not violate stacking limits. The ‘miracle of Dunkirk’ just happens.       This marker cannot be placed during a unit’s activation.
+If it is a full-strength ground unit, flip it over to its reduced side.   Even though a Surprise Attack marker has a nationality written on
+If already reduced, it is not eliminated. Someone always survives.        it, its uses and benefits apply to any friendly unit.
+If it is the Western faction’s Operations Phase, the unit cannot          Example: A UK Surprise Attack marker in hex gives a +1 DRM
+activate this phase.                                                      to combats involving USA units or can be used by a USA ground
+After the ground unit has been placed, roll a die. Put this marker a      unit to perform an Amphibious Invasion.
+number of turns later on the Turn Track equal to the result.              More than one Surprise Attack may be placed in the same Sub-
+                                                                          Phase.
+13.6 Partisans
+                                                                          After putting a Surprise Attacker marker in a hex, that marker may
+ This represents partisans operating directly behind enemy lines          be used for one of the following.
+ in support of an offensive.                                              • Amphibious Invasion: If the marker is put in a hex containing
+           The Western faction may put a Partisans marker in a               a port, the phasing faction may immediately declare and resolve
+           hex by performing a Special Marker Action (6.1).                  one Amphibious Invasion (6.3.2) into a coastal hex that is in or
+           Reminder: This marker cannot be placed during a                   adjacent to the placement hex. If it does not declare the invasion
+unit’s activation.                                                           at that time, that marker cannot be used for an invasion later in
+                                                                             that turn. Instead, it remains in the hex and provides the Hex
+The placement hex must contain an enemy: air and/or ground                   Effect per the bullet below.
+unit and be within an active or conquered friendly country. So, no
+placing it in Germany.                                                       The phasing faction cannot declare the same invasion hex
+                                                                             more than once per Actions Sub-Phase. It can put another
+For air or ground combat, if an enemy air or ground unit in the              Surprise Attack marker in the same port hex to perform another
+placement hex is attacked, the defending unit applies a –2 DRM.              Amphibious Invasion, but the invaded hex must be different.
+When this marker is removed at the end of the phasing faction’s              The marker can be put in a hex containing an Inland Port (1.3.3)
+Actions Sub-Phase, roll a die. Put this marker a number of turns             to perform an Amphibious Invasion, but the invaded hex must
+later on the Turn Track equal to the result.                                 be an adjacent coastal hex.
+
+
+
+
+                                                             © 2025 GMT Games, LLC
+                                      Unconditional Surrender: Western Campaigns ~ Rulebook                                                 23
+
+  Marker Removal: Immediately after resolving the invasion,
+  a German or UK Surprise Attack marker is removed from the             14.0 Tracking Markers
+  scenario; a USA marker is put four turns later on the Turn Track.    This section lists Tracking markers and their specific rules.
+• Hex Effect: While in a hex, the phasing faction applies a +1         Depending on the scenario played, all markers may not be used.
+  DRM to any combat against a unit defending in a hex within a
+  2-hex range of the marker.                                           14.1 +/– DRM [Attacker; Defender]
+  If both sides committed an air unit to a ground combat, this                                These markers are used on the Faction Card’s
+  DRM is applied to the air combat if the defending ground unit                               DRM Track to track the combat DRM of the
+  is within range of the marker.                                                              attacker and defender.
+  [Exception: This DRM is not applied if the marker is being used
+  to perform an Amphibious Invasion Assault.]                          14.2 Scenario Ends
+   Important: If more than one Surprise Attack marker is               This marker is put on the Turn Track as per scenario instructions.
+   on the map, only one +1 DRM per combat is applied from                        Scenario Ends: When the Scenario Ends marker and
+   these markers.                                                                Turn marker occupy the same Turn Track box, the
+                                                                                 game ends with the Victory Check of that turn. So,
+  Marker Removal: At the end of the phasing faction’s Actions
+                                                                       play out that turn.
+  Sub-Phase a German or UK Surprise Attack marker is removed
+  from the scenario; a USA marker is put four turns later on the       Example: The Scenario Ends and Turn markers are in the Sep
+  Turn Track.                                                          1940 box. The scenario ends with the Victory Check made in
+                                                                       the Sep 1940 turn.
+13.10 Tanks
+                                                                       14.3 Assault
+ This represents tank assets or doctrine sufficient for local sup-
+ port, but too weak to constitute a full tank unit.                              The phasing faction puts this marker on a unit to desig-
+                                                                                 nate an Assault against an enemy ground unit in the hex
+           In a ground combat, a faction may play one marker                     the Assault marker points to.
+           per involved ground unit of the same nationality as         The marker is removed when the Assault is resolved, or at the
+           the marker. [Exception: It cannot be played on a Tank       end of the phasing faction’s Actions Sub-Phase if the Assault is
+type unit.]                                                            not resolved.
+All ground units in the combat do not require a Tanks marker
+played for them.                                                       14.4 Control [Faction]
+For each Tanks played, that unit is considered to be a tank unit for               This marker indicates which faction controls a city
+ground combat DRM purposes. It retains all other designations.                     (2.3.1).
+Example: A French infantry unit is attacked in Fair weather and
+the Western faction plays a French Tanks event marker. Its combat
+DRM is +3 (+1 for a France unit and +2 for a Tank unit in Fair).       14.5 Fort
+After combat, put this marker on the next turn on the Turn Track.       This represents extensive fortifications. Only the forts the de-
+                                                                        signer felt had a significant strategic impact are represented.
+13.11 ULTRA
+                                                                                    Only a ground unit can occupy a fort. To show a ground
+ This represents the superior UK and USA intelligence opera-                        unit occupies a fort, put it under the fort marker.
+ tions.                                                                             While occupying a fort, the following applies to that unit.
+          The Western faction may play one ULTRA in any type           • It does not exert any ZOC.
+          of combat involving the Western faction.                     • It cannot designate or initiate an attack.
+          For air or ground combat, the Western faction applies        • It cannot exit and reoccupy a fort within the same activation.
+a +1 DRM.
+                                                                       • It can only be attacked by an Assault.
+After combat, roll a die. Put this marker a number of turns later
+                                                                       • If it is attacked, the attacker’s modified die result is divided by
+on the Turn Track equal to the result.
+                                                                         two. Round up (Player Aid Sheet: Combat DRM lists). Round
+                                                                         up.
+                                                                       • If it suffers a DR combat result while defending and is at full
+                                                                         strength, the unit may suffer a strength loss instead of retreating.
+                                                                       • If an EZOC is exerted into the fort hex, it is considered to be in
+                                                                         an EZOC.
+
+
+
+
+                                                           © 2025 GMT Games, LLC
+24                                     Unconditional Surrender: Western Campaigns ~ Rulebook
+
+If a unit that is not occupying a fort is forced to retreat, it cannot   14.9 Prod [10s; 1s]
+occupy a fort regardless of whether it started in, or retreated into,
+the fort hex.                                                                                 These markers track a country’s production
+                                                                                              points. (9.1.1).
+ This represents the commitment, or lack thereof, to operate in
+ a strictly defensive manner.
+                                                                         14.10 Sorties [1; 2; 3; 4; 5; 6]
+If an enemy unit moves into a hex containing a fort, remove that
+fort from the scenario.                                                                       These markers track the total number of Sor-
+                                                                                              ties (1.5) a unit currently has. If a unit has no
+14.6 Movement Points                                                                          Sorties, do not put a marker on it.
+           This marker is used on the Faction Card’s Move Track
+                                                                         14.11 Supply [Low / No]
+           to track the activated unit’s movement point expenditure.
+           You can count up or count down, just be consistent.                                This marker indicates if a unit has a Low or
+                                                                                              No Supply State (7.1).
+14.7 Mulberry
+ This represents the artificial harbors used at Normandy.                14.12 Turn
+           This marker is put in a coastal hex with no port that                    This marker is put on the Turn Track to indicate the
+           contains a UK or USA ground unit which just ended its                    scenario’s current turn (month and year).
+           activation after performing an Amphibious Invasion
+           (6.3.2.2).
+Once placed in a hex, it cannot be voluntarily removed.                  14.13 Will [ 10s; 1s]
+While in a hex, that hex is considered to contain a Western port,                             These markers track a country’s National Will
+but not a city.                                                                               (2.1.2).
+Example: A Mulberry marker in hex 3010 can be used for Naval
+Transport, but it does not prevent an adjacent Western ground
+unit from being considered Isolated in ground combat.
+                                                                         14.14 Weather
+If an enemy unit moves into a hex containing a Mulberry, remove                     This marker denotes weather for the turn (10.0).
+the Mulberry marker from the scenario.
+
+14.8 No EZOC
+                                                                         14.15 Will Commit / Will not Commit
+ This represents the inability of nearby defending forces to react
+                                                                                            This marker is used in the Combat Resolution
+ to a very successful attack.
+                                                                                            Sequence (5.1) to secretly decide and then
+           This marker is put in a hex that was occupied by a de-                           reveal if a faction is committing an Event
+           fending unit eliminated by a Mobile attack.                   marker to any combat and/or one air unit to a ground combat.
+           While this marker is in a hex, no EZOC is exerted into
+that hex.
+It is removed at the end of the phasing ground unit’s activation.
+ So only the ground unit currently activated can benefit from
+ a No EZOC marker.
+
+
+
+
+                                                            © 2025 GMT Games, LLC
+Unconditional Surrender: Western Campaigns ~ Rulebook   25
+
+
+
+
+                © 2025 GMT Games, LLC
+26                                                    Unconditional Surrender: Western Campaigns ~ Rulebook
+
+
+
+                                                                                        INDEX
+
+  - Die; - # of Turns;                      - What-if.......................... 3.0, 3.1          End of Scenario.................................................................. 14.2
+Actions. ................................................................................. 6.0    End of Turn Phase. .............................................................11.2
+   Air. ................................................................................... 6.2   Enemy................................................................................... 2.3
+   Ground. ............................................................................ 6.3       Event Markers. .................................................................. 13.0
+   Special Marker................................................................. 6.1            Enemy Zone of Control (EZOC)..................................... 1.7.1
+Air Action. ............................................................................ 6.2         Effects Summary........................................................ 1.7.1.1
+Air Combat........................................................................... 5.2            No EZOC Marker. ......................................................... 14.8
+   Results........................................................................... 5.2.1       Factions................................................................................. 2.3
+Air Displacement. .......................................................... 4.2.3.7              Factory............................................................................... 1.3.1
+Air Movement. .................................................................. 4.2.2            Faded Dot Hex. ................................................................. 1.3.2
+   Prohibitions................................................................ 4.2.2.1           Fort...................................................................................... 14.5
+Air Rebase. ........................................................................ 6.2.1           Effects. ........................................................................... 14.5
+Air Sorties............................................................................. 1.5         Occupation................................................................. 4.2.3.5
+Air Strike........................................................................... 6.2.2       Free Forces. ........................................................................ 13.2
+Air Support. ...................................................................... 6.2.3         Friendly................................................................................. 2.3
+Air Unit.............................................................................. 3.2.1      Ground Actions.................................................................... 6.3
+Airdrop. .............................................................................. 13.1      Ground Combat................................................................... 5.3
+Amphibious Invasion........................................................ 6.3.2                    Advance After Combat. ................................................ 5.3.7
+   Amphibious Invasion Prohibitions. ........................... 6.3.2.1                             Assault Attack............................................................... 5.3.3
+   Amphibious Invasion Resolution............................... 6.3.2.2                             Cannot Retreat. .......................................................... 5.3.5.2
+   Amphibious Invasion Assault Ground Combat DRM. . 5.3.4                                            DRM Special Cases. ..................................................... 5.3.4
+Army – Ground Units....................................................... 3.2.2                     Mobile Attack................................................................ 5.3.2
+Army Operations.............................................................. 6.3.1                  Prohibitions................................................................... 5.3.1
+Assault Attack................................................................... 5.3.3              Retreat........................................................................... 5.3.5
+Assault Marker. ................................................................. 14.3               Unit Elimination............................................................ 5.3.6
+Attack, Assault.................................................................. 5.3.3           Ground Movement. .......................................................... 4.2.3
+Attack, Mobile................................................................... 5.3.2              Air Displacement. ...................................................... 4.2.3.7
+Capital. .............................................................................. 1.3.1        EZOC Restrictions..................................................... 4.2.3.1
+City..................................................................................... 1.3.1      Fort Occupation. ........................................................ 4.2.3.5
+City Control....................................................................... 2.3.1            Movement and Attack................................................ 4.2.3.3
+   Control [Faction] Marker............................................... 14.4                      Naval Transport............................................................. 4.2.4
+Coastal Hex. ...................................................................... 1.3.3            Prohibitions................................................................ 4.2.3.2
+Combat. ................................................................................ 5.0         Transport Line............................................................ 4.2.3.4
+   Combat Resolution Sequence. ......................................... 5.1                      Ground Support................................................................. 13.3
+   Air. ...............................................................See Air Combat             Inland Port. ....................................................................... 1.3.3
+   Ground. .................................................See Ground Combat                     Isolated............................................................................... 5.3.4
+Conditional Events. ........................................................... 12.0              Jets. ..................................................................................... 13.4
+Conquered Country........................................................ 12.1.2                  Land Hex/Hexside............................................................. 1.3.3
+Counter Images/Symbols. ............................................ 3.0, 3.1                     Low Supply........................................................................... 7.1
+Country – Active/Inactive. ........................................ 2.1, 2.1.1                    Map Box. ........................................................................... 1.3.4
+Country Collapse............................................................... 12.1              Markers. ............................................................................... 3.1
+Die Roll Modifier (DRM). ................................................... 1.9                     Counter Images/Symbols.......................................... 3.0, 3.1
+Disputed Area....................................................................... 2.2             Event Markers................................................................ 13.0
+Economy............................................................................... 9.0           Tracking Markers........................................................... 14.0
+
+
+
+
+                                                                                  © 2025 GMT Games, LLC
+                                                      Unconditional Surrender: Western Campaigns ~ Rulebook                                                                                  27
+
+Mobile Attack.................................................................... 5.3.2              Sorties Marker.............................................................. 14.10
+Mobilization. ........................................................................ 8.2        Special Marker Action......................................................... 6.1
+Movement............................................................................. 4.0         Stacking Limits.................................................................... 3.3
+   Air. ................................................................................ 4.2.2    Strategic Movement............................................................. 4.1
+   Ground. ......................................................................... 4.2.3        Supply................................................................................... 7.0
+   Ground Movement and Attack................................... 4.2.3.3                             Full Supply....................................................................... 7.1
+   Fort Occupation. ........................................................ 4.2.3.5                 Low/No Supply Effects................................................. 7.1.1
+   Movement Path Trace. ..................................................... 4.2                    Low/No Supply Marker............................................... 14.11
+   Movement Points. ............................................................ 4.2                 No Supply Phase.............................................................. 7.5
+   Operational....................................................................... 4.2            Supplied/Unsupplied........................................................ 7.0
+   Strategic. .......................................................................... 4.1         Supply Check................................................................... 7.2
+   Transport Line............................................................ 4.2.3.4                Supply Line & Prohibitions. ............................................ 7.4
+Mulberry. ........................................................................... 14.7           Supply Source – Limited, Unlimited. .......... 7.3, 7.3.1, 7.3.2
+National Will. .................................................................... 2.1.2            Supply State...................................................................... 7.1
+   Country Collapse. .......................................................... 12.1                 Unsupplied Attrition...................................................... 7.5.1
+   Will Marker.................................................................. 14.13               Voluntary Elimination................................................... 7.5.2
+Naval Evacuation............................................................... 13.5              Surprise Attack.................................................................. 13.9
+Naval Transport................................................................ 4.2.4                Amphibious Invasion.................................................... 6.3.2
+   Prohibitions................................................................ 4.2.4.1           Tanks................................................................................. 13.10
+No EZOC Marker.............................................................. 14.8                 Trace Movement Path. ........................................................ 4.2
+No Supply. ............................................................................ 7.1       Tracking Markers.............................................................. 14.0
+Operations Phase.............................................................. 1.2.1              Transport Line.................................................................. 1.3.5
+Partisans............................................................................. 13.6          Ground Movement Benefit. ....................................... 4.2.3.4
+Port..................................................................................... 1.3.1      Supply Line Trace......................................................... 7.4.1
+   Mulberry. ....................................................................... 14.7         Turn Counting...................................................................... 1.6
+Prod Markers..................................................................... 14.9            ULTRA...............................................................................13.11
+Production Points. ............................................................ 9.1.1             Units...................................................................................... 3.2
+Prohibitions                                                                                         Air. ................................................................................ 3.2.1
+   Air Movement............................................................ 4.2.2.1                  Ground. ......................................................................... 3.2.2
+   Amphibious Invasion................................................. 6.3.2.1                   Unsupplied Attrition......................................................... 7.5.1
+   Ground Combat............................................................. 5.3.1               Victory Check. ....................................................................11.1
+   Ground Movement..................................................... 4.2.3.2                   Voluntary Elimination...................................................... 7.5.2
+   Naval Transport.......................................................... 4.2.4.1              Water Hex/Hexside........................................................... 1.3.3
+   Retreat........................................................................ 5.3.5.1        Weather............................................................................... 10.0
+   Strategic Movement...................................................... 4.1.2                    Poor/Severe Effects........................................................ 10.2
+   Supply Line................................................................... 7.4.1              Weather Marker............................................................ 14.14
+Range. ................................................................................... 1.4    What-if Counters................................................................. 3.0
+Replacements. ...................................................................... 8.1          Will Commit / Will Not Commit
+Retreat. .............................................................................. 5.3.5        Combat Resolution Sequence. ......................................... 5.1
+                                                                                                     Markers. ....................................................................... 14.15
+   Cannot Retreat. .......................................................... 5.3.5.2
+                                                                                                  Will.......................................................................... 2.1.2, 14.13
+   Prohibitions................................................................ 5.3.5.1
+                                                                                                  Zone of Control (ZOC)........................................................ 1.7
+Rockets................................................................................ 13.7
+Rough Hex......................................................................... 1.3.3
+Rounding. ............................................................................. 1.8
+Scenario Ends..................................................................... 14.2
+Sequence of Play. ................................................................. 1.2
+SNAFU................................................................................ 13.8
+Sorties. .................................................................................. 1.5
+
+
+
+
+                                                                                  © 2025 GMT Games, LLC
+28                                   Unconditional Surrender: Western Campaigns ~ Rulebook
+
+
+                                             USE Players: Fast Start
+This section summarizes the changes made to Unconditional          Rules Changes
+Surrender (USE) for USWC. If you already know USE, look here
+to see what is different and start playing USWC. Read the USWC     Here is how some changed USE rules are performed in USWC.
+rules as needed.                                                   Naval:
+ Some changes, such as the removal of the Soviet faction, should   • There is no escort or interception of naval activity.
+ be expected. Other changes, such as the abstraction of naval      • Naval Transport (4.2.4): If a phasing air or ground unit in a
+ operations, may not be expected. Those changes were made             port activates to move using Naval Transport, it is put in any
+ for rules simplification and shorter playing time.                   other friendly port hex or Map Box on the map. No movement
+                                                                      path is traced. Instead take the unit from its current hex and put
+Removed                                                               in the destination hex. When placed in its destination hex, the
+                                                                      transported unit’s activation ends.
+The following were removed in USWC. An abstraction or variation
+                                                                   Ground Combat Isolated DRM (5.3.4): A unit cannot be con-
+of any of these may appear in the rules or scenarios.
+                                                                   sidered Isolated if it is in a hex along the map edge that has land
+• Air/Naval Escort and Interception Actions                        touching the map edge.
+• Bombing Run Action                                               Axis unit supply via a port is handled by a scenario’s special rules.
+• Conditional Events, except Country Collapse and Conquered        Supply (7.3.2): There is no Sea Supply Line trace. Instead, a West-
+  Country.                                                         ern friendly port outside of the UK is an Unlimited Supply Source
+• Factory Count                                                    for up to two Western units. That is two units in total per port. This
+• Mainland/Overseas Areas                                          capacity cannot be reduced. There is no bombing of port facilities.
+• Naval units                                                      Production (9.1.1): Production points are often unlimited or a set
+                                                                   amount each turn. A few scenarios require a country to determine
+• Politics
+                                                                   production points based on friendly factories. Production points
+• Sea Supply Line                                                  cannot be transferred between countries.
+• Sea Zones                                                                    Surprise Attack Marker (13.9): This marker is always
+• Soviet faction or USSR specific references and rules                         put in a specific hex. See Amphibious Invasion below
+• Strategic Warfare                                                            for how that is performed.
+• Upgrades                                                         When this marker is removed from a hex at the end of an Amphibi-
+                                                                   ous Invasion or at the end of the phasing faction’s Actions Sub-
+• Weather Zones
+                                                                   Phase, a German and UK marker is removed from the scenario. A
+Counter Changes                                                    USA marker is put four turns later on the Turn Track.
+                                                                   Amphibious Invasion (6.3.2): To perform an Amphibious Inva-
+There following counter changes were made in USWC. A list of
+                                                                   sion, the phasing faction puts a Surprise Attack marker in a hex with
+removed USE counters is not provided as there were too many.
+                                                                   a port and must immediately declare which hex is being invaded.
+• The Surprise Attack marker’s 20P and 4T symbols were removed,
+                                                                   The invaded hex can either be the hex containing the marker or
+  except for the USA markers which kept 4T.
+                                                                   an adjacent coastal hex.
+• The     (Upgrade) symbol was removed.
+                                                                   No movement path is traced and the invasion cannot be intercepted.
+                                                                   Unless stated otherwise by scenario rules, there is no distance
+                                                                   limitation between the ground unit performing the invasion and
+                                                                   the invasion hex.
+                                                                   After declaring the invasion hex, the phasing faction activates a
+                                                                   ground unit in a port and resolves an Amphibious Assault attack
+                                                                   per combat rules.
+                                                                   The Naval Support ground combat DRM is automatically received.
+                                                                   Amphibious Invasion Prohibitions (6.3.2.1) are similar to USE.
+
+
+
+
+                                  GMT Games, LLC • P.O. Box 1308, Hanford, CA 93232-1308
+                                                www.GMTGames.com
+

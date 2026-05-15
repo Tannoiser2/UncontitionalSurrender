@@ -1,0 +1,30 @@
+{
+  "name": "unconditional-surrender-digital",
+  "version": "0.1.0",
+  "description": "Digital version of Unconditional Surrender Western Campaign wargame with AI",
+  "private": true,
+  "workspaces": [
+    "packages/shared",
+    "packages/backend",
+    "packages/frontend",
+    "packages/ai-engine",
+    "packages/electron"
+  ],
+  "scripts": {
+    "dev": "turbo run dev --parallel",
+    "build": "turbo run build",
+    "test": "turbo run test",
+    "lint": "turbo run lint",
+    "type-check": "turbo run type-check",
+    "clean": "turbo run clean && rm -rf node_modules",
+    "electron:build": "cd packages/electron && node build.mjs",
+    "electron:run": "cd packages/electron && ./node_modules/.bin/electron dist/main.js"
+  },
+  "devDependencies": {
+    "turbo": "^2.9.10"
+  },
+  "packageManager": "yarn@1.22.22",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

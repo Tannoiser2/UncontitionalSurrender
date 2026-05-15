@@ -3491,11 +3491,6 @@ export const prepareCombat = (
   if (attacker.side === defender.side) return null;
   const attackType = options?.attackType ?? AttackType.MOBILE;
   const additionalAttackerIds = options?.additionalAttackerIds || [];
-  const attackerEligible = getEligibleAirSupporters(state, attackerId, defenderId, additionalAttackerIds, attacker.side);
-  const defenderEligible = getEligibleAirSupporters(state, attackerId, defenderId, additionalAttackerIds, defender.side);
-  const attackerEventEligible = getEligibleCombatEventMarkers(state, attackerId, defenderId, additionalAttackerIds, attacker.side);
-  const defenderEventEligible = getEligibleCombatEventMarkers(state, attackerId, defenderId, additionalAttackerIds, defender.side);
-
   return {
     ...state,
     pendingCombat: {

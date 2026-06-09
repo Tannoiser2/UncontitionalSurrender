@@ -1,0 +1,360 @@
+    In faction order, one faction completes both its Sub-Phas es before the next faction starts its Operation
+                                                                                                              s Phase. A faction
+      completes its Actions Sub-Phase before starting its Supply Check Sub-Phase. Faction order
+                                                                                                       is Axis and Western.
+                                            Actions Sub-Phase (1.2.1 and 6.0)                                                       -~
+• The phasing faction may perform Actions (6.0) with its units .
+• Actions may be performed in any order. Unless stated otherwise, one unit's action must be
+                                                                                              completed before
+  another unit is activated. However, certain procedures within them may have a strict order.
+• While playing, a Conditional Event may be triggered (see Sequence of Play Flowchart). Resolve
+                                                                                                  it immediately.
+• After ali Actions are done, perform Marker Removal.
+
+                                         Take a marker listed below from its Faction Card's Events box and put it in a hex as
+                                         follows.
+                                         Airdrop: Within a 3-hex range of an air unit of the same nationality. The Western
+1
+    Special Marker Action (6.1)          marker may be within range of a UK or USA air unit.
+    Airdrop (13.1)                       Partisans: That contains an enemy: air or ground unit and is within an active or
+    Partisans (13.6)                      conquered friendly country.
+    Surprise Attack (13.9)                Surprise Attack: No restriction unless being used to perform an Amphibious
+                                          lnvasion. lf performing an Amphibious lnvasion, the hex must contain an enemy or
+                                          friendly port.
+                                          Placement Restrictions: For other placement restrictions and effects, see that
+                                          marker's specific entry in Event Markers (13.0).
+
+                                          Activate an air unit in a hex to perform an Air Action.
+    Air Actions (6.2)                     Activating an air unit does not cost production points.
+    Air Rebase (6.2.1)                    An air unit with 6 Sorties or marked with a Strategie Move marker cannot be
+    Air Strike (6.2.2)                    activated. Check a unit's Sorties each time you want to activate it.
+    Air Support (6.2.3)                   An air unit can be activated multiple times in a phase.
+                                          An air unit can perform the same Action multiple times.
+                                          More than one air unit can be activated in a phase.
+
+                                          Activate a ground unit in a hex to perform a Ground Action.
+                                          A ground unit marked with a Strategie Move marker cannot be activated.
+                                          To activate a ground unit (regardless of its strength or Supply State) its country must
+    Ground Actions (6.3)                  spend production points based on the type of unit (3.2.2.1 ).
+    Army Operations (6.3.1)                • Leg unit costs 1 production point.
+    Amphibious lnvasion (6.3.2)            • Mobile unit costs 2 production points.
+                                          A ground unit can be activated only one time in a phase.
+                                          Only one ground unit can be considered activated atone time.
+                                          More than one ground unit can be activated in a phase.
+
+     Marker Removal: After all Actions are done, remove any Assault, Airdrop, Partisans, or Surprise
+                                                                                                       Attack marker in a hex.
+                                           Supply Check Sub-Phase (1.2.1 and 7 .2)                    - -                ~ · .i
+    Each phasing unit in a hex checks to see if it can trace a supply line back to a friendly supply
+                                                                                             source. lf it cannot, its
+    supply state is reduced one levai (only once per turn).
+    A supply check is not mandatory. The phasing faction may choose to not supply any number
+                                                                                             of its units (regardless of
+    type or location).
+
+
+                                                         © 2025 GMT Games LLC
+                                                         P.O. Box 1308, Hanforci, CA 93232
+                                                         www.GMTGames.com
+          Combat Resolution Sequence (5.1)                                                                                 at DRM (5,3A)
+                                                                                  Assault or Mobile Attack                   Assault Attack - Additional Attackers
+Step 1) Ground Combat Only. lf it is a Mobile attack, the
+        attacking unit is the Primary Attacker. lf it is an                    Primary Attacker or Defender                 Up to two Addtional Attackers per Assault
+        Assault attack, the attacker declares one unit as             +2 Germany unit                                      +1 per Additional Attacker of any unit type
+        the Primary Attacker and up to two others as                                                                       +1 per Additional Attacker Tank unit and
+                                                                      +1 France, UK, or USA unit
+        Additional Attacker units.
+                                                                      +1 Elite unit Unit has a star symbol                      defender's hex is affected by Fair or
+Step 2) Each side uses a Will Commit / Will not Commlt
+                                                                       -2 Reduced strength                                      Poor weather. In addition to the "any
+        marker to secretly decide if it commits any of the
+        following to the combat. Both sides simultaneously                                                                      unit type" DRM above.
+                                                                       -2 Low Supply
+        reveal their markers and then alternate declaring                                                                    Assault Attack - Amphibious lnvasion
+                                                                      +2 Tank unit and defender's hex is affected
+        what they will commit.                                                                                                          Primary Attacker
+        • Any number of Event markers as per their rules.                  by Fair weather
+        • Ground Combat Only: One air unit.                           +1 Tank unit and defender's hex is affected -1 Attacking into any hex as part of an
+                                                                           by Poor weather                                     Amphibious lnvasion Resolution
+Step3) Ground Combat Only: lf both sides committed an
+        air unit in Step 2, resolve an air combat to                  +2 Receiving Air Support and defender's              +2  Receiving Naval Support and defender's
+        determine which side might apply the Air Support                                                                       coastal hex is affected by Fair weather
+                                                                            hex is affected by Fair weather
+        ground combat DRM. After the air combat is done,                                                                   +1 Receiving Naval Support and defender's
+                                                                      +1 Receiving Air Support and defender's
+        proceed with Step 4 for the ground combat.                                                                             coastal hex is affected by Poor weather
+                                                                            hex is affected by Poor weather
+Step4) Each side determines its own Combat DRM per
+        the respective DRM list. The maximum total DRM a                            Primary Attacker                       r     fAYIIgjfmf11ttriJ (iti'mf,1fn{!1m
+        side can apply to its combat roll is + or - 1O.               +2 Attacking an lsolated* unit. *Defender            I;         filiz!J~[!lillJJ
+        Do not combine both sides' modifiers and app/y the                  has no e/igible retreat hex and it is not
+        result to only one side.                                                                                                   Assault or Mobile Attack
+                                                                            adjacent to a friendly: city, fort, or ground
+Step 5) Each side rolls one die and applies its own total                                                                             Attacker or Defender
+                                                                            unit.
+        DRM. Each side then checks the respective DRM                   -1 Attacking into a Poor weather hex              The   modified die result is divided by two
+        list under "After Rolling Combat Die" to see if it                                                                tor each of the following that applies.
+        divides its modified combat roll result by two.
+                                                                        -1 Attacking into a hex containing a city
+        A final value less than 1 is changed to 1.                          and / or any amount of Rough terrain. Round up after each division.
+Step 6) On the Combat Results Table, cross-reference the                    This is -1 in tota/, not -1 per each type • One or more of a side's ground units
+                                                                            of terrain in the hex.                              has No Supply.
+        attacker's final value across the top with the
+        defender's final value down the side. After applying            -1 Attacking across a Canal, Mountain,              • Defender's hex is affected by Severe
+        the result, the combat is over.                                     or River hexside                                    weather. Applies to attacker and
+                                                                        -2 Attacking across a Strait hexside                    defender.
+                                 batDRM                          ]                 Attacker or Defender                     • Attacking a unit that occupies a fort.
+  Attacker or Defender                       Defender                 +/-? Per each Event marker's effect                      This can only be an Assault attack
++2 Germany unit                   +2 Western unit defending in
++1 UK or USA unit                    Britain versus Air Strike
+-2 Bomber unit                       originating from outside         -lmportant: For all WNtic(ùDlC.0                 a                ,
+-2 Low Supply                        of Britain                                               results, ignare the + # part of the CRT result.
+-2 Defender's hex is               After Rol/ing Combat Die                ♦: No Effect - The combat is over.
+
+    affected by Poor              I   and applying,DRM         •       DR: Defender Retreat (5.3.5)
+    weather. Applies to                Attacker or Defender                   lf the defender does not occupy a fort, it must retreat one hex away from the
+    attacker and defender.        The modified die result is                  attacker (any attacker in an Assault). lf it cannot retreat, apply the Defender
+-? Number of Sorties              divided by two for each of the              Cannot Retreat result below.
++/-? Per each Event               following that applies. Round               lf the defender occupies a fort, its faction chooses to either retreat one hex from
+    marker's effect               up after each division.
+                                                                              the attacker (any attacker in an Assault) or apply the Defender Cannot Retreat
+                                   • Unit has No Supply.                      result below.
+                                   • Defender's hex is affected
+                                                                       DO: Defender Disrupted
+                                       by Severe weather.
+                                       Applies to attacker and                lf the defender is a reduced unit, eliminate it. Then, if it was a Mobile attack, put
+                                       defender.                              a No EZOC marker in the defender's hex.
+                                                                              lf the defender is a full strength unit, reduce it. Then, the defender (even if it
+~...............,:...~_::..Al.::,~rCombat Results (5.2.1) -----~-             occupies a fort) must retreat one hex away from the attacker (any attacker in
+                   Perform steps one and two below.                           an Assault). lf it cannot retreat, apply the Defender Cannot Retreat result below.
+                                   Step 1: Sorties e::.-- --==zam.•    DE: Defender Eliminated (5.3.6)
+Add Sorties to each unit based on the CRT result received.                    Eliminate the defender (whether it is full strength or reduced). Then, if it was a
+                  +: Attacker and Defender each add one Sartie.               Mobile attack, put a No EZOC marker in the defender's hex.
+DR, OD, DE: Attacker adds one Sortie. Defender adds                    AS: Attacker Stopped
+                       Sorties equal to the + # part of CRT result.
+                                                                              The combat is over and the attacker's activation ends tor the phase.
+     AS, AA: Defender adds 1 Sortie. Attacker adds
+                                                                       AA: Attacker Attrition
+                       Sorties equal to the + # part of CRT result.
+                                                                               lf the Primary Attacker is a reduced unit, eliminate it.
+                                   Step 2: Effect
+     Check the list below to determina other effects.                         lf the Primary Attacker is a full strength unit, reduce it.
+• lf the combat was an Air Strike, the combat is over.                        The combat is over and the attacker's activation ends for the phase.
+• lf the combat was due to both sides commiting an air unit                                            Retreat Prohlbltions (5.3.5.1)
+   to a ground combat, see Air Support below.                               • A unit cannot retreat into an enemy: city or fort.
+                                    AlrSupport                              • A unit cannot retreat into a hex with an EZOC unless the hex contains a friendly:
+ +, DR, AS: Attacker and 0efender each receive the Air                        city or fort, and the unit is also putting a one hex gap between it and the attacker.
+                      Support ground combat DRM.                            • A unit cannot violate ground movement prohibitions or stacking limits.
+    OD, DE: Attacker receives the Air Support ground                                                 Defender Cannot Retreat (5.3.5.2)
+                      combat DRM. Defender does not.                   lf the defender is a reduced unjt. eliminate it. Then, if it was a Mobile attack, put a No
+          AA: Defender receives the Air Support ground                 EZOC marker in defender's hex. The combat is over.
+                      combat DRM. Attacker does not.                   lf the defender Is afull strength unjt. reduce it. The unit stays in its hex and the combat is over.
+            Attacker _ _ ___...,_
+                                                        Combat Results Table
+              1        2        3     4         5            6         7            8          9            10                11        12   13     14          15       16
+D 1           ♦OR+2 OR+2 OR+2 , 00+3
+                        ♦             00+3 00+3 DE+4 DE+4 DE+4 OE+4 DE+4 DE+4 DE+4 OE+4                                                                                       1
+                   - OR+2 OR+2 ______
+e 2           ♦
+                •       ♦
+                        -        OR+2 DD+3  OD+3 00+3 DE+4 DE+4 DE+4 DE+4 OE+4 DE+4 OE+4
+                                                                     -                                                ---
+                                                                                                                                                                              2
+f 3 AS+2        •      ♦  OR+2 . DR+2 DR+2 00+3 00+3 00+3 00+3 00+3 DE+4 DE+4 DE+4 DE+4
+                                      ♦
+                                                                             ,___                                                                                ~
+                                                                                                                                                                              3
+e 4 AS+2 AS+2 •            ♦     OR+2 OR+2 OR+2 OR+2 DD+3 00+3 00+3 00+3 00+3 00+3 DE+4
+                                      ♦
+                                          -                                                                                                                          ~
+                                                                                                                                                                              4
+  5 AS+2 AS+2 AS+2                    ♦     OR+2 OR+2 OR+2 00+3 00+3 00+3 00+3 00+3 00+3
+                                                ♦           ♦          ♦                                                                                                      5
+n 6 AA+3 AS+2 AS+2 AS+2 ♦                  ->
+                                                                                                                                   '-
+
+
+
+
+d 7 AA+3 AA+3 AS+2 AS+2 ♦
+                             -
+                                  ♦
+
+                                  ♦
+                                       ♦         OR+2 OR+2 OR+2 DR+2 DR+2 DR+2 00+3 00+3
+                                                                                    ♦
+
+                                                      OR+2 OR+2 DR+2 DR+2 DR+2 OR+2 D0+3
+                                                                       ♦            ♦          ♦
+                                                                                                      '-cc_----
+                                                                                                                                                            -                 6
+                                                                                                                                                                              7
+e 8 AA+3 AA+3 AA+3 AS+2 AS+2 ♦
+                                                                                                                  -
+
+
+
+
+                                                   ♦    ♦  DR+2 DR+2 DR+2 OR+2 DR+2 OR+2
+                                                            -----
+                                                                       ♦            ♦
+
+r 9 AA+3 AA+3 AA+3 AS+2 AS+2 AS+2                               . OR+2
+                                                                  __   DR+2 DR+2 OR+2 OR+2
+                                                                       ♦            ♦          ♦             ♦                ♦                                               9
+   10 AA+3 AA+3 AA+3                AA+3 AS+2 AS+2 AS+2   ♦    ♦    ♦    ♦   ♦   OR+2 DR+2 DR+2 OR+2 1
+                                                                                        ---~
+
+   11 AA+3 AA+3 AA+3                AA+3 AS+2 AS+2 AS+2 AS+2   ♦    ♦    ♦    ♦    ♦      DR+2 DR+2 OR+2 1
+   12 AA+3 AA+3 AA+3                AA+3 AA+3 AS+2 AS+2 AS+2 AS+2
+                                                                                        ,___
+                                                                                                   -
+                                                                    ♦    ♦   ♦     ♦         ♦   ♦   OR+2 1
+   13 AA+3 AA+3 AA+3                AA+3 AA+3 AS+2 AS+2 AS+2 AS+2 AS+2   ♦   ♦     ♦         ♦   ♦   OR+2 1
+   14 AA+3 AA+3 AA+3                AA+3 AA+3 AA+3 AS+2 AS+2 AS+2 AS+2 AS+2  ♦     ♦         ♦   ♦    ♦   1
+                                                                                      -
+   15 AA+3 AA+3 AA+3                AA+3 AA+3 AA+3 AS+2 AS+2 AS+2 AS+2 AS+2  ♦     ♦         ♦   ♦    ♦   1
+   16 AA+3 AA+3 AA+3                AA+3 AA+3 AA+3 AA+3 AS+2 AS+2 AS+2 AS+2 AS+2 AS+2        ♦   ♦    ♦   1
+                                                                                               -
+
+                                  Movement (4.0)                                                                       Production (9.0)                    •
+                         Unit Movement Points (4.2)                                              Cost Ground Unit Activation (6.3)
+        Leg ground unit with: Full Supply 8 MP / Low or No Supply 4 MP                            1   Activate a Leg ground unit
+     Any other unit type with: Full Supply 10 MP / Low or No Supply 5 MP                          2   Activate a Mobile ground unit
+Cost Ground Movement (4.2.3)                                                                   (      Replacements (8.1)
+                                         -------~----_..I,
+   1   Clear hex                                                                                  1   Turn over a reduced Leg ground unit to full strength
+   1 Along a Transport Une. The terrain of the hexside being crossed                              2   Turn aver a reduced Mobile ground unit to full strength
+         and in the hex being moved into is treated as Clear. [Exception:                             Remove up to 2 Sorties from one fighter unit
+                                                                                                  3
+         This benefit is not received if moving or attacking into a hex
+                                                                                                  4   Remove up to 2 Sorties from one bomber unit
+  1
+         containing an enemy: city, fort, or unit.]
+      Friendly: City or Fort in any type of hex                                                e  1
+                                                                                                      Mobilization (8.2) _
+                                                                                                      Mobilize a reduced Leg ground unit
+  2   Enemy: City or Fort in any type of hex
+   2  Rough hex (Desert, Hills, Swamp, or Woods) with no City or Fort.                            2   Mobilize a reduced Mobile ground unit
+          lf a city or fort is in the hex, see Friendly or Enemy above.                           3   Mobilize a fighter unit with 4 Sorties
+ +O Clear hexside
+                                                                                                                              Ranges (1.4)
+  +1 Canal, Mountain, or River hexside
+ +2 Strait hexside
+                                                                                                    Air Strike: 7 hexes              I    Air Support: 5 hexes
+                                                                                                    Airdrop: 3 hexes from an air unit of the same nationality
+  +1 Attacking a unit in a hex affected by Fair weather
+  +2 Attacking a unit in a hex affected by Poor or Severe weather                                   Partisans: In a hex containing an enemy ground unit that is
+                                                                                                     within a friendly, active or conquered Allied country.
+AII MP: Moving via Naval Transport                                                                  Supply Une Across Land Hexes: Up to 2 hexes at start of
+Prohibited: Water hex or hexside; Faded Dot hex; or per scenario rules                                trace, then unlimited along a Transport Line
+ Cost Air Movement (4.2.2)
+   1   Any hex, including Faded Dot                                                                                                 Supply Sources (7 .3)
+Ali MP: Moving via Naval Transport                                                             l                            __Limited Su~p~ource (7.3.1)
+Prohibited: Per scenario rules.                                                                    Supplies up to two units, giving each a Low supply state.
+Note: Only +# movement point costs are cumulative with other costs.                                 • A friendly capitai in a conquered country is for the units
+                                                                                                       belonging to the faction controlling the city.
+                                                                                                    • A friendly capitai without a port in a Western country is for
+                              Weather (10.0)                                                            UK or USA units.
+                      Balkans, FNA, ltaly                 AH Other Maps                        L                   Unllmlted Supply Source (7 .3.2)
+                                                                                                   Supplies any number of units, giving each a Full supply state.
+Month                Fair  Poor Severe          Fair            Poor       Severe
+                                                                                                    • A friendly country's city is tor that country's units.
+Dee - Feb             1     2-4      5-6                         1-4        5-6                     • A friendly city in Britain is for USA units.
+Mar                  1-2    3-4      5-6            1            2-3        4-6                     • A Western friendly port outside of Britain is tor up to two
+ Apr (Mar Fair)       1     2-4      5-6                         1-3        4-6                         Western units. That is two units per port.
+ Apr (r J1ar Poor)   1-2    3-5       6              1           2-4        5-6                                      National Will Effects (2.1.2)
+ Apr (filar Sev)     1-2    3-6                      1           2-5         6                     -1 To a country, each time one of its field ground units is elimina
+IAay                 1-4    5-6                     1-3          4-6                                   eci while defendlng in combat.
+Jun                   1-4    5-6                    1-4          5-6                               -2 To a country, each time one of its cities [ except its capitai]
+                      1-6                           1-6                                                becomes enemy controlled.
+Jul - Sep
+                             '3-5     6             12           3-4        5-6                    -4 To a country, each time its capitai becomes enemy controlled.
+0ct                   1?
+                             14      5-6                                                           +2 To a country, each time one of its cities (except its capitai]
+ IJov (Oct Fair)                                                 1-4        5-6                        becomes frlendly controlled after being enemy controlled.
+ l~ov (Oct Poor)      12     3-6                    1-2          34         5-6                    +4 To a country, each time lts capitai becomes friendly controlled
+ 1-Jov (Oct Sev)      1-3    4-6                    1-2          3-6                                   after being enemy controlled.
+                       ,
+            =--~=--- -----
+                                      , dliii , ·                                       , ~11e.-                               .
+                                  Western Campaigns
+        In faction order: complete one Phase before the next Phase is started. [Exception:
+                                                                                           Weather Phase]
+                                        Faction order is Axis and Western.
+
+  Weath er7 ~ The Axis faction rolls a die to determine the turn's weathe
+                                                                          r (10.1 ). Find the results on the Player
+  Phase    uni\ Aid Sheet's Weather table and adjust the Weather Track's marker. The Western faction
+                                                                                                           does not
+   (10.1)  I roll tor weather.
+                                                                                                                                    -------'
+
+
+
+
+             Determine each active coun-
+  Economy  l ..
+             try's Production Points (9.1.1 ).
+I  P~ase
+    1
+~ -1)          r
+          w) Scenario rules how many
+             production P?ints each
+             country rece,ves each turn.
+                                                                 lf listed in scenario rules,
+                                                                 roll for the loss of
+                                                                 Production Points.
+
+
+
+  Strategie            Remove Strategie Move                     Move one supplied air or
+ Movement              marker from map. Put it                   ground unit using Strategie
+ Phase (4.1)           in its Events Box.                        Movement (4.1.1 ).
+
+
+
+     Operations Phase (1.2.1)                         Actions Sub-Phase                                Supply Check Sub-Phase
+    Each faction completes both                  Activate a unit to perform an                 A unit in a hex checks to see if it can
+    Sub-Phases before the next                   Action (6.0). When actions                    trace a supply line back to a Supply
+faction starts its Operations Phase.             are done, proceed to Supply                   Source (7 .3). lf it cannot, its Supply
+ See Operations Phase Flowchart                  Check Sub-Phase.                              State is reduced one level (no more
+                                                                                               than one time per turn).
+
+                                               While playing, the following event occurs if its trigger condition happens
+   Conditional                                                                                                             :
+                             Country Collapse (12.1): A country immediately collapses if its National
+                                                                                                         Will drops to zero or all of its cities
+  Events (12.0)              are u~der enemy control. Wh_e~ a country collapses, if at least one of its
+                                                                                                         cities is under enemy control and
+                             there Is an enemy ground unit m any hex of that country, the country is
+                                                                                                       conquered (12.1.2).
+
+
+   No Supply                 A phasing unit with No Supply is                A phasing unsupplied ground unit or a phasing supplied
+   Phase (7.5)               reduced or eliminated (7.5.1 ).                 or unsupplied air unit may be voluntarily eliminated
+                                                                             (7.5.2).
+
+             -,
+     lacements __::') Spend pro_duction P?ints to improve _a phasing unit
+                                                                           in a hex or Map Box. Flip a reduced strength
+    hase (8.1)     p  ground unit over to Its full strength s1de or remove up to two Sorties from
+                                                                                                  an air unit (8.1 ).
+
+  Mobi lizati o~~
+  Phase ( . )
+         82
+                   p
+                  Spend production points to mobilize a unit that is in ìts Faction Card's
+                                                                                           Mobilization box (8.2).
+
+
+ Victory Check
+                             Check to see ifa faction achieved the scenario's victory conditions (11.1
+  Phase (11.1)                                                                                                    ).
+
+
+   End of Turn               Advance the Turn marker one turn. Put any counter in the                          Move all units in a Faction
+   Phase (11.2)              entered box in lts respective location. [Exceptlon: Do not                        Card's Eliminateci Box to
+                             remove the Scenario Ends marker.] (11.2)                                          its Mobilìzation Box (11.2).
+

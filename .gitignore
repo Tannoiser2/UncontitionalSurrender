@@ -51,3 +51,9 @@ venv/
 env/
 .mypy_cache/
 .pytest_cache/
+
+# File di lavoro troppo grandi per GitHub (limite 100MB)
+Varie Carte/pic1927022.psd
+Varie Carte/10.png
+.DS_Store
+**/.DS_Store

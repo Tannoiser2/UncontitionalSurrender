@@ -605,6 +605,30 @@
   cursor: not-allowed;
 }
 
+/* Azione distruttiva: riconoscibile ma non più vistosa dei comandi di gioco. */
+.btnDanger {
+  padding: 0.65rem 0.8rem;
+  background: transparent;
+  color: #e2867e;
+  border: 1px solid #7d3b36;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+
+.btnDanger:hover:not(:disabled) {
+  background: #3a1f1d;
+  border-color: #c54e45;
+  color: #f4b3ad;
+}
+
+.btnDanger:focus-visible {
+  outline: 2px solid #c54e45;
+  outline-offset: 1px;
+}
+
 .btnSecondary,
 .btnAi,
 .actionImportButton {

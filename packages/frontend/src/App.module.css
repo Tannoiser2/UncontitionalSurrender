@@ -2,17 +2,20 @@
   display: grid;
   grid-template-rows: minmax(0, 1fr) auto;
   align-items: center;
-  min-height: 100vh;
+  height: 100%;
   padding: clamp(0.6rem, 1.8vw, 1.4rem);
   background: #050707;
   color: #f1e7d0;
-  overflow: hidden;
+  /* Rete di sicurezza: se lo spazio non basta si scorre, invece di tagliare via
+     i pulsanti in fondo (Continua partita e gli scenari senza hotspot). */
+  overflow-y: auto;
 }
 
 .splashStage {
   position: relative;
-  width: min(100%, 150vh);
-  max-width: 1536px;
+  /* La larghezza è limitata anche dall'altezza disponibile, così l'immagine e la
+     riga di pulsanti sotto entrano sempre insieme nella finestra. */
+  width: min(100%, 1536px, (100dvh - 8rem) * 1.5);
   margin: 0 auto;
   aspect-ratio: 3 / 2;
   min-height: 0;
@@ -186,8 +189,74 @@
   transition: opacity 0.1s;
 }
 
-.advanceBtn:hover {
+.advanceBtn:hover:not(:disabled) {
   opacity: 0.85;
+}
+
+.advanceBtn:disabled {
+  background: #33404a;
+  border-color: #4a5a66;
+  color: #93a1ab;
+  cursor: not-allowed;
+}
+
+.advanceBtn:focus-visible {
+  outline: 2px solid #d1b06b;
+  outline-offset: 2px;
+}
+
+/* Avviso non bloccante sopra la mappa: sostituisce i window.alert e i
+   fallimenti silenziosi. */
+.notice {
+  position: absolute;
+  top: 0.75rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  max-width: min(680px, calc(100% - 2rem));
+  padding: 0.5rem 0.7rem;
+  background: #2b2415;
+  color: #f4e6c0;
+  border: 1px solid #d1b06b;
+  border-radius: 6px;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.5);
+  font-size: 0.82rem;
+  line-height: 1.35;
+}
+
+.notice button {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  background: transparent;
+  color: #d1b06b;
+  border: 1px solid #7a6634;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.notice button:hover {
+  background: #3b3220;
+  color: #f4e6c0;
+}
+
+/* Spiega perché l'avanzamento è bloccato o cosa resta da fare. */
+.advanceHint {
+  margin-left: 0.5rem;
+  padding: 0.15rem 0.5rem;
+  background: rgba(209, 176, 107, 0.12);
+  border: 1px solid rgba(209, 176, 107, 0.45);
+  border-radius: 4px;
+  color: #e8d9ad;
+  font-size: 0.72rem;
+  font-weight: 600;
+  white-space: nowrap;
 }
 
 .phaseStepLabel {

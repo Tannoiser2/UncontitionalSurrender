@@ -3,8 +3,6 @@ import {
   activationCostFor,
   activationProductionCountry,
   coordKey,
-  GamePhase,
-  GameSubPhase,
   hexCodeForMap,
   movementAllowanceFor,
   movementRemainingFor,
@@ -58,8 +56,16 @@ const turnLabelFor = (code: string): string => {
   return `${monthLabel[month] || month} ${fullYear}`.trim();
 };
 
-const tabForPhase = (_phase: GamePhase, _subPhase?: GameSubPhase): PanelTab => {
-  return "inspector";
+// Il pannello inferiore ruba altezza alla mappa, che è la cosa che serve
+// davvero durante il gioco: parte ridotto e ricorda la scelta dell'utente.
+const PANEL_EXPANDED_KEY = "uswc.bottomPanelExpanded";
+
+const readPanelExpanded = (): boolean => {
+  try {
+    return window.localStorage.getItem(PANEL_EXPANDED_KEY) === "true";
+  } catch {
+    return false;
+  }
 };
 
 const sideLabel = (side: string): string => {
@@ -75,14 +81,22 @@ export const FactionCardPanel: React.FC = () => {
   const selectedHex = useGameStore((state) => state.selectedHex);
   const validMoves = useGameStore((state) => state.validMoves);
   const [tab, setTab] = useState<PanelTab>("inspector");
-  const [expanded, setExpanded] = useState(true);
+  const [expanded, setExpanded] = useState(readPanelExpanded);
 
-  useEffect(() => {
-    if (!gameState) return;
-    setTab(tabForPhase(gameState.phase, gameState.subPhase));
-    setExpanded(true);
-  }, [gameState?.phase, gameState?.subPhase]);
+  const togglePanel = () => {
+    setExpanded((value) => {
+      const next = !value;
+      try {
+        window.localStorage.setItem(PANEL_EXPANDED_KEY, String(next));
+      } catch {
+        /* preferenza non persistibile: ininfluente */
+      }
+      return next;
+    });
+  };
 
+  // Solo un combattimento in corso forza l'apertura: il cambio di fase non deve
+  // riaprire il pannello né buttare fuori chi stava guardando il Turn Track.
   useEffect(() => {
     if (gameState?.pendingCombat) {
       setTab("inspector");
@@ -299,7 +313,12 @@ export const FactionCardPanel: React.FC = () => {
             Turn Track
           </button>
         </div>
-        <button type="button" className={styles.collapseButton} onClick={() => setExpanded((value) => !value)}>
+        <button
+          type="button"
+          className={styles.collapseButton}
+          onClick={togglePanel}
+          title={expanded ? "Riduci il pannello per dare più spazio alla mappa" : "Espandi il pannello"}
+        >
           {expanded ? "Riduci" : "Espandi"}
         </button>
       </div>

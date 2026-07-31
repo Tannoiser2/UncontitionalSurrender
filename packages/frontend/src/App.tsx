@@ -59,8 +59,17 @@ export const App: React.FC = () => {
   const hydratePersistentScenario = useGameStore((state) => state.hydratePersistentScenario);
   const newLocalGame = useGameStore((state) => state.newLocalGame);
   const advanceGameSequence = useGameStore((state) => state.advanceGameSequence);
+  const notice = useGameStore((state) => state.notice);
+  const setNotice = useGameStore((state) => state.setNotice);
   const [showSplash, setShowSplash] = useState(true);
   const [controlsCollapsed, setControlsCollapsed] = useState(false);
+
+  // L'avviso sparisce da solo: informa senza bloccare come farebbe un alert.
+  useEffect(() => {
+    if (!notice) return;
+    const timer = window.setTimeout(() => setNotice(null), 7000);
+    return () => window.clearTimeout(timer);
+  }, [notice, setNotice]);
 
   useEffect(() => {
     hydratePersistentScenario();
@@ -83,6 +92,41 @@ export const App: React.FC = () => {
   };
 
   const stepLabel = gameState ? sequenceStepLabel(gameState) : null;
+
+  // Perché l'avanzamento di fase è bloccato, se lo è. Serve a non lasciare
+  // l'utente davanti a un pulsante che non fa nulla senza spiegazioni.
+  const pendingAssaultNames = useMemo(() => {
+    if (!gameState) return [];
+    if (gameState.phase !== GamePhase.OPERATIONS || gameState.subPhase !== "actions") return [];
+    return Array.from(gameState.units.values())
+      .filter((unit) => unit.side === gameState.currentSide && unit.assaultTarget)
+      .map((unit) => unit.name);
+  }, [gameState]);
+
+  const combatBlockReason = gameState?.pendingCombat
+    ? "C'è un combattimento in corso: completalo o annullalo prima di cambiare fase."
+    : null;
+
+  const assaultCount = pendingAssaultNames.length;
+  const assaultLabel = assaultCount === 1 ? "1 assalto designato" : `${assaultCount} assalti designati`;
+
+  const handleAdvance = () => {
+    if (combatBlockReason) return;
+    if (assaultCount > 0) {
+      const confirmed = window.confirm(
+        `${assaultLabel} non ancora risolto/i: ${pendingAssaultNames.join(", ")}.\n\n` +
+          'Puoi risolverli con "Risolvi Assault" nella barra in alto.\n\n' +
+          "Proseguire comunque? I marker Assalto verranno rimossi senza combattere."
+      );
+      if (!confirmed) return;
+      advanceGameSequence(true);
+      return;
+    }
+    advanceGameSequence();
+  };
+
+  const advanceTitle = combatBlockReason
+    ?? (assaultCount > 0 ? `${assaultLabel} da risolvere: ${pendingAssaultNames.join(", ")}` : undefined);
 
   if (showSplash) {
     return (
@@ -151,10 +195,17 @@ export const App: React.FC = () => {
             <button
               type="button"
               className={styles.advanceBtn}
-              onClick={advanceGameSequence}
+              onClick={handleAdvance}
+              disabled={Boolean(combatBlockReason)}
+              title={advanceTitle}
             >
               {stepLabel} ▶
             </button>
+          )}
+          {(combatBlockReason || assaultCount > 0) && (
+            <span className={styles.advanceHint} role="status">
+              {combatBlockReason ?? `${assaultLabel} da risolvere`}
+            </span>
           )}
         </div>
       </header>
@@ -165,6 +216,13 @@ export const App: React.FC = () => {
           <section className={styles.boardSection}>
             <GameBoard />
           </section>
+
+          {notice && (
+            <div className={styles.notice} role="status" aria-live="polite">
+              <span>{notice}</span>
+              <button type="button" onClick={() => setNotice(null)} aria-label="Chiudi avviso">×</button>
+            </div>
+          )}
 
           <button
             type="button"

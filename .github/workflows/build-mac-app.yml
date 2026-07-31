@@ -1,0 +1,81 @@
+name: Build app per macOS
+
+# Costruisce "Unconditional Surrender.app" su un runner Apple Silicon e la
+# rende scaricabile. Due modi per lanciarla:
+#   • a mano, dalla tab Actions → "Run workflow" (l'app finisce fra gli artifact)
+#   • pubblicando un tag "v*" (l'app viene allegata a una Release)
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    # macos-14 è Apple Silicon: serve perché il launcher nativo committato nel
+    # repo (packages/electron/launcher) è un binario arm64.
+    runs-on: macos-14
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Prepara yarn
+        # Il repo dichiara packageManager yarn@1.22.22, quindi Corepack usa la
+        # versione giusta. Sui runner macOS yarn è comunque preinstallato: se
+        # corepack non è disponibile si prosegue con quello.
+        run: |
+          corepack enable || echo "corepack non disponibile, uso yarn di sistema"
+          yarn --version
+
+      - name: Installa dipendenze
+        run: yarn install --frozen-lockfile
+
+      - name: Test del motore di gioco
+        run: yarn workspace @uswc/shared test
+
+      - name: Costruisci l'app
+        run: yarn electron:build
+
+      - name: Comprimi l'app
+        # ditto è il modo corretto di zippare un .app su macOS: preserva
+        # symlink e permessi, che un normale zip rovinerebbe.
+        run: |
+          cd "packages/electron/release/mac-arm64"
+          ditto -c -k --sequesterRsrc --keepParent \
+            "Unconditional Surrender.app" \
+            "$GITHUB_WORKSPACE/UnconditionalSurrender-macOS-arm64.zip"
+
+      - name: Pubblica come artifact scaricabile
+        uses: actions/upload-artifact@v4
+        with:
+          name: UnconditionalSurrender-macOS-arm64
+          path: UnconditionalSurrender-macOS-arm64.zip
+          if-no-files-found: error
+
+      - name: Allega alla Release (solo sui tag)
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: UnconditionalSurrender-macOS-arm64.zip
+          body: |
+            App per macOS (Apple Silicon).
+
+            **Come aprirla la prima volta.** L'app non è firmata con un
+            certificato Apple, quindi al primo avvio macOS la blocca. Scompatta
+            lo zip, poi o fai click destro sull'app → *Apri* → *Apri*, oppure da
+            Terminale:
+
+            ```
+            xattr -dr com.apple.quarantine "Unconditional Surrender.app"
+            ```
+
+            Richiede macOS 12 o successivo su Mac con chip Apple.

@@ -466,6 +466,22 @@ export const GameControls: React.FC<GameControlsProps> = ({ onNewGame }) => {
     setAiStatus(note || "IA non disponibile in questo momento.");
   };
 
+  const handleNewGame = () => {
+    const turn = gameState?.turnCode;
+    const confirmed = window.confirm(
+      turn
+        ? `Abbandonare la partita in corso (turno ${turn}) e tornare alla scelta dello scenario?\n\nI progressi non salvati andranno persi.`
+        : "Tornare alla scelta dello scenario?"
+    );
+    if (confirmed) onNewGame();
+  };
+
+  const handleResetSetup = () => {
+    if (window.confirm("Riportare lo scenario al setup iniziale? La partita in corso verrà persa.")) {
+      resetFrance1940Setup();
+    }
+  };
+
   const toggleSection = (id: string) => {
     setCollapsedSections((current) => {
       const next = { ...current, [id]: !current[id] };
@@ -504,9 +520,6 @@ export const GameControls: React.FC<GameControlsProps> = ({ onNewGame }) => {
       </CollapsibleSection>
 
       <div className={styles.actions}>
-        <button className={styles.btn} onClick={onNewGame}>
-          Nuovo gioco
-        </button>
         <button
           className={styles.btnAi}
           type="button"
@@ -528,8 +541,13 @@ export const GameControls: React.FC<GameControlsProps> = ({ onNewGame }) => {
           <input type="file" accept="application/json,.json" onChange={handleScenarioImport} />
         </label>
         {scenarioImportStatus && <p className={styles.actionStatus}>{scenarioImportStatus}</p>}
-        <button className={styles.btnSecondary} onClick={resetFrance1940Setup} disabled={!gameState}>
+        <button className={styles.btnSecondary} onClick={handleResetSetup} disabled={!gameState}>
           Reset setup scenario
+        </button>
+        {/* Azione distruttiva: in fondo alla lista e dietro conferma, per non
+            cancellare una partita con un click di troppo. */}
+        <button className={styles.btnDanger} onClick={handleNewGame}>
+          Nuovo gioco
         </button>
       </div>
 

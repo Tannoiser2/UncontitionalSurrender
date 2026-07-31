@@ -171,7 +171,11 @@ interface GameStore {
   mapEventPlacement: MapEventPlacement | null;
   privateMapLayer: PrivateMapLayer;
   savedCalibrations: SavedCalibration[];
+  // Avviso transitorio mostrato dalla UI (es. una regola che ha cambiato
+  // l'azione richiesta dal giocatore). Sostituisce i return silenziosi.
+  notice: string | null;
 
+  setNotice: (text: string | null) => void;
   setGameState: (state: GameState) => void;
   selectUnit: (unit: Unit | null) => void;
   selectHex: (hex: HexCoord | null) => void;
@@ -203,7 +207,9 @@ interface GameStore {
   mobilizeUnitToCentralMed: (unitId: string) => void;
   cancelMobilizing: () => void;
   runAiStep: () => string | null;
-  advanceGameSequence: () => void;
+  // force=true prosegue anche con assalti designati non risolti (5.3.3: un
+  // assalto designato non deve per forza essere risolto). La UI chiede conferma.
+  advanceGameSequence: (force?: boolean) => void;
   setPrivateMapImage: (imageDataUrl: string | null) => void;
   updatePrivateMapLayer: (settings: Partial<Omit<PrivateMapLayer, "imageDataUrl">>) => void;
   saveCurrentCalibration: (name: string) => void;
@@ -995,6 +1001,9 @@ export const useGameStore = create<GameStore>((set, get) => ({
   mapEventPlacement: null,
   privateMapLayer: initialPrivateMapLayer,
   savedCalibrations: loadSavedCalibrations(initialMapId),
+  notice: null,
+
+  setNotice: (text) => set({ notice: text }),
 
   setGameState: (state) => {
     saveGameState(state);
@@ -1412,6 +1421,16 @@ export const useGameStore = create<GameStore>((set, get) => ({
         );
         const userMode = get().attackMode;
         const useAssault = weatherForcesAssault || fortForcesAssault || userMode === "assault";
+        // 5.3.1: se il giocatore aveva scelto Mobile ma la regola impone l'Assalto,
+        // dillo — altrimenti vede l'unità fermarsi senza capire perché.
+        if (useAssault && userMode !== "assault") {
+          const because = fortForcesAssault
+            ? "il difensore occupa un forte"
+            : `il meteo è ${gameState.weather === "severe" ? "Severe" : "Poor"}`;
+          set({
+            notice: `Attacco Mobile non consentito perché ${because} (5.3.1): designato un Assalto. L'attivazione di ${selectedStillCurrent.name} termina qui.`
+          });
+        }
         const nextState = useAssault
           ? designateAssault(gameState, selectedStillCurrent.id, hex)
           : initiateMobileAttack(gameState, selectedStillCurrent.id, unitOnHex.id);
@@ -1437,10 +1456,19 @@ export const useGameStore = create<GameStore>((set, get) => ({
           if (adjacentMovesOnly(gameState, selectedStillCurrent).length === 0) {
             const endedState = endUnitActivation(gameState, selectedStillCurrent.id);
             saveGameState(endedState);
-            set({ gameState: endedState, selectedUnit: null, selectedHex: hex, validMoves: [] });
+            set({
+              gameState: endedState,
+              selectedUnit: null,
+              selectedHex: hex,
+              validMoves: [],
+              notice: `${selectedStillCurrent.name} non può attaccare né muovere: attivazione conclusa.`
+            });
             return;
           }
-          set({ selectedHex: hex });
+          set({
+            selectedHex: hex,
+            notice: `Attacco non consentito con ${selectedStillCurrent.name}: punti movimento insufficienti o attacco vietato dalle regole.`
+          });
           return;
         }
         const nextStateAfterAutoEnd = finishUnitIfNoActionOptions(nextState, selectedStillCurrent.id);
@@ -1878,13 +1906,16 @@ export const useGameStore = create<GameStore>((set, get) => ({
       validMoves: []
     });
   },
-  advanceGameSequence: () => {
+  advanceGameSequence: (force = false) => {
     const { gameState } = get();
     if (!gameState) return;
+    // Un combattimento a metà non può essere abbandonato: va risolto o annullato.
+    if (gameState.pendingCombat) return;
     const hasPendingAssaults = Array.from(gameState.units.values()).some(
       (unit) => unit.side === gameState.currentSide && unit.assaultTarget
     );
     if (
+      !force &&
       gameState.phase === GamePhase.OPERATIONS &&
       gameState.subPhase === GameSubPhase.ACTIONS &&
       hasPendingAssaults

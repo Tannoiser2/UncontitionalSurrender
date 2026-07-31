@@ -256,9 +256,12 @@ const createInitialFactionCards = (scenario: ScenarioId | "procedural" = DEFAULT
       [Side.ALLIED]: {
         side: Side.ALLIED,
         productionPoints: { USSR: 15 },
-        nationalWill: { USSR: null },
+        // La condizione di vittoria dello scenario ("l'Asse vince se la National
+        // Will sovietica scende sotto 45") richiede che la Will sia tracciata.
+        // Base 95 come in russia19411944: la soglia equivale a perderne oltre metà.
+        nationalWill: { USSR: 95 },
         countryStatus: { USSR: "active" },
-        countryInitialNationalWill: { USSR: null },
+        countryInitialNationalWill: { USSR: 95 },
         // Soviet Emergency Mobilization (fine Operazioni Asse Jun-41): Air 3 + 5 armate (7,14,16,22,23)
         // disponibili già al turno 1 nella Mobilization Box
         eventsBox: ["Strategic Move", "Soviet Counterattack", "Rasputitsa", "Partisans"],
@@ -476,8 +479,10 @@ export const isInsideMap = (state: GameState, coord: HexCoord): boolean => state
 export const isEnemyZoc = (state: GameState, coord: HexCoord, side: Side): boolean =>
   zocExertingUnits(state, coord, side).length > 0;
 
-export const zocExertingUnits = (state: GameState, coord: HexCoord, side: Side): Unit[] =>
-  Array.from(state.units.values()).filter((unit) => {
+export const zocExertingUnits = (state: GameState, coord: HexCoord, side: Side): Unit[] => {
+  // 1.7 / 14.8: nessuna ZOC nemica è esercitata in un hex con marker No EZOC.
+  if (state.map.get(coordKey(coord))?.noEzocMarker) return [];
+  return Array.from(state.units.values()).filter((unit) => {
     if (
       unit.side === side ||
       unit.type === UnitType.AIR ||
@@ -492,6 +497,7 @@ export const zocExertingUnits = (state: GameState, coord: HexCoord, side: Side):
     if (!zocSide) return false;
     return !isGroundMovementProhibited(state, coord) && !isGroundMovementProhibited(state, unit.position);
   });
+};
 
 export interface ReachableHex {
   coord: HexCoord;
@@ -653,13 +659,56 @@ const isRoughHex = (hex: Hex): boolean => {
   );
 };
 
-const baseGroundMovementCost = (hex: Hex): number => {
-  if (hex.features.city || hex.features.capital || hex.features.port || hex.features.productionCenter) return 1;
+// 1.3.1: un hex è "città" se contiene capitale, città, centro produzione o porto.
+const hexHasCity = (hex: Hex): boolean =>
+  Boolean(hex.features.city || hex.features.capital || hex.features.port || hex.features.productionCenter);
+
+const fortOnHex = (state: GameState, coord: HexCoord): Unit | undefined =>
+  Array.from(state.units.values()).find(
+    (u) => u.type === UnitType.FORT && u.status !== UnitStatus.DESTROYED && sameCoord(u.position, coord)
+  );
+
+// Città/forte è "nemico" per chi muove se il controllo (o la nazionalità del
+// forte) appartiene all'altra fazione.
+const hasEnemyCityOrFort = (state: GameState, hex: Hex, movingSide: Side): boolean => {
+  if (hexHasCity(hex) && isEnemyControlledFeature(hex, movingSide)) return true;
+  const fort = fortOnHex(state, hex.coord);
+  return Boolean(fort && fort.side !== movingSide);
+};
+
+const isEnemyControlledFeature = (hex: Hex, movingSide: Side): boolean =>
+  hex.features.controller !== undefined &&
+  hex.features.controller !== movingSide &&
+  (hex.features.controller as string) !== "neutral";
+
+// Player Aid (Movement 4.2.3):
+//   1 hex chiaro | 1 città/forte AMICO | 2 città/forte NEMICO | 2 hex rough senza città/forte
+const baseGroundMovementCost = (state: GameState, hex: Hex, movingSide: Side): number => {
+  const cityHere = hexHasCity(hex);
+  const fortHere = Boolean(fortOnHex(state, hex.coord));
+  if (cityHere || fortHere) return hasEnemyCityOrFort(state, hex, movingSide) ? 2 : 1;
   if (isRoughHex(hex)) return 2;
   return 1;
 };
 
+// Player Aid: +1 canale/montagna/fiume, +2 stretto. Come per il DRM di
+// combattimento, il lato conta una volta sola: si applica il costo maggiore.
+const hexsideCrossingCost = (state: GameState, crossing: string): number => {
+  if (state.straitEdges?.has(crossing)) return 2;
+  if (state.riverEdges.has(crossing) || state.mountainEdges.has(crossing)) return 1;
+  return 0;
+};
+
 export const BARBAROSSA_AXIS_MINOR_COUNTRIES = ["Romania", "Finland", "Hungary", "Italy"];
+
+// Scenario fan-made Barbarossa 1941: soglia di National Will sovietica sotto la
+// quale vince l'Asse alla Victory Check finale (regole speciali dello scenario).
+export const BARBAROSSA_SOVIET_WILL_THRESHOLD = 45;
+
+// Scenario fan-made Russia 1941-1944: numero di unità terrestri tedesche in URSS
+// che segna l'invasione in corso. Scendere sotto questa soglia DOPO averla
+// raggiunta è la condizione di vittoria sovietica.
+export const AXIS_INVASION_FOOTHOLD = 4;
 
 export const activationProductionCountry = (scenarioId: string | undefined, unit: Unit): string => {
   if (
@@ -810,20 +859,25 @@ const groundMoveCost = (state: GameState, from: HexCoord, to: HexCoord, unit: Un
   const groundOnTarget = getGroundUnitOnHex(state, to);
   if (groundOnTarget) return Infinity;
 
-  if (hasTransportLineThroughSide(state, from, to)) return 1;
+  // 4.2.3.4: il beneficio della Transport Line (tutto trattato come chiaro, 1 MP)
+  // NON si riceve entrando o attaccando in un hex con città, forte o unità nemica.
+  if (hasTransportLineThroughSide(state, from, to) && !hasEnemyCityOrFort(state, toHex, unit.side)) return 1;
 
-  const hexsideCost = (state.riverEdges.has(crossingEdge) ? 1 : 0) + (state.mountainEdges.has(crossingEdge) ? 1 : 0);
+  const hexsideCost = hexsideCrossingCost(state, crossingEdge);
   const zocCost = isEnemyZoc(state, from, unit.side) ? GAME_RULES.MOVEMENT.ZOC_EXIT_COST : 0;
-  return baseGroundMovementCost(toHex) + hexsideCost + zocCost;
+  return baseGroundMovementCost(state, toHex, unit.side) + hexsideCost + zocCost;
 };
 
-const movesBetweenDifferentEnemyZocs = (state: GameState, from: HexCoord, to: HexCoord, movingSide: Side): boolean => {
+// 4.2.3.1, primo punto: "A unit cannot move directly between hexes which contain
+// an EZOC exerted by the SAME enemy unit." Muoversi verso la ZOC di un'unità
+// diversa è invece consentito (secondo punto della stessa regola).
+export const movesBetweenSameEnemyZoc = (state: GameState, from: HexCoord, to: HexCoord, movingSide: Side): boolean => {
   const fromZoc = zocExertingUnits(state, from, movingSide).map((unit) => unit.id);
   if (fromZoc.length === 0) return false;
   const toZoc = zocExertingUnits(state, to, movingSide).map((unit) => unit.id);
   if (toZoc.length === 0) return false;
   const toZocSet = new Set(toZoc);
-  return !fromZoc.some((unitId) => toZocSet.has(unitId));
+  return fromZoc.some((unitId) => toZocSet.has(unitId));
 };
 
 
@@ -2324,7 +2378,7 @@ export const calculateReachableHexes = (state: GameState, unit: Unit): Reachable
     if (!isStartHex && isEnemyZoc(state, current.coord, unit.side)) continue;
 
     neighborsOf(current.coord).forEach((next) => {
-      if (!isInsideMap(state, next) || movesBetweenDifferentEnemyZocs(state, current.coord, next, unit.side)) return;
+      if (!isInsideMap(state, next) || movesBetweenSameEnemyZoc(state, current.coord, next, unit.side)) return;
 
       const hex = state.map.get(coordKey(next));
       if (!hex) return;
@@ -2727,7 +2781,8 @@ const hasEnemyNonFortUnit = (state: GameState, coord: HexCoord, side: Side): boo
   );
 
 // 5.3.5.1 retreat prohibitions
-const computeLegalRetreatHexes = (state: GameState, defender: Unit, attackers: Unit[]): HexCoord[] => {
+// Esportata per i test: 5.3.5 / 5.3.5.1 (prohibizioni di ritirata).
+export const computeLegalRetreatHexes = (state: GameState, defender: Unit, attackers: Unit[]): HexCoord[] => {
   return neighborsOf(defender.position).filter((coord) => {
     const hex = state.map.get(coordKey(coord));
     if (!hex) return false;
@@ -2736,14 +2791,17 @@ const computeLegalRetreatHexes = (state: GameState, defender: Unit, attackers: U
     const enemyCity = (hex.features.city || hex.features.capital) &&
       hex.features.controller !== undefined && hex.features.controller !== defender.side && hex.features.controller !== "neutral";
     if (enemyCity) return false;
-    if (isFortHex(state, coord)) return false; // non può occupare un forte (5.3.5)
+    // 5.3.5.1: vietata la ritirata in un forte NEMICO. In un hex con forte amico
+    // ci si può ritirare: semplicemente non lo si occupa (5.3.5).
+    const fortHere = fortOnHex(state, coord);
+    if (fortHere && fortHere.side !== defender.side) return false;
     if (hasEnemyNonFortUnit(state, coord, defender.side)) return false;
-    // EZOC retreat prohibition: vietato a meno che non contenga friendly city/fort E ci sia un hex gap
+    // 5.3.5.1: in un hex con EZOC solo se contiene città o forte amico.
+    const friendlyCityOrFort =
+      Boolean(fortHere && fortHere.side === defender.side) ||
+      Boolean((hex.features.city || hex.features.capital) && hex.features.controller === defender.side);
     const ezocHere = isEnemyZoc(state, coord, defender.side);
-    if (ezocHere) {
-      const friendlyCityOrFort = (hex.features.city || hex.features.capital) && hex.features.controller === defender.side;
-      if (!friendlyCityOrFort) return false;
-    }
+    if (ezocHere && !friendlyCityOrFort) return false;
     // stacking: a ground defender cannot retreat into any hex already occupied by
     // another ground unit, even friendly. Air units do not block ground entry.
     const groundOcc = getGroundUnitOnHex(state, coord);
@@ -2886,6 +2944,15 @@ const eventReturnEntry = (state: GameState, side: Side, markerId: string, delay:
   returnTurn: state.turn + delay
 });
 
+// 13.4 (Jets) e 13.10 (Tanks): "put this marker on the next turn on the Turn
+// Track", cioè ritorno garantito al turno successivo. Tutti gli altri marker
+// giocati in combattimento tornano dopo un tiro di d6 (13.2, 13.3, 13.7, 13.8, 13.11).
+const combatEventReturnDelay = (markerId: string): number => {
+  const name = markerId.toLowerCase();
+  if (name.includes("tanks") || name.includes("jets")) return 1;
+  return rollD6();
+};
+
 const addEventReturnEntries = (state: GameState, entries: EventTurnTrackEntry[]): GameState => {
   if (entries.length === 0) return state;
   return {
@@ -2964,14 +3031,13 @@ export const getCombatPreview = (
     drmA.eventUltra += 1;
     drmA.total = sumDrm(drmA);
   }
-  const airdropMarkers = state.airdropMarkers?.[attacker.side] || [];
-  const airdropAffectsAttack = airdropMarkers.some((key) => {
-    const [q, r] = key.split(",").map(Number);
-    return hexDistance({ q, r }, defender.position) <= 1;
-  });
+  // 13.1: se un'unità nemica NELL'HEX del marker Airdrop viene attaccata, è il
+  // DIFENSORE ad applicare un -2. Non è un bonus all'attaccante e non si estende
+  // agli hex adiacenti.
+  const airdropAffectsAttack = (state.airdropMarkers?.[attacker.side] || []).includes(defenderKey);
   if (airdropAffectsAttack) {
-    drmA.eventGroundSupport += 1;
-    drmA.total = sumDrm(drmA);
+    drmD.eventSnafu -= 2;
+    drmD.total = sumDrm(drmD);
   }
   const attackerNationalities = [attacker, ...additionalAttackers].map((u) => u.country || "");
   const airAtt = options?.airSupportAttackerId ? state.units.get(options.airSupportAttackerId) : undefined;
@@ -2994,7 +3060,7 @@ export const getCombatPreview = (
   const expectedAttackerFinal = applyHalving(Math.max(1, attackerBaseRoll + Math.max(-10, Math.min(10, drmA.total))), drmA);
   const expectedDefenderFinal = applyHalving(Math.max(1, defenderBaseRoll + Math.max(-10, Math.min(10, drmD.total))), drmD);
   const previewNotes: string[] = [];
-  if (airdropAffectsAttack) previewNotes.push("Airdrop attivo: +1 DRM attaccante.");
+  if (airdropAffectsAttack) previewNotes.push("Airdrop sull'hex del difensore: -2 DRM difensore.");
   if (surpriseAffectsAttack) previewNotes.push("Surprise Attack attivo entro 2 esagoni.");
   if (partisansAffectDefender) previewNotes.push("Partisans attivi sul difensore.");
   if (airSupportContested) previewNotes.push("Air Support conteso: il DRM finale dipende dall'air combat.");
@@ -3429,10 +3495,22 @@ export const getEligibleCombatEventMarkers = (
 };
 
 // 6.2.3: una air unit può supportare se entro 5 hex dal difensore E stessa nazionalità di un attaccante o difensore
+// 6.2.3: "The air unit must be in a hex and of the same nationality as the
+// defending unit or one of the attacking ground units." Chi difende può quindi
+// impegnare solo aerei della nazionalità del difensore, chi attacca solo aerei
+// della nazionalità di una delle unità attaccanti.
+const matchesAirSupportNationality = (air: Unit, defender: Unit, attackerNationalities: string[]): boolean => {
+  const allowed = (air.side === defender.side ? [defender.country || ""] : attackerNationalities).filter(Boolean);
+  // Dati incompleti (unità senza nazionalità): non restringiamo.
+  if (allowed.length === 0 || !air.country) return true;
+  return allowed.includes(air.country);
+};
+
 const isLegalAirSupporter = (_state: GameState, air: Unit, defender: Unit, _attackerNationalities: string[]): boolean => {
   if (air.type !== UnitType.AIR) return false;
   if (air.status === UnitStatus.DESTROYED) return false;
   if (sortiesFor(air) >= GAME_RULES.AIR.MAX_SORTIES) return false;
+  if (!matchesAirSupportNationality(air, defender, _attackerNationalities)) return false;
   if (isFna1942Scenario(_state.scenarioId) && air.id === FNA_AXIS_AIR_SUPPORT_ID) {
     return air.side === Side.AXIS &&
       (_state.fnaAxisAirSortiesUsed || 0) < 2 &&
@@ -3880,14 +3958,13 @@ export const resolveCombat = (
     drmA.eventUltra += 1;
     drmA.total = sumDrm(drmA);
   }
-  const airdropMarkers = state.airdropMarkers?.[attacker.side] || [];
-  const airdropAffectsAttack = airdropMarkers.some((key) => {
-    const [q, r] = key.split(",").map(Number);
-    return hexDistance({ q, r }, defender.position) <= 1;
-  });
+  // 13.1: se un'unità nemica NELL'HEX del marker Airdrop viene attaccata, è il
+  // DIFENSORE ad applicare un -2. Non è un bonus all'attaccante e non si estende
+  // agli hex adiacenti.
+  const airdropAffectsAttack = (state.airdropMarkers?.[attacker.side] || []).includes(defenderKey);
   if (airdropAffectsAttack) {
-    drmA.eventGroundSupport += 1;
-    drmA.total = sumDrm(drmA);
+    drmD.eventSnafu -= 2;
+    drmD.total = sumDrm(drmD);
   }
 
   // Applica DRM Air Support
@@ -3976,7 +4053,7 @@ export const resolveCombat = (
 
   const committedEventReturns = committedEventIds.flatMap((id) => {
     const side = eventOwnerSide(state, id);
-    return side ? [eventReturnEntry(state, side, id, rollD6())] : [];
+    return side ? [eventReturnEntry(state, side, id, combatEventReturnDelay(id))] : [];
   });
   const committedReturnNote = committedEventReturns.length
     ? ` Returns: ${committedEventReturns.map((entry) => `${entry.markerId} T${entry.returnTurn}`).join(", ")}.`
@@ -4037,11 +4114,64 @@ const weatherFromRanges = (roll: number, fair: number[], poor: number[], severe:
 };
 
 export const weatherTableRowLabel = (state: GameState): string => {
-  const month = monthForTurnCode(state.turnCode);
-  if (month === "Apr") return `Apr (${state.previousWeather || "Mar Fair"})`;
-  if (month === "Nov") return `Nov (${state.previousWeather || "Oct Fair"})`;
+  // Stessa etichetta usata dal Player Aid Sheet, es. "Apr (Mar Poor)".
+  return weatherTableRowKey(state.turnCode, state.previousWeather || WeatherType.FAIR);
+};
+
+// Tabella Weather (10.0) trascritta dal Player Aid Sheet (Tabelle US.pdf, p.3).
+// Ogni riga elenca i risultati del d6 per Fair / Poor / Severe. Un elenco vuoto
+// corrisponde al trattino "–" sulla tabella cartacea, cioè "esito impossibile
+// in questo mese": attenzione, diverse righe non hanno alcun risultato Fair.
+type WeatherRow = { fair: number[]; poor: number[]; severe: number[] };
+
+const W = (fair: number[], poor: number[], severe: number[] = []): WeatherRow => ({ fair, poor, severe });
+
+const WEATHER_TABLE: Record<WeatherMapCategory, Record<string, WeatherRow>> = {
+  [WeatherMapCategory.OTHER_MAPS]: {
+    "Dec-Feb": W([], [1, 2, 3, 4], [5, 6]),
+    Mar: W([1], [2, 3], [4, 5, 6]),
+    "Apr (Mar Fair)": W([], [1, 2, 3], [4, 5, 6]),
+    "Apr (Mar Poor)": W([1], [2, 3, 4], [5, 6]),
+    "Apr (Mar Sev)": W([1], [2, 3, 4, 5], [6]),
+    May: W([1, 2, 3], [4, 5, 6]),
+    Jun: W([1, 2, 3, 4], [5, 6]),
+    "Jul-Sep": W([1, 2, 3, 4, 5, 6], []),
+    Oct: W([1, 2], [3, 4], [5, 6]),
+    "Nov (Oct Fair)": W([], [1, 2, 3, 4], [5, 6]),
+    "Nov (Oct Poor)": W([1, 2], [3, 4], [5, 6]),
+    "Nov (Oct Sev)": W([1, 2], [3, 4, 5, 6])
+  },
+  [WeatherMapCategory.BALKANS_FNA_ITALY]: {
+    "Dec-Feb": W([1], [2, 3, 4], [5, 6]),
+    Mar: W([1, 2], [3, 4], [5, 6]),
+    "Apr (Mar Fair)": W([1], [2, 3, 4], [5, 6]),
+    "Apr (Mar Poor)": W([1, 2], [3, 4, 5], [6]),
+    "Apr (Mar Sev)": W([1, 2], [3, 4, 5, 6]),
+    May: W([1, 2, 3, 4], [5, 6]),
+    Jun: W([1, 2, 3, 4], [5, 6]),
+    "Jul-Sep": W([1, 2, 3, 4, 5, 6], []),
+    Oct: W([1, 2], [3, 4, 5], [6]),
+    "Nov (Oct Fair)": W([], [1, 2, 3, 4], [5, 6]),
+    "Nov (Oct Poor)": W([1, 2], [3, 4, 5, 6]),
+    "Nov (Oct Sev)": W([1, 2, 3], [4, 5, 6])
+  }
+};
+
+// Chiave della riga di tabella: per Apr e Nov dipende dal meteo del mese precedente.
+export const weatherTableRowKey = (turnCode: string, previousWeather: WeatherType): string => {
+  const month = monthForTurnCode(turnCode);
   if (month === "Dec" || month === "Jan" || month === "Feb") return "Dec-Feb";
   if (month === "Jul" || month === "Aug" || month === "Sep") return "Jul-Sep";
+  if (month === "Apr") {
+    if (previousWeather === WeatherType.POOR) return "Apr (Mar Poor)";
+    if (previousWeather === WeatherType.SEVERE) return "Apr (Mar Sev)";
+    return "Apr (Mar Fair)";
+  }
+  if (month === "Nov") {
+    if (previousWeather === WeatherType.POOR) return "Nov (Oct Poor)";
+    if (previousWeather === WeatherType.SEVERE) return "Nov (Oct Sev)";
+    return "Nov (Oct Fair)";
+  }
   return month;
 };
 
@@ -4051,37 +4181,9 @@ export const resolveWeatherRoll = (
   previousWeather: WeatherType = WeatherType.FAIR,
   mapCategory: WeatherMapCategory = WeatherMapCategory.OTHER_MAPS
 ): WeatherType => {
-  const month = monthForTurnCode(turnCode);
-  const isOtherMaps = mapCategory === WeatherMapCategory.OTHER_MAPS;
-
-  if (isOtherMaps) {
-    if (month === "Dec" || month === "Jan" || month === "Feb") return weatherFromRanges(roll, [1, 2, 3, 4], [5, 6]);
-    if (month === "Mar") return weatherFromRanges(roll, [1], [2, 3], [4, 5, 6]);
-    if (month === "Apr" && previousWeather === WeatherType.FAIR) return weatherFromRanges(roll, [1, 2, 3], [4, 5, 6]);
-    if (month === "Apr" && previousWeather === WeatherType.POOR) return weatherFromRanges(roll, [1], [2, 3, 4], [5, 6]);
-    if (month === "Apr") return weatherFromRanges(roll, [1], [2, 3, 4, 5], [6]);
-    if (month === "May") return weatherFromRanges(roll, [1, 2, 3], [4, 5, 6]);
-    if (month === "Jun") return weatherFromRanges(roll, [1, 2, 3, 4], [5, 6]);
-    if (month === "Jul" || month === "Aug" || month === "Sep") return WeatherType.FAIR;
-    if (month === "Oct") return weatherFromRanges(roll, [1, 2], [3, 4], [5, 6]);
-    if (month === "Nov" && previousWeather === WeatherType.FAIR) return weatherFromRanges(roll, [1, 2, 3, 4], [5, 6]);
-    if (month === "Nov" && previousWeather === WeatherType.POOR) return weatherFromRanges(roll, [1, 2], [3, 4], [5, 6]);
-    if (month === "Nov") return weatherFromRanges(roll, [1, 2], [3, 4, 5, 6]);
-  }
-
-  if (month === "Dec" || month === "Jan" || month === "Feb") return weatherFromRanges(roll, [1], [2, 3, 4], [5, 6]);
-  if (month === "Mar") return weatherFromRanges(roll, [1, 2], [3, 4], [5, 6]);
-  if (month === "Apr" && previousWeather === WeatherType.FAIR) return weatherFromRanges(roll, [1], [2, 3, 4], [5, 6]);
-  if (month === "Apr" && previousWeather === WeatherType.POOR) return weatherFromRanges(roll, [1, 2], [3, 4, 5], [6]);
-  if (month === "Apr") return weatherFromRanges(roll, [1, 2], [3, 4, 5, 6]);
-  if (month === "May" || month === "Jun") return weatherFromRanges(roll, [1, 2, 3, 4], [5, 6]);
-  if (month === "Jul" || month === "Aug" || month === "Sep") return WeatherType.FAIR;
-  if (month === "Oct") return weatherFromRanges(roll, [1], [2, 3, 4, 5], [6]);
-  if (month === "Nov" && previousWeather === WeatherType.FAIR) return weatherFromRanges(roll, [1], [2, 3, 4], [5, 6]);
-  if (month === "Nov" && previousWeather === WeatherType.POOR) return weatherFromRanges(roll, [1], [2], [3, 4, 5, 6]);
-  if (month === "Nov") return weatherFromRanges(roll, [1, 2, 3], [4, 5, 6]);
-
-  return WeatherType.FAIR;
+  const row = WEATHER_TABLE[mapCategory][weatherTableRowKey(turnCode, previousWeather)];
+  if (!row) return WeatherType.FAIR;
+  return weatherFromRanges(roll, row.fair, row.poor, row.severe);
 };
 
 const rollWeather = (state: GameState): { roll: number; weather: WeatherType } => {
@@ -4238,9 +4340,17 @@ const removeTemporaryMapEventsAtEndOfActions = (state: GameState, side: Side): {
 
   const returnEntries = expiring.flatMap((detail) => {
     if (detail.kind === "surprise") {
+      // 13.9: alla rimozione, un marker USA torna 4 turni dopo; quelli tedesco e
+      // britannico sono rimossi dallo scenario.
       return detail.markerId.toLowerCase().includes("usa")
         ? [eventReturnEntry(state, detail.side, detail.markerId, 4)]
         : [];
+    }
+    if (detail.kind === "airdrop") {
+      // 13.1: alla rimozione si tira un d6. Con 1-5 il marker torna dopo quel
+      // numero di turni; con 6 è rimosso dallo scenario (disastri tipo Creta).
+      const roll = rollD6();
+      return roll <= 5 ? [eventReturnEntry(state, detail.side, detail.markerId, roll)] : [];
     }
     return [eventReturnEntry(state, detail.side, detail.markerId, rollD6())];
   });
@@ -4542,8 +4652,10 @@ export const attackMovementCost = (state: GameState, attacker: Unit, target: Hex
   if (targetHex.features.fadedDot || targetHex.features.prohibited) return Infinity;
   const crossing = edgeKey(attacker.position, target);
   if (state.impassableEdges.has(crossing)) return Infinity;
-  const baseCost = baseGroundMovementCost(targetHex);
-  const hexsideCost = (state.riverEdges.has(crossing) ? 1 : 0) + (state.mountainEdges.has(crossing) ? 1 : 0);
+  // 4.2.3.3: si paga il costo pieno del terreno del difensore (mai il beneficio
+  // ferrovia, 4.2.3.4) più il costo addizionale di attacco legato al meteo.
+  const baseCost = baseGroundMovementCost(state, targetHex, attacker.side);
+  const hexsideCost = hexsideCrossingCost(state, crossing);
   const weatherCost = state.weather === WeatherType.FAIR ? 1 : (state.weather === WeatherType.POOR || state.weather === WeatherType.SEVERE) ? 2 : 0;
   return baseCost + hexsideCost + weatherCost;
 };
@@ -4871,6 +4983,9 @@ const computeAirDefenderDrm = (
   let drm = 0;
   if (defender.country === "Germany") drm += 2;
   if (["UK", "USA"].includes(defender.country || "")) drm += 1;
+  // Player Aid, Air Combat DRM: il -2 del bomber è nella colonna
+  // "Attacker or Defender", quindi vale anche quando il bomber difende.
+  if (defender.bomber) drm -= 2;
   if (supplyStateOf(defender) === SupplyState.LOW) drm -= 2;
   if (state.weather === WeatherType.POOR) drm -= 2;
   if (
@@ -5214,7 +5329,8 @@ export const placeAirdropMarker = (
   const current = state.airdropMarkers || {};
   const existing = current[side] || [];
   if (existing.includes(key)) return null;
-  return {
+
+  const placed: GameState = {
     ...state,
     factionCards: {
       ...state.factionCards,
@@ -5227,9 +5343,37 @@ export const placeAirdropMarker = (
     mapEventMarkerDetails: [
       ...(state.mapEventMarkerDetails || []),
       { markerId: marker, side, kind: "airdrop", coordKey: key }
-    ],
+    ]
+  };
+
+  // 13.1: se l'hex contiene una città nemica e NESSUNA unità nemica, si tira un
+  // d6: con 1-3 la città passa sotto controllo amico, con 4-6 non succede nulla.
+  const enemyUnitHere = Array.from(state.units.values()).some(
+    (unit) => unit.side !== side && unit.status !== UnitStatus.DESTROYED && sameCoord(unit.position, coord)
+  );
+  const enemyCityHere = hexHasCity(hex) && isEnemyControlledFeature(hex, side);
+  let captureNote = "";
+  let withCapture = placed;
+  if (enemyCityHere && !enemyUnitHere) {
+    const roll = rollD6();
+    if (roll <= 3) {
+      const change = applyHexControlChange(placed, coord, side);
+      withCapture = applyNationalWillDelta(change.state, change.nationalWillDelta);
+      captureNote = ` Tiro ${roll}: paracadutisti prendono la città. ${change.note}`;
+    } else {
+      captureNote = ` Tiro ${roll}: le forze locali respingono i paracadutisti.`;
+    }
+  }
+
+  return {
+    ...withCapture,
     history: [
-      { type: ActionType.HOLD, side, note: `Airdrop marker placed at ${hexCodeForMap(coord, scenarioById(state.scenarioId).mapId)}.`, timestamp: new Date() },
+      {
+        type: ActionType.HOLD,
+        side,
+        note: `Airdrop marker placed at ${hexCodeForMap(coord, scenarioById(state.scenarioId).mapId)}.${captureNote}`,
+        timestamp: new Date()
+      },
       ...state.history
     ],
     timestamp: new Date()
@@ -5778,8 +5922,20 @@ export const performSupplyCheck = (state: GameState, side: Side): GameState => {
         nextSupply = SupplyState.FULL;
       }
     } else {
-      // limited
-      nextSupply = SupplyState.LOW;
+      // 7.3.1: una Limited Supply Source rifornisce fino a DUE unità, dando a
+      // ciascuna Low Supply. Oltre la capacità l'unità resta senza rifornimento
+      // e il suo stato peggiora di un livello come da 7.2.
+      const lssKey = coordKey(trace.sourceCoord);
+      const usedLss = portUsage.get(lssKey) || 0;
+      if (usedLss >= 2) {
+        const cur = supplyStateOf(unit);
+        nextSupply = cur === SupplyState.FULL ? SupplyState.LOW : SupplyState.NO;
+        supplySourceType = undefined;
+        notes.push(`${unit.name}: fonte limitata già satura (2 unità)`);
+      } else {
+        portUsage.set(lssKey, usedLss + 1);
+        nextSupply = SupplyState.LOW;
+      }
     }
 
     if (nextSupply !== supplyStateOf(unit)) {
@@ -6174,14 +6330,98 @@ export const evaluateVictory = (state: GameState): GameState => {
     }
   }
 
-  // Axis victory: France conquered
-  const franceStatus = state.factionCards[Side.ALLIED].countryStatus?.France;
-  if (franceStatus === "conquered") {
+  // Scenari fan-made Barbarossa / Russia (non presenti nel gioco originale):
+  // condizioni come descritte nelle regole speciali dello scenario.
+  if (isBarbarossa1941Scenario(state.scenarioId)) {
+    const alliedCard = state.factionCards[Side.ALLIED];
+    const ussrStatus = alliedCard.countryStatus?.USSR;
+    if (ussrStatus === "conquered" || ussrStatus === "collapsed") {
+      return {
+        ...state,
+        victory: { winner: Side.AXIS, reason: "USSR collapsed." },
+        history: [
+          { type: ActionType.HOLD, side: Side.AXIS, note: "AXIS VICTORY: l'URSS è collassata.", timestamp: new Date() },
+          ...state.history
+        ]
+      };
+    }
+
+    if (state.scenarioId === "russia19411944") {
+      // "La fazione sovietica vince se ci sono meno di 4 unità terrestri
+      // tedesche nell'URSS." La condizione descrive i tedeschi RICACCIATI fuori:
+      // a inizio scenario le armate sono ancora schierate al confine (una sola
+      // dentro l'URSS), quindi si attiva solo dopo che l'invasione è avvenuta.
+      const germansInUssr = Array.from(state.units.values()).filter((unit) => {
+        if (unit.side !== Side.AXIS || unit.country !== "Germany") return false;
+        if (unit.type === UnitType.AIR || unit.type === UnitType.FORT) return false;
+        if (unit.status === UnitStatus.DESTROYED || unit.mapPresence === "off_map") return false;
+        return state.map.get(coordKey(unit.position))?.features.country === "USSR";
+      }).length;
+
+      const invaded = state.axisInvadedUssr || germansInUssr >= AXIS_INVASION_FOOTHOLD;
+      if (invaded && germansInUssr < AXIS_INVASION_FOOTHOLD) {
+        return {
+          ...state,
+          axisInvadedUssr: true,
+          victory: { winner: Side.ALLIED, reason: `Only ${germansInUssr} German ground units left in the USSR.` },
+          history: [
+            { type: ActionType.HOLD, side: Side.ALLIED, note: `SOVIET VICTORY: restano ${germansInUssr} unità terrestri tedesche in URSS.`, timestamp: new Date() },
+            ...state.history
+          ]
+        };
+      }
+      if (invaded && !state.axisInvadedUssr) state = { ...state, axisInvadedUssr: true };
+    } else {
+      // Barbarossa 1941: "L'Asse vince se la National Will sovietica scende
+      // sotto 45 alla Victory Check finale; altrimenti vince l'URSS."
+      const ussrWill = alliedCard.nationalWill?.USSR;
+      if (typeof ussrWill === "number" && ussrWill < BARBAROSSA_SOVIET_WILL_THRESHOLD) {
+        return {
+          ...state,
+          victory: { winner: Side.AXIS, reason: `Soviet National Will down to ${ussrWill}.` },
+          history: [
+            { type: ActionType.HOLD, side: Side.AXIS, note: `AXIS VICTORY: National Will sovietica a ${ussrWill}.`, timestamp: new Date() },
+            ...state.history
+          ]
+        };
+      }
+    }
+
+    const russiaEndTurn = state.scenarioEndsTurn ?? (state.scenarioId === "russia19411944" ? 43 : 7);
+    if (state.turn >= russiaEndTurn && state.phase === GamePhase.VICTORY_CHECK) {
+      const winner = state.scenarioId === "russia19411944" ? Side.AXIS : Side.ALLIED;
+      const reason = winner === Side.AXIS
+        ? "Soviet faction did not achieve its victory conditions."
+        : "Soviet National Will held above the Axis threshold.";
+      return {
+        ...state,
+        victory: { winner, reason },
+        history: [
+          { type: ActionType.HOLD, side: winner, note: `${winner === Side.AXIS ? "AXIS" : "SOVIET"} VICTORY: ${reason}`, timestamp: new Date() },
+          ...state.history
+        ]
+      };
+    }
+    return state;
+  }
+
+  // Axis victory (France 1940/1941, Playbook 21.3.1 e 21.4.1): l'Asse vince se
+  // Belgio, Francia e Paesi Bassi sono TUTTI conquistati, non la sola Francia.
+  const alliedStatus = state.factionCards[Side.ALLIED].countryStatus ?? {};
+  const lowCountriesScenario = state.scenarioId === undefined ||
+    state.scenarioId === "france1940" || state.scenarioId === "france1941";
+  const requiredConquests = lowCountriesScenario
+    ? ["Belgium", "France", "Netherlands"].filter((country) => country in alliedStatus)
+    : ["France"];
+  const allConquered = requiredConquests.length > 0 &&
+    requiredConquests.every((country) => alliedStatus[country] === "conquered");
+  if (allConquered) {
+    const label = requiredConquests.join(", ");
     return {
       ...state,
-      victory: { winner: Side.AXIS, reason: "France conquered." },
+      victory: { winner: Side.AXIS, reason: `${label} conquered.` },
       history: [
-        { type: ActionType.HOLD, side: Side.AXIS, note: "AXIS VICTORY: France conquered.", timestamp: new Date() },
+        { type: ActionType.HOLD, side: Side.AXIS, note: `AXIS VICTORY: ${label} conquered.`, timestamp: new Date() },
         ...state.history
       ]
     };

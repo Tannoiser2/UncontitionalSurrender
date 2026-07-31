@@ -176,6 +176,10 @@ export interface GameState {
   sovietCounterattackActive?: boolean; // Barbarossa: URSS può attivare un'unità durante Operazioni Asse
   rasputitsaAvailable?: boolean; // Barbarossa: URSS può annullare un attacco Asse (usato prima della risoluzione)
   victory?: { winner: Side | "draw"; reason: string }; // 11.1: settato quando viene determinata la vittoria
+  // Scenari fan-made Russia: diventa true quando l'Asse ha portato almeno
+  // AXIS_INVASION_FOOTHOLD unità terrestri tedesche dentro l'URSS. Serve a non
+  // assegnare ai sovietici la vittoria "tedeschi cacciati" prima dell'invasione.
+  axisInvadedUssr?: boolean;
   scenarioEndsTurn?: number; // 14.2: turno entro cui dichiarare la vittoria
   units: Map<string, Unit>;
   map: GameMap;

@@ -1,3 +1,10 @@
+.boardWrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+}
+
 .boardContainer {
   display: flex;
   flex-direction: column;
@@ -10,12 +17,54 @@
   padding: 1rem;
 }
 
+.canvasScaler {
+  position: relative;
+  flex: 0 0 auto;
+}
+
 .canvas {
   background: #263238;
   border: 2px solid #d1b06b;
   border-radius: 4px;
   cursor: crosshair;
   flex: 0 0 auto;
+}
+
+.zoomControls {
+  position: absolute;
+  left: 0.75rem;
+  bottom: 0.75rem;
+  z-index: 60;
+  display: flex;
+  gap: 2px;
+  padding: 2px;
+  background: rgba(16, 24, 28, 0.92);
+  border: 1px solid #607078;
+  border-radius: 6px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+}
+
+.zoomControls button {
+  min-width: 38px;
+  min-height: 30px;
+  padding: 0 0.4rem;
+  background: #253239;
+  color: #f1e7d0;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.zoomControls button:hover {
+  background: #31424a;
+  border-color: #d1b06b;
+}
+
+.zoomControls button:focus-visible {
+  outline: 2px solid #d1b06b;
+  outline-offset: 1px;
 }
 
 .loadingText {

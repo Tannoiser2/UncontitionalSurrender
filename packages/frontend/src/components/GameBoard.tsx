@@ -2,7 +2,7 @@
  * Componente principale della mappa di gioco
  */
 
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useGameStore } from "../store/gameStore";
 import {
   coordKey,
@@ -635,6 +635,94 @@ export const GameBoard: React.FC = () => {
   const westMedUnitZonesRef = useRef<Array<{ unitId: string; left: number; top: number; size: number }>>([]);
   const [privateMapVersion, setPrivateMapVersion] = useState(0);
   const currentMapId = scenarioById(gameState?.scenarioId).mapId;
+  const scrollRef = useRef<HTMLDivElement | null>(null);
+  const [zoom, setZoom] = useState(1);
+  // Dimensioni logiche del canvas, aggiornate dall'effetto di disegno: servono a
+  // dare al wrapper l'estensione giusta per lo scroll quando c'è uno zoom.
+  const [canvasSize, setCanvasSize] = useState({ width: 0, height: 0 });
+  const panRef = useRef<{ x: number; y: number; left: number; top: number } | null>(null);
+
+  const clampZoom = (value: number): number => Math.min(3, Math.max(0.25, value));
+
+  // Zoom mantenendo fermo il punto sotto al puntatore (o il centro della vista).
+  const zoomTo = useCallback((next: number, anchor?: { x: number; y: number }) => {
+    const box = scrollRef.current;
+    setZoom((current) => {
+      const target = clampZoom(next);
+      if (!box || target === current) return target;
+      const ax = anchor ? anchor.x : box.clientWidth / 2;
+      const ay = anchor ? anchor.y : box.clientHeight / 2;
+      const contentX = (box.scrollLeft + ax) / current;
+      const contentY = (box.scrollTop + ay) / current;
+      requestAnimationFrame(() => {
+        box.scrollLeft = contentX * target - ax;
+        box.scrollTop = contentY * target - ay;
+      });
+      return target;
+    });
+  }, []);
+
+  const fitToWindow = useCallback(() => {
+    const box = scrollRef.current;
+    if (!box || !canvasSize.width || !canvasSize.height) return;
+    // 2rem di padding complessivo nel contenitore.
+    const available = { w: box.clientWidth - 32, h: box.clientHeight - 32 };
+    const next = Math.min(available.w / canvasSize.width, available.h / canvasSize.height);
+    zoomTo(next);
+  }, [canvasSize.height, canvasSize.width, zoomTo]);
+
+  // All'apertura di una mappa la si adatta una volta sola alla finestra: è il
+  // default sensato per un wargame (si vede tutto il fronte), e non interferisce
+  // con lo zoom scelto dall'utente dopo.
+  const autoFittedMapRef = useRef<string | null>(null);
+  useEffect(() => {
+    if (!canvasSize.width || !canvasSize.height) return;
+    if (autoFittedMapRef.current === currentMapId) return;
+    autoFittedMapRef.current = currentMapId;
+    fitToWindow();
+  }, [canvasSize.height, canvasSize.width, currentMapId, fitToWindow]);
+
+  // Ctrl/Cmd + rotellina = zoom; rotellina liscia = scorrimento normale.
+  useEffect(() => {
+    const box = scrollRef.current;
+    if (!box) return;
+    const onWheel = (event: WheelEvent) => {
+      if (!event.ctrlKey && !event.metaKey) return;
+      event.preventDefault();
+      const rect = box.getBoundingClientRect();
+      zoomTo(zoom * (event.deltaY < 0 ? 1.12 : 1 / 1.12), {
+        x: event.clientX - rect.left,
+        y: event.clientY - rect.top
+      });
+    };
+    box.addEventListener("wheel", onWheel, { passive: false });
+    return () => box.removeEventListener("wheel", onWheel);
+  }, [zoom, zoomTo]);
+
+  // Trascinamento con il tasto centrale (o con Alt premuto) per spostare la mappa.
+  const handlePanStart = (event: React.MouseEvent<HTMLDivElement>) => {
+    const box = scrollRef.current;
+    if (!box || (event.button !== 1 && !(event.button === 0 && event.altKey))) return;
+    event.preventDefault();
+    panRef.current = { x: event.clientX, y: event.clientY, left: box.scrollLeft, top: box.scrollTop };
+  };
+
+  useEffect(() => {
+    const onMove = (event: MouseEvent) => {
+      const pan = panRef.current;
+      const box = scrollRef.current;
+      if (!pan || !box) return;
+      box.scrollLeft = pan.left - (event.clientX - pan.x);
+      box.scrollTop = pan.top - (event.clientY - pan.y);
+    };
+    const onUp = () => { panRef.current = null; };
+    window.addEventListener("mousemove", onMove);
+    window.addEventListener("mouseup", onUp);
+    return () => {
+      window.removeEventListener("mousemove", onMove);
+      window.removeEventListener("mouseup", onUp);
+    };
+  }, []);
 
   useEffect(() => {
     (["strategic"] as const).forEach((name) => {
@@ -719,6 +807,7 @@ export const GameBoard: React.FC = () => {
     canvas.height = height * ratio;
     canvas.style.width = `${width}px`;
     canvas.style.height = `${height}px`;
+    setCanvasSize((current) => (current.width === width && current.height === height ? current : { width, height }));
 
     const context = canvas.getContext("2d");
     if (!context) return;
@@ -1621,8 +1710,37 @@ export const GameBoard: React.FC = () => {
   }
 
   return (
-    <div className={styles.boardContainer}>
-      <canvas ref={canvasRef} id="gameCanvas" className={styles.canvas} onClick={handleCanvasClick} />
+    <div className={styles.boardWrapper}>
+      <div
+        ref={scrollRef}
+        className={styles.boardContainer}
+        onMouseDown={handlePanStart}
+      >
+        {/* Il wrapper porta le dimensioni scalate: serve a dare l'estensione di
+            scorrimento corretta, visto che transform non modifica il box di layout. */}
+        <div
+          className={styles.canvasScaler}
+          style={{
+            width: canvasSize.width ? canvasSize.width * zoom : undefined,
+            height: canvasSize.height ? canvasSize.height * zoom : undefined
+          }}
+        >
+          <canvas
+            ref={canvasRef}
+            id="gameCanvas"
+            className={styles.canvas}
+            onClick={handleCanvasClick}
+            style={{ transform: `scale(${zoom})`, transformOrigin: "0 0" }}
+          />
+        </div>
+      </div>
+
+      <div className={styles.zoomControls} role="group" aria-label="Zoom mappa">
+        <button type="button" onClick={() => zoomTo(zoom / 1.2)} aria-label="Riduci zoom" title="Riduci zoom (Ctrl + rotellina)">−</button>
+        <button type="button" onClick={fitToWindow} title="Adatta la mappa alla finestra">{Math.round(zoom * 100)}%</button>
+        <button type="button" onClick={() => zoomTo(zoom * 1.2)} aria-label="Aumenta zoom" title="Aumenta zoom (Ctrl + rotellina)">+</button>
+        <button type="button" onClick={() => zoomTo(1)} title="Zoom al 100%">1:1</button>
+      </div>
     </div>
   );
 };

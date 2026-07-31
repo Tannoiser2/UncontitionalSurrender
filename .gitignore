@@ -57,3 +57,7 @@ Varie Carte/pic1927022.psd
 Varie Carte/10.png
 .DS_Store
 **/.DS_Store
+
+# Turbo build cache
+.turbo/
+**/.turbo/

@@ -256,9 +256,12 @@ const createInitialFactionCards = (scenario: ScenarioId | "procedural" = DEFAULT
       [Side.ALLIED]: {
         side: Side.ALLIED,
         productionPoints: { USSR: 15 },
-        nationalWill: { USSR: null },
+        // La condizione di vittoria dello scenario ("l'Asse vince se la National
+        // Will sovietica scende sotto 45") richiede che la Will sia tracciata.
+        // Base 95 come in russia19411944: la soglia equivale a perderne oltre metà.
+        nationalWill: { USSR: 95 },
         countryStatus: { USSR: "active" },
-        countryInitialNationalWill: { USSR: null },
+        countryInitialNationalWill: { USSR: 95 },
         // Soviet Emergency Mobilization (fine Operazioni Asse Jun-41): Air 3 + 5 armate (7,14,16,22,23)
         // disponibili già al turno 1 nella Mobilization Box
         eventsBox: ["Strategic Move", "Soviet Counterattack", "Rasputitsa", "Partisans"],
@@ -697,6 +700,15 @@ const hexsideCrossingCost = (state: GameState, crossing: string): number => {
 };
 
 export const BARBAROSSA_AXIS_MINOR_COUNTRIES = ["Romania", "Finland", "Hungary", "Italy"];
+
+// Scenario fan-made Barbarossa 1941: soglia di National Will sovietica sotto la
+// quale vince l'Asse alla Victory Check finale (regole speciali dello scenario).
+export const BARBAROSSA_SOVIET_WILL_THRESHOLD = 45;
+
+// Scenario fan-made Russia 1941-1944: numero di unità terrestri tedesche in URSS
+// che segna l'invasione in corso. Scendere sotto questa soglia DOPO averla
+// raggiunta è la condizione di vittoria sovietica.
+export const AXIS_INVASION_FOOTHOLD = 4;
 
 export const activationProductionCountry = (scenarioId: string | undefined, unit: Unit): string => {
   if (
@@ -2928,6 +2940,15 @@ const eventReturnEntry = (state: GameState, side: Side, markerId: string, delay:
   returnTurn: state.turn + delay
 });
 
+// 13.4 (Jets) e 13.10 (Tanks): "put this marker on the next turn on the Turn
+// Track", cioè ritorno garantito al turno successivo. Tutti gli altri marker
+// giocati in combattimento tornano dopo un tiro di d6 (13.2, 13.3, 13.7, 13.8, 13.11).
+const combatEventReturnDelay = (markerId: string): number => {
+  const name = markerId.toLowerCase();
+  if (name.includes("tanks") || name.includes("jets")) return 1;
+  return rollD6();
+};
+
 const addEventReturnEntries = (state: GameState, entries: EventTurnTrackEntry[]): GameState => {
   if (entries.length === 0) return state;
   return {
@@ -3006,14 +3027,13 @@ export const getCombatPreview = (
     drmA.eventUltra += 1;
     drmA.total = sumDrm(drmA);
   }
-  const airdropMarkers = state.airdropMarkers?.[attacker.side] || [];
-  const airdropAffectsAttack = airdropMarkers.some((key) => {
-    const [q, r] = key.split(",").map(Number);
-    return hexDistance({ q, r }, defender.position) <= 1;
-  });
+  // 13.1: se un'unità nemica NELL'HEX del marker Airdrop viene attaccata, è il
+  // DIFENSORE ad applicare un -2. Non è un bonus all'attaccante e non si estende
+  // agli hex adiacenti.
+  const airdropAffectsAttack = (state.airdropMarkers?.[attacker.side] || []).includes(defenderKey);
   if (airdropAffectsAttack) {
-    drmA.eventGroundSupport += 1;
-    drmA.total = sumDrm(drmA);
+    drmD.eventSnafu -= 2;
+    drmD.total = sumDrm(drmD);
   }
   const attackerNationalities = [attacker, ...additionalAttackers].map((u) => u.country || "");
   const airAtt = options?.airSupportAttackerId ? state.units.get(options.airSupportAttackerId) : undefined;
@@ -3036,7 +3056,7 @@ export const getCombatPreview = (
   const expectedAttackerFinal = applyHalving(Math.max(1, attackerBaseRoll + Math.max(-10, Math.min(10, drmA.total))), drmA);
   const expectedDefenderFinal = applyHalving(Math.max(1, defenderBaseRoll + Math.max(-10, Math.min(10, drmD.total))), drmD);
   const previewNotes: string[] = [];
-  if (airdropAffectsAttack) previewNotes.push("Airdrop attivo: +1 DRM attaccante.");
+  if (airdropAffectsAttack) previewNotes.push("Airdrop sull'hex del difensore: -2 DRM difensore.");
   if (surpriseAffectsAttack) previewNotes.push("Surprise Attack attivo entro 2 esagoni.");
   if (partisansAffectDefender) previewNotes.push("Partisans attivi sul difensore.");
   if (airSupportContested) previewNotes.push("Air Support conteso: il DRM finale dipende dall'air combat.");
@@ -3922,14 +3942,13 @@ export const resolveCombat = (
     drmA.eventUltra += 1;
     drmA.total = sumDrm(drmA);
   }
-  const airdropMarkers = state.airdropMarkers?.[attacker.side] || [];
-  const airdropAffectsAttack = airdropMarkers.some((key) => {
-    const [q, r] = key.split(",").map(Number);
-    return hexDistance({ q, r }, defender.position) <= 1;
-  });
+  // 13.1: se un'unità nemica NELL'HEX del marker Airdrop viene attaccata, è il
+  // DIFENSORE ad applicare un -2. Non è un bonus all'attaccante e non si estende
+  // agli hex adiacenti.
+  const airdropAffectsAttack = (state.airdropMarkers?.[attacker.side] || []).includes(defenderKey);
   if (airdropAffectsAttack) {
-    drmA.eventGroundSupport += 1;
-    drmA.total = sumDrm(drmA);
+    drmD.eventSnafu -= 2;
+    drmD.total = sumDrm(drmD);
   }
 
   // Applica DRM Air Support
@@ -4018,7 +4037,7 @@ export const resolveCombat = (
 
   const committedEventReturns = committedEventIds.flatMap((id) => {
     const side = eventOwnerSide(state, id);
-    return side ? [eventReturnEntry(state, side, id, rollD6())] : [];
+    return side ? [eventReturnEntry(state, side, id, combatEventReturnDelay(id))] : [];
   });
   const committedReturnNote = committedEventReturns.length
     ? ` Returns: ${committedEventReturns.map((entry) => `${entry.markerId} T${entry.returnTurn}`).join(", ")}.`
@@ -4305,9 +4324,17 @@ const removeTemporaryMapEventsAtEndOfActions = (state: GameState, side: Side): {
 
   const returnEntries = expiring.flatMap((detail) => {
     if (detail.kind === "surprise") {
+      // 13.9: alla rimozione, un marker USA torna 4 turni dopo; quelli tedesco e
+      // britannico sono rimossi dallo scenario.
       return detail.markerId.toLowerCase().includes("usa")
         ? [eventReturnEntry(state, detail.side, detail.markerId, 4)]
         : [];
+    }
+    if (detail.kind === "airdrop") {
+      // 13.1: alla rimozione si tira un d6. Con 1-5 il marker torna dopo quel
+      // numero di turni; con 6 è rimosso dallo scenario (disastri tipo Creta).
+      const roll = rollD6();
+      return roll <= 5 ? [eventReturnEntry(state, detail.side, detail.markerId, roll)] : [];
     }
     return [eventReturnEntry(state, detail.side, detail.markerId, rollD6())];
   });
@@ -5283,7 +5310,8 @@ export const placeAirdropMarker = (
   const current = state.airdropMarkers || {};
   const existing = current[side] || [];
   if (existing.includes(key)) return null;
-  return {
+
+  const placed: GameState = {
     ...state,
     factionCards: {
       ...state.factionCards,
@@ -5296,9 +5324,37 @@ export const placeAirdropMarker = (
     mapEventMarkerDetails: [
       ...(state.mapEventMarkerDetails || []),
       { markerId: marker, side, kind: "airdrop", coordKey: key }
-    ],
+    ]
+  };
+
+  // 13.1: se l'hex contiene una città nemica e NESSUNA unità nemica, si tira un
+  // d6: con 1-3 la città passa sotto controllo amico, con 4-6 non succede nulla.
+  const enemyUnitHere = Array.from(state.units.values()).some(
+    (unit) => unit.side !== side && unit.status !== UnitStatus.DESTROYED && sameCoord(unit.position, coord)
+  );
+  const enemyCityHere = hexHasCity(hex) && isEnemyControlledFeature(hex, side);
+  let captureNote = "";
+  let withCapture = placed;
+  if (enemyCityHere && !enemyUnitHere) {
+    const roll = rollD6();
+    if (roll <= 3) {
+      const change = applyHexControlChange(placed, coord, side);
+      withCapture = applyNationalWillDelta(change.state, change.nationalWillDelta);
+      captureNote = ` Tiro ${roll}: paracadutisti prendono la città. ${change.note}`;
+    } else {
+      captureNote = ` Tiro ${roll}: le forze locali respingono i paracadutisti.`;
+    }
+  }
+
+  return {
+    ...withCapture,
     history: [
-      { type: ActionType.HOLD, side, note: `Airdrop marker placed at ${hexCodeForMap(coord, scenarioById(state.scenarioId).mapId)}.`, timestamp: new Date() },
+      {
+        type: ActionType.HOLD,
+        side,
+        note: `Airdrop marker placed at ${hexCodeForMap(coord, scenarioById(state.scenarioId).mapId)}.${captureNote}`,
+        timestamp: new Date()
+      },
       ...state.history
     ],
     timestamp: new Date()
@@ -6243,14 +6299,98 @@ export const evaluateVictory = (state: GameState): GameState => {
     }
   }
 
-  // Axis victory: France conquered
-  const franceStatus = state.factionCards[Side.ALLIED].countryStatus?.France;
-  if (franceStatus === "conquered") {
+  // Scenari fan-made Barbarossa / Russia (non presenti nel gioco originale):
+  // condizioni come descritte nelle regole speciali dello scenario.
+  if (isBarbarossa1941Scenario(state.scenarioId)) {
+    const alliedCard = state.factionCards[Side.ALLIED];
+    const ussrStatus = alliedCard.countryStatus?.USSR;
+    if (ussrStatus === "conquered" || ussrStatus === "collapsed") {
+      return {
+        ...state,
+        victory: { winner: Side.AXIS, reason: "USSR collapsed." },
+        history: [
+          { type: ActionType.HOLD, side: Side.AXIS, note: "AXIS VICTORY: l'URSS è collassata.", timestamp: new Date() },
+          ...state.history
+        ]
+      };
+    }
+
+    if (state.scenarioId === "russia19411944") {
+      // "La fazione sovietica vince se ci sono meno di 4 unità terrestri
+      // tedesche nell'URSS." La condizione descrive i tedeschi RICACCIATI fuori:
+      // a inizio scenario le armate sono ancora schierate al confine (una sola
+      // dentro l'URSS), quindi si attiva solo dopo che l'invasione è avvenuta.
+      const germansInUssr = Array.from(state.units.values()).filter((unit) => {
+        if (unit.side !== Side.AXIS || unit.country !== "Germany") return false;
+        if (unit.type === UnitType.AIR || unit.type === UnitType.FORT) return false;
+        if (unit.status === UnitStatus.DESTROYED || unit.mapPresence === "off_map") return false;
+        return state.map.get(coordKey(unit.position))?.features.country === "USSR";
+      }).length;
+
+      const invaded = state.axisInvadedUssr || germansInUssr >= AXIS_INVASION_FOOTHOLD;
+      if (invaded && germansInUssr < AXIS_INVASION_FOOTHOLD) {
+        return {
+          ...state,
+          axisInvadedUssr: true,
+          victory: { winner: Side.ALLIED, reason: `Only ${germansInUssr} German ground units left in the USSR.` },
+          history: [
+            { type: ActionType.HOLD, side: Side.ALLIED, note: `SOVIET VICTORY: restano ${germansInUssr} unità terrestri tedesche in URSS.`, timestamp: new Date() },
+            ...state.history
+          ]
+        };
+      }
+      if (invaded && !state.axisInvadedUssr) state = { ...state, axisInvadedUssr: true };
+    } else {
+      // Barbarossa 1941: "L'Asse vince se la National Will sovietica scende
+      // sotto 45 alla Victory Check finale; altrimenti vince l'URSS."
+      const ussrWill = alliedCard.nationalWill?.USSR;
+      if (typeof ussrWill === "number" && ussrWill < BARBAROSSA_SOVIET_WILL_THRESHOLD) {
+        return {
+          ...state,
+          victory: { winner: Side.AXIS, reason: `Soviet National Will down to ${ussrWill}.` },
+          history: [
+            { type: ActionType.HOLD, side: Side.AXIS, note: `AXIS VICTORY: National Will sovietica a ${ussrWill}.`, timestamp: new Date() },
+            ...state.history
+          ]
+        };
+      }
+    }
+
+    const russiaEndTurn = state.scenarioEndsTurn ?? (state.scenarioId === "russia19411944" ? 43 : 7);
+    if (state.turn >= russiaEndTurn && state.phase === GamePhase.VICTORY_CHECK) {
+      const winner = state.scenarioId === "russia19411944" ? Side.AXIS : Side.ALLIED;
+      const reason = winner === Side.AXIS
+        ? "Soviet faction did not achieve its victory conditions."
+        : "Soviet National Will held above the Axis threshold.";
+      return {
+        ...state,
+        victory: { winner, reason },
+        history: [
+          { type: ActionType.HOLD, side: winner, note: `${winner === Side.AXIS ? "AXIS" : "SOVIET"} VICTORY: ${reason}`, timestamp: new Date() },
+          ...state.history
+        ]
+      };
+    }
+    return state;
+  }
+
+  // Axis victory (France 1940/1941, Playbook 21.3.1 e 21.4.1): l'Asse vince se
+  // Belgio, Francia e Paesi Bassi sono TUTTI conquistati, non la sola Francia.
+  const alliedStatus = state.factionCards[Side.ALLIED].countryStatus ?? {};
+  const lowCountriesScenario = state.scenarioId === undefined ||
+    state.scenarioId === "france1940" || state.scenarioId === "france1941";
+  const requiredConquests = lowCountriesScenario
+    ? ["Belgium", "France", "Netherlands"].filter((country) => country in alliedStatus)
+    : ["France"];
+  const allConquered = requiredConquests.length > 0 &&
+    requiredConquests.every((country) => alliedStatus[country] === "conquered");
+  if (allConquered) {
+    const label = requiredConquests.join(", ");
     return {
       ...state,
-      victory: { winner: Side.AXIS, reason: "France conquered." },
+      victory: { winner: Side.AXIS, reason: `${label} conquered.` },
       history: [
-        { type: ActionType.HOLD, side: Side.AXIS, note: "AXIS VICTORY: France conquered.", timestamp: new Date() },
+        { type: ActionType.HOLD, side: Side.AXIS, note: `AXIS VICTORY: ${label} conquered.`, timestamp: new Date() },
         ...state.history
       ]
     };

@@ -45,6 +45,20 @@ jobs:
       - name: Costruisci l'app
         run: yarn electron:build
 
+      - name: Firma ad-hoc del bundle
+        # Senza alcuna firma, un'app scaricata dal browser viene dichiarata da
+        # macOS "danneggiata e non può essere aperta", e il click destro → Apri
+        # non basta. Una firma ad-hoc (--sign -) non richiede un certificato
+        # Apple ma rende il bundle coerente, così Gatekeeper si limita a
+        # chiedere conferma. Va applicata dopo l'assemblaggio, dall'interno
+        # verso l'esterno: prima Electron annidato, poi il bundle esterno.
+        run: |
+          APP="packages/electron/release/mac-arm64/Unconditional Surrender.app"
+          codesign --force --deep --sign - "$APP/Contents/Resources/Electron.app"
+          codesign --force --sign - "$APP/Contents/MacOS/Unconditional Surrender"
+          codesign --force --deep --sign - "$APP"
+          codesign --verify --deep --verbose=2 "$APP"
+
       - name: Comprimi l'app
         # ditto è il modo corretto di zippare un .app su macOS: preserva
         # symlink e permessi, che un normale zip rovinerebbe.
@@ -69,13 +83,17 @@ jobs:
           body: |
             App per macOS (Apple Silicon).
 
-            **Come aprirla la prima volta.** L'app non è firmata con un
-            certificato Apple, quindi al primo avvio macOS la blocca. Scompatta
-            lo zip, poi o fai click destro sull'app → *Apri* → *Apri*, oppure da
-            Terminale:
+            **Come aprirla la prima volta.** L'app ha solo una firma ad-hoc, non
+            un certificato Apple, quindi macOS al primo avvio chiede conferma.
+            Scompatta lo zip e fai click destro sull'app → *Apri* → *Apri*.
+
+            Se compare "è danneggiato e non può essere aperto", è l'attributo di
+            quarantena messo dal browser: toglilo da Terminale e riprova.
+            Scrivi il comando seguente **con lo spazio finale**, poi trascina
+            l'app nella finestra del Terminale e premi Invio.
 
             ```
-            xattr -dr com.apple.quarantine "Unconditional Surrender.app"
+            xattr -dr com.apple.quarantine
             ```
 
             Richiede macOS 12 o successivo su Mac con chip Apple.

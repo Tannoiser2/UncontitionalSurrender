@@ -120,38 +120,23 @@ const AA = "AA+3";
 // Trascritto dal Player Aid Sheet (Tabelle US.pdf, Combat Results Table).
 // Tabella 16x16. Per def/att > 16 si usa la riga/colonna 16.
 export const GROUND_CRT: string[][] = [
-  // def 1
-  [NE, NE, DR, DR, DR, DD, DD, DD, DE, DE, DE, DE, DE, DE, DE, DE],
-  // def 2
-  [NE, NE, NE, DR, DR, DR, DD, DD, DD, DE, DE, DE, DE, DE, DE, DE],
-  // def 3
-  [AS, NE, NE, NE, DR, DR, DR, DD, DD, DD, DE, DE, DE, DE, DE, DE],
-  // def 4
-  [AS, AS, NE, NE, NE, DR, DR, DR, DR, DD, DD, DD, DD, DD, DE, DE],
-  // def 5
-  [AS, AS, NE, NE, NE, NE, NE, DR, DR, DR, DD, DD, DD, DD, DD, DD],
-  // def 6
-  [AA, AS, AS, AS, NE, NE, NE, NE, DR, DR, DR, DR, DR, DR, DD, DD],
-  // def 7
-  [AA, AA, AS, AS, NE, NE, NE, NE, NE, DR, DR, DR, DR, DR, DR, DD],
-  // def 8
-  [AA, AA, AS, AS, NE, NE, NE, NE, NE, NE, DR, DR, DR, DR, DR, DR],
-  // def 9
-  [AA, AA, AS, AS, AS, NE, NE, NE, NE, NE, NE, DR, DR, DR, DR, DR],
-  // def 10
-  [AA, AA, AA, AS, AS, AS, NE, NE, NE, NE, NE, NE, DR, DR, DR, DR],
-  // def 11
-  [AA, AA, AA, AS, AS, AS, AS, NE, NE, NE, NE, NE, NE, DR, DR, DR],
-  // def 12
-  [AA, AA, AA, AA, AS, AS, AS, AS, NE, NE, NE, NE, NE, NE, DR, DR],
-  // def 13
-  [AA, AA, AA, AA, AS, AS, AS, AS, AS, NE, NE, NE, NE, NE, DR, DR],
-  // def 14
-  [AA, AA, AA, AA, AA, AS, AS, AS, AS, AS, NE, NE, NE, NE, NE, NE],
-  // def 15
-  [AA, AA, AA, AA, AA, AA, AS, AS, AS, AS, AS, NE, NE, NE, NE, NE],
-  // def 16
-  [AA, AA, AA, AA, AA, AA, AA, AS, AS, AS, AS, AS, AS, NE, NE, NE]
+  //     att:1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16
+  /* def  1 */ [NE, NE, DR, DR, DR, DD, DD, DD, DE, DE, DE, DE, DE, DE, DE, DE],
+  /* def  2 */ [NE, NE, NE, DR, DR, DR, DD, DD, DD, DE, DE, DE, DE, DE, DE, DE],
+  /* def  3 */ [AS, NE, NE, NE, DR, DR, DR, DD, DD, DD, DD, DD, DE, DE, DE, DE],
+  /* def  4 */ [AS, AS, NE, NE, NE, DR, DR, DR, DR, DD, DD, DD, DD, DD, DD, DE],
+  /* def  5 */ [AS, AS, AS, NE, NE, NE, NE, DR, DR, DR, DD, DD, DD, DD, DD, DD],
+  /* def  6 */ [AA, AS, AS, AS, NE, NE, NE, NE, DR, DR, DR, DR, DR, DR, DD, DD],
+  /* def  7 */ [AA, AA, AS, AS, NE, NE, NE, NE, NE, DR, DR, DR, DR, DR, DR, DD],
+  /* def  8 */ [AA, AA, AA, AS, AS, NE, NE, NE, NE, NE, DR, DR, DR, DR, DR, DR],
+  /* def  9 */ [AA, AA, AA, AS, AS, AS, NE, NE, NE, NE, NE, DR, DR, DR, DR, DR],
+  /* def 10 */ [AA, AA, AA, AA, AS, AS, AS, NE, NE, NE, NE, NE, DR, DR, DR, DR],
+  /* def 11 */ [AA, AA, AA, AA, AS, AS, AS, AS, NE, NE, NE, NE, NE, DR, DR, DR],
+  /* def 12 */ [AA, AA, AA, AA, AA, AS, AS, AS, AS, NE, NE, NE, NE, NE, NE, DR],
+  /* def 13 */ [AA, AA, AA, AA, AA, AS, AS, AS, AS, AS, NE, NE, NE, NE, NE, DR],
+  /* def 14 */ [AA, AA, AA, AA, AA, AA, AS, AS, AS, AS, AS, NE, NE, NE, NE, NE],
+  /* def 15 */ [AA, AA, AA, AA, AA, AA, AS, AS, AS, AS, AS, NE, NE, NE, NE, NE],
+  /* def 16 */ [AA, AA, AA, AA, AA, AA, AA, AS, AS, AS, AS, AS, AS, NE, NE, NE]
 ];
 
 // Ritorna codice come stringa ("NE"|"DR"|"DD"|"DE"|"AS"|"AA"); il caller lo casta a CombatResultCode.

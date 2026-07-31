@@ -11,18 +11,18 @@ const EXPECTED_CRT: string[][] = [
   // def\att      1     2     3     4     5     6     7     8     9    10    11    12    13    14    15    16
   /*  1 */ ["NE+0","NE+0","DR+2","DR+2","DR+2","DD+3","DD+3","DD+3","DE+4","DE+4","DE+4","DE+4","DE+4","DE+4","DE+4","DE+4"],
   /*  2 */ ["NE+0","NE+0","NE+0","DR+2","DR+2","DR+2","DD+3","DD+3","DD+3","DE+4","DE+4","DE+4","DE+4","DE+4","DE+4","DE+4"],
-  /*  3 */ ["AS+2","NE+0","NE+0","NE+0","DR+2","DR+2","DR+2","DD+3","DD+3","DD+3","DE+4","DE+4","DE+4","DE+4","DE+4","DE+4"],
-  /*  4 */ ["AS+2","AS+2","NE+0","NE+0","NE+0","DR+2","DR+2","DR+2","DR+2","DD+3","DD+3","DD+3","DD+3","DD+3","DE+4","DE+4"],
-  /*  5 */ ["AS+2","AS+2","NE+0","NE+0","NE+0","NE+0","NE+0","DR+2","DR+2","DR+2","DD+3","DD+3","DD+3","DD+3","DD+3","DD+3"],
+  /*  3 */ ["AS+2","NE+0","NE+0","NE+0","DR+2","DR+2","DR+2","DD+3","DD+3","DD+3","DD+3","DD+3","DE+4","DE+4","DE+4","DE+4"],
+  /*  4 */ ["AS+2","AS+2","NE+0","NE+0","NE+0","DR+2","DR+2","DR+2","DR+2","DD+3","DD+3","DD+3","DD+3","DD+3","DD+3","DE+4"],
+  /*  5 */ ["AS+2","AS+2","AS+2","NE+0","NE+0","NE+0","NE+0","DR+2","DR+2","DR+2","DD+3","DD+3","DD+3","DD+3","DD+3","DD+3"],
   /*  6 */ ["AA+3","AS+2","AS+2","AS+2","NE+0","NE+0","NE+0","NE+0","DR+2","DR+2","DR+2","DR+2","DR+2","DR+2","DD+3","DD+3"],
   /*  7 */ ["AA+3","AA+3","AS+2","AS+2","NE+0","NE+0","NE+0","NE+0","NE+0","DR+2","DR+2","DR+2","DR+2","DR+2","DR+2","DD+3"],
-  /*  8 */ ["AA+3","AA+3","AS+2","AS+2","NE+0","NE+0","NE+0","NE+0","NE+0","NE+0","DR+2","DR+2","DR+2","DR+2","DR+2","DR+2"],
-  /*  9 */ ["AA+3","AA+3","AS+2","AS+2","AS+2","NE+0","NE+0","NE+0","NE+0","NE+0","NE+0","DR+2","DR+2","DR+2","DR+2","DR+2"],
-  /* 10 */ ["AA+3","AA+3","AA+3","AS+2","AS+2","AS+2","NE+0","NE+0","NE+0","NE+0","NE+0","NE+0","DR+2","DR+2","DR+2","DR+2"],
-  /* 11 */ ["AA+3","AA+3","AA+3","AS+2","AS+2","AS+2","AS+2","NE+0","NE+0","NE+0","NE+0","NE+0","NE+0","DR+2","DR+2","DR+2"],
-  /* 12 */ ["AA+3","AA+3","AA+3","AA+3","AS+2","AS+2","AS+2","AS+2","NE+0","NE+0","NE+0","NE+0","NE+0","NE+0","DR+2","DR+2"],
-  /* 13 */ ["AA+3","AA+3","AA+3","AA+3","AS+2","AS+2","AS+2","AS+2","AS+2","NE+0","NE+0","NE+0","NE+0","NE+0","DR+2","DR+2"],
-  /* 14 */ ["AA+3","AA+3","AA+3","AA+3","AA+3","AS+2","AS+2","AS+2","AS+2","AS+2","NE+0","NE+0","NE+0","NE+0","NE+0","NE+0"],
+  /*  8 */ ["AA+3","AA+3","AA+3","AS+2","AS+2","NE+0","NE+0","NE+0","NE+0","NE+0","DR+2","DR+2","DR+2","DR+2","DR+2","DR+2"],
+  /*  9 */ ["AA+3","AA+3","AA+3","AS+2","AS+2","AS+2","NE+0","NE+0","NE+0","NE+0","NE+0","DR+2","DR+2","DR+2","DR+2","DR+2"],
+  /* 10 */ ["AA+3","AA+3","AA+3","AA+3","AS+2","AS+2","AS+2","NE+0","NE+0","NE+0","NE+0","NE+0","DR+2","DR+2","DR+2","DR+2"],
+  /* 11 */ ["AA+3","AA+3","AA+3","AA+3","AS+2","AS+2","AS+2","AS+2","NE+0","NE+0","NE+0","NE+0","NE+0","DR+2","DR+2","DR+2"],
+  /* 12 */ ["AA+3","AA+3","AA+3","AA+3","AA+3","AS+2","AS+2","AS+2","AS+2","NE+0","NE+0","NE+0","NE+0","NE+0","NE+0","DR+2"],
+  /* 13 */ ["AA+3","AA+3","AA+3","AA+3","AA+3","AS+2","AS+2","AS+2","AS+2","AS+2","NE+0","NE+0","NE+0","NE+0","NE+0","DR+2"],
+  /* 14 */ ["AA+3","AA+3","AA+3","AA+3","AA+3","AA+3","AS+2","AS+2","AS+2","AS+2","AS+2","NE+0","NE+0","NE+0","NE+0","NE+0"],
   /* 15 */ ["AA+3","AA+3","AA+3","AA+3","AA+3","AA+3","AS+2","AS+2","AS+2","AS+2","AS+2","NE+0","NE+0","NE+0","NE+0","NE+0"],
   /* 16 */ ["AA+3","AA+3","AA+3","AA+3","AA+3","AA+3","AA+3","AS+2","AS+2","AS+2","AS+2","AS+2","AS+2","NE+0","NE+0","NE+0"]
 ];
@@ -46,6 +46,41 @@ describe("GROUND_CRT shape", () => {
         const [code, bonusStr] = cell.split("+");
         expect(valid.has(code), `def=${def + 1} att=${att + 1} cell=${cell}`).toBe(true);
         expect(Number.isFinite(Number(bonusStr)), `def=${def + 1} att=${att + 1} cell=${cell}`).toBe(true);
+      }
+    }
+  });
+});
+
+// Invariante strutturale della CRT reale: i risultati sono ordinati in modo
+// monotono in entrambe le direzioni. Serve da rete di sicurezza contro errori
+// di trascrizione futuri, indipendentemente dallo snapshot esplicito sotto.
+describe("GROUND_CRT monotonia", () => {
+  // Dal peggiore al migliore dal punto di vista dell'attaccante.
+  const RANK: Record<string, number> = { AA: 0, AS: 1, NE: 2, DR: 3, DD: 4, DE: 5 };
+  const rankOf = (cell: string): number => RANK[cell.split("+")[0]];
+
+  it("lungo una riga, il risultato non peggiora mai per l'attaccante", () => {
+    for (let def = 0; def < 16; def++) {
+      for (let att = 1; att < 16; att++) {
+        const prev = GROUND_CRT[def][att - 1];
+        const curr = GROUND_CRT[def][att];
+        expect(
+          rankOf(curr),
+          `def=${def + 1}: att=${att} (${prev}) -> att=${att + 1} (${curr})`
+        ).toBeGreaterThanOrEqual(rankOf(prev));
+      }
+    }
+  });
+
+  it("lungo una colonna, il risultato non migliora mai per l'attaccante", () => {
+    for (let att = 0; att < 16; att++) {
+      for (let def = 1; def < 16; def++) {
+        const prev = GROUND_CRT[def - 1][att];
+        const curr = GROUND_CRT[def][att];
+        expect(
+          rankOf(curr),
+          `att=${att + 1}: def=${def} (${prev}) -> def=${def + 1} (${curr})`
+        ).toBeLessThanOrEqual(rankOf(prev));
       }
     }
   });

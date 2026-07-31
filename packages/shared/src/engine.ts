@@ -4037,11 +4037,64 @@ const weatherFromRanges = (roll: number, fair: number[], poor: number[], severe:
 };
 
 export const weatherTableRowLabel = (state: GameState): string => {
-  const month = monthForTurnCode(state.turnCode);
-  if (month === "Apr") return `Apr (${state.previousWeather || "Mar Fair"})`;
-  if (month === "Nov") return `Nov (${state.previousWeather || "Oct Fair"})`;
+  // Stessa etichetta usata dal Player Aid Sheet, es. "Apr (Mar Poor)".
+  return weatherTableRowKey(state.turnCode, state.previousWeather || WeatherType.FAIR);
+};
+
+// Tabella Weather (10.0) trascritta dal Player Aid Sheet (Tabelle US.pdf, p.3).
+// Ogni riga elenca i risultati del d6 per Fair / Poor / Severe. Un elenco vuoto
+// corrisponde al trattino "–" sulla tabella cartacea, cioè "esito impossibile
+// in questo mese": attenzione, diverse righe non hanno alcun risultato Fair.
+type WeatherRow = { fair: number[]; poor: number[]; severe: number[] };
+
+const W = (fair: number[], poor: number[], severe: number[] = []): WeatherRow => ({ fair, poor, severe });
+
+const WEATHER_TABLE: Record<WeatherMapCategory, Record<string, WeatherRow>> = {
+  [WeatherMapCategory.OTHER_MAPS]: {
+    "Dec-Feb": W([], [1, 2, 3, 4], [5, 6]),
+    Mar: W([1], [2, 3], [4, 5, 6]),
+    "Apr (Mar Fair)": W([], [1, 2, 3], [4, 5, 6]),
+    "Apr (Mar Poor)": W([1], [2, 3, 4], [5, 6]),
+    "Apr (Mar Sev)": W([1], [2, 3, 4, 5], [6]),
+    May: W([1, 2, 3], [4, 5, 6]),
+    Jun: W([1, 2, 3, 4], [5, 6]),
+    "Jul-Sep": W([1, 2, 3, 4, 5, 6], []),
+    Oct: W([1, 2], [3, 4], [5, 6]),
+    "Nov (Oct Fair)": W([], [1, 2, 3, 4], [5, 6]),
+    "Nov (Oct Poor)": W([1, 2], [3, 4], [5, 6]),
+    "Nov (Oct Sev)": W([1, 2], [3, 4, 5, 6])
+  },
+  [WeatherMapCategory.BALKANS_FNA_ITALY]: {
+    "Dec-Feb": W([1], [2, 3, 4], [5, 6]),
+    Mar: W([1, 2], [3, 4], [5, 6]),
+    "Apr (Mar Fair)": W([1], [2, 3, 4], [5, 6]),
+    "Apr (Mar Poor)": W([1, 2], [3, 4, 5], [6]),
+    "Apr (Mar Sev)": W([1, 2], [3, 4, 5, 6]),
+    May: W([1, 2, 3, 4], [5, 6]),
+    Jun: W([1, 2, 3, 4], [5, 6]),
+    "Jul-Sep": W([1, 2, 3, 4, 5, 6], []),
+    Oct: W([1, 2], [3, 4, 5], [6]),
+    "Nov (Oct Fair)": W([], [1, 2, 3, 4], [5, 6]),
+    "Nov (Oct Poor)": W([1, 2], [3, 4, 5, 6]),
+    "Nov (Oct Sev)": W([1, 2, 3], [4, 5, 6])
+  }
+};
+
+// Chiave della riga di tabella: per Apr e Nov dipende dal meteo del mese precedente.
+export const weatherTableRowKey = (turnCode: string, previousWeather: WeatherType): string => {
+  const month = monthForTurnCode(turnCode);
   if (month === "Dec" || month === "Jan" || month === "Feb") return "Dec-Feb";
   if (month === "Jul" || month === "Aug" || month === "Sep") return "Jul-Sep";
+  if (month === "Apr") {
+    if (previousWeather === WeatherType.POOR) return "Apr (Mar Poor)";
+    if (previousWeather === WeatherType.SEVERE) return "Apr (Mar Sev)";
+    return "Apr (Mar Fair)";
+  }
+  if (month === "Nov") {
+    if (previousWeather === WeatherType.POOR) return "Nov (Oct Poor)";
+    if (previousWeather === WeatherType.SEVERE) return "Nov (Oct Sev)";
+    return "Nov (Oct Fair)";
+  }
   return month;
 };
 
@@ -4051,37 +4104,9 @@ export const resolveWeatherRoll = (
   previousWeather: WeatherType = WeatherType.FAIR,
   mapCategory: WeatherMapCategory = WeatherMapCategory.OTHER_MAPS
 ): WeatherType => {
-  const month = monthForTurnCode(turnCode);
-  const isOtherMaps = mapCategory === WeatherMapCategory.OTHER_MAPS;
-
-  if (isOtherMaps) {
-    if (month === "Dec" || month === "Jan" || month === "Feb") return weatherFromRanges(roll, [1, 2, 3, 4], [5, 6]);
-    if (month === "Mar") return weatherFromRanges(roll, [1], [2, 3], [4, 5, 6]);
-    if (month === "Apr" && previousWeather === WeatherType.FAIR) return weatherFromRanges(roll, [1, 2, 3], [4, 5, 6]);
-    if (month === "Apr" && previousWeather === WeatherType.POOR) return weatherFromRanges(roll, [1], [2, 3, 4], [5, 6]);
-    if (month === "Apr") return weatherFromRanges(roll, [1], [2, 3, 4, 5], [6]);
-    if (month === "May") return weatherFromRanges(roll, [1, 2, 3], [4, 5, 6]);
-    if (month === "Jun") return weatherFromRanges(roll, [1, 2, 3, 4], [5, 6]);
-    if (month === "Jul" || month === "Aug" || month === "Sep") return WeatherType.FAIR;
-    if (month === "Oct") return weatherFromRanges(roll, [1, 2], [3, 4], [5, 6]);
-    if (month === "Nov" && previousWeather === WeatherType.FAIR) return weatherFromRanges(roll, [1, 2, 3, 4], [5, 6]);
-    if (month === "Nov" && previousWeather === WeatherType.POOR) return weatherFromRanges(roll, [1, 2], [3, 4], [5, 6]);
-    if (month === "Nov") return weatherFromRanges(roll, [1, 2], [3, 4, 5, 6]);
-  }
-
-  if (month === "Dec" || month === "Jan" || month === "Feb") return weatherFromRanges(roll, [1], [2, 3, 4], [5, 6]);
-  if (month === "Mar") return weatherFromRanges(roll, [1, 2], [3, 4], [5, 6]);
-  if (month === "Apr" && previousWeather === WeatherType.FAIR) return weatherFromRanges(roll, [1], [2, 3, 4], [5, 6]);
-  if (month === "Apr" && previousWeather === WeatherType.POOR) return weatherFromRanges(roll, [1, 2], [3, 4, 5], [6]);
-  if (month === "Apr") return weatherFromRanges(roll, [1, 2], [3, 4, 5, 6]);
-  if (month === "May" || month === "Jun") return weatherFromRanges(roll, [1, 2, 3, 4], [5, 6]);
-  if (month === "Jul" || month === "Aug" || month === "Sep") return WeatherType.FAIR;
-  if (month === "Oct") return weatherFromRanges(roll, [1], [2, 3, 4, 5], [6]);
-  if (month === "Nov" && previousWeather === WeatherType.FAIR) return weatherFromRanges(roll, [1], [2, 3, 4], [5, 6]);
-  if (month === "Nov" && previousWeather === WeatherType.POOR) return weatherFromRanges(roll, [1], [2], [3, 4, 5, 6]);
-  if (month === "Nov") return weatherFromRanges(roll, [1, 2, 3], [4, 5, 6]);
-
-  return WeatherType.FAIR;
+  const row = WEATHER_TABLE[mapCategory][weatherTableRowKey(turnCode, previousWeather)];
+  if (!row) return WeatherType.FAIR;
+  return weatherFromRanges(roll, row.fair, row.poor, row.severe);
 };
 
 const rollWeather = (state: GameState): { roll: number; weather: WeatherType } => {

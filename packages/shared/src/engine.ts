@@ -476,8 +476,10 @@ export const isInsideMap = (state: GameState, coord: HexCoord): boolean => state
 export const isEnemyZoc = (state: GameState, coord: HexCoord, side: Side): boolean =>
   zocExertingUnits(state, coord, side).length > 0;
 
-export const zocExertingUnits = (state: GameState, coord: HexCoord, side: Side): Unit[] =>
-  Array.from(state.units.values()).filter((unit) => {
+export const zocExertingUnits = (state: GameState, coord: HexCoord, side: Side): Unit[] => {
+  // 1.7 / 14.8: nessuna ZOC nemica è esercitata in un hex con marker No EZOC.
+  if (state.map.get(coordKey(coord))?.noEzocMarker) return [];
+  return Array.from(state.units.values()).filter((unit) => {
     if (
       unit.side === side ||
       unit.type === UnitType.AIR ||
@@ -492,6 +494,7 @@ export const zocExertingUnits = (state: GameState, coord: HexCoord, side: Side):
     if (!zocSide) return false;
     return !isGroundMovementProhibited(state, coord) && !isGroundMovementProhibited(state, unit.position);
   });
+};
 
 export interface ReachableHex {
   coord: HexCoord;
@@ -653,10 +656,44 @@ const isRoughHex = (hex: Hex): boolean => {
   );
 };
 
-const baseGroundMovementCost = (hex: Hex): number => {
-  if (hex.features.city || hex.features.capital || hex.features.port || hex.features.productionCenter) return 1;
+// 1.3.1: un hex è "città" se contiene capitale, città, centro produzione o porto.
+const hexHasCity = (hex: Hex): boolean =>
+  Boolean(hex.features.city || hex.features.capital || hex.features.port || hex.features.productionCenter);
+
+const fortOnHex = (state: GameState, coord: HexCoord): Unit | undefined =>
+  Array.from(state.units.values()).find(
+    (u) => u.type === UnitType.FORT && u.status !== UnitStatus.DESTROYED && sameCoord(u.position, coord)
+  );
+
+// Città/forte è "nemico" per chi muove se il controllo (o la nazionalità del
+// forte) appartiene all'altra fazione.
+const hasEnemyCityOrFort = (state: GameState, hex: Hex, movingSide: Side): boolean => {
+  if (hexHasCity(hex) && isEnemyControlledFeature(hex, movingSide)) return true;
+  const fort = fortOnHex(state, hex.coord);
+  return Boolean(fort && fort.side !== movingSide);
+};
+
+const isEnemyControlledFeature = (hex: Hex, movingSide: Side): boolean =>
+  hex.features.controller !== undefined &&
+  hex.features.controller !== movingSide &&
+  (hex.features.controller as string) !== "neutral";
+
+// Player Aid (Movement 4.2.3):
+//   1 hex chiaro | 1 città/forte AMICO | 2 città/forte NEMICO | 2 hex rough senza città/forte
+const baseGroundMovementCost = (state: GameState, hex: Hex, movingSide: Side): number => {
+  const cityHere = hexHasCity(hex);
+  const fortHere = Boolean(fortOnHex(state, hex.coord));
+  if (cityHere || fortHere) return hasEnemyCityOrFort(state, hex, movingSide) ? 2 : 1;
   if (isRoughHex(hex)) return 2;
   return 1;
+};
+
+// Player Aid: +1 canale/montagna/fiume, +2 stretto. Come per il DRM di
+// combattimento, il lato conta una volta sola: si applica il costo maggiore.
+const hexsideCrossingCost = (state: GameState, crossing: string): number => {
+  if (state.straitEdges?.has(crossing)) return 2;
+  if (state.riverEdges.has(crossing) || state.mountainEdges.has(crossing)) return 1;
+  return 0;
 };
 
 export const BARBAROSSA_AXIS_MINOR_COUNTRIES = ["Romania", "Finland", "Hungary", "Italy"];
@@ -810,20 +847,25 @@ const groundMoveCost = (state: GameState, from: HexCoord, to: HexCoord, unit: Un
   const groundOnTarget = getGroundUnitOnHex(state, to);
   if (groundOnTarget) return Infinity;
 
-  if (hasTransportLineThroughSide(state, from, to)) return 1;
+  // 4.2.3.4: il beneficio della Transport Line (tutto trattato come chiaro, 1 MP)
+  // NON si riceve entrando o attaccando in un hex con città, forte o unità nemica.
+  if (hasTransportLineThroughSide(state, from, to) && !hasEnemyCityOrFort(state, toHex, unit.side)) return 1;
 
-  const hexsideCost = (state.riverEdges.has(crossingEdge) ? 1 : 0) + (state.mountainEdges.has(crossingEdge) ? 1 : 0);
+  const hexsideCost = hexsideCrossingCost(state, crossingEdge);
   const zocCost = isEnemyZoc(state, from, unit.side) ? GAME_RULES.MOVEMENT.ZOC_EXIT_COST : 0;
-  return baseGroundMovementCost(toHex) + hexsideCost + zocCost;
+  return baseGroundMovementCost(state, toHex, unit.side) + hexsideCost + zocCost;
 };
 
-const movesBetweenDifferentEnemyZocs = (state: GameState, from: HexCoord, to: HexCoord, movingSide: Side): boolean => {
+// 4.2.3.1, primo punto: "A unit cannot move directly between hexes which contain
+// an EZOC exerted by the SAME enemy unit." Muoversi verso la ZOC di un'unità
+// diversa è invece consentito (secondo punto della stessa regola).
+export const movesBetweenSameEnemyZoc = (state: GameState, from: HexCoord, to: HexCoord, movingSide: Side): boolean => {
   const fromZoc = zocExertingUnits(state, from, movingSide).map((unit) => unit.id);
   if (fromZoc.length === 0) return false;
   const toZoc = zocExertingUnits(state, to, movingSide).map((unit) => unit.id);
   if (toZoc.length === 0) return false;
   const toZocSet = new Set(toZoc);
-  return !fromZoc.some((unitId) => toZocSet.has(unitId));
+  return fromZoc.some((unitId) => toZocSet.has(unitId));
 };
 
 
@@ -2324,7 +2366,7 @@ export const calculateReachableHexes = (state: GameState, unit: Unit): Reachable
     if (!isStartHex && isEnemyZoc(state, current.coord, unit.side)) continue;
 
     neighborsOf(current.coord).forEach((next) => {
-      if (!isInsideMap(state, next) || movesBetweenDifferentEnemyZocs(state, current.coord, next, unit.side)) return;
+      if (!isInsideMap(state, next) || movesBetweenSameEnemyZoc(state, current.coord, next, unit.side)) return;
 
       const hex = state.map.get(coordKey(next));
       if (!hex) return;
@@ -4567,8 +4609,10 @@ export const attackMovementCost = (state: GameState, attacker: Unit, target: Hex
   if (targetHex.features.fadedDot || targetHex.features.prohibited) return Infinity;
   const crossing = edgeKey(attacker.position, target);
   if (state.impassableEdges.has(crossing)) return Infinity;
-  const baseCost = baseGroundMovementCost(targetHex);
-  const hexsideCost = (state.riverEdges.has(crossing) ? 1 : 0) + (state.mountainEdges.has(crossing) ? 1 : 0);
+  // 4.2.3.3: si paga il costo pieno del terreno del difensore (mai il beneficio
+  // ferrovia, 4.2.3.4) più il costo addizionale di attacco legato al meteo.
+  const baseCost = baseGroundMovementCost(state, targetHex, attacker.side);
+  const hexsideCost = hexsideCrossingCost(state, crossing);
   const weatherCost = state.weather === WeatherType.FAIR ? 1 : (state.weather === WeatherType.POOR || state.weather === WeatherType.SEVERE) ? 2 : 0;
   return baseCost + hexsideCost + weatherCost;
 };

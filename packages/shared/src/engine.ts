@@ -2781,7 +2781,8 @@ const hasEnemyNonFortUnit = (state: GameState, coord: HexCoord, side: Side): boo
   );
 
 // 5.3.5.1 retreat prohibitions
-const computeLegalRetreatHexes = (state: GameState, defender: Unit, attackers: Unit[]): HexCoord[] => {
+// Esportata per i test: 5.3.5 / 5.3.5.1 (prohibizioni di ritirata).
+export const computeLegalRetreatHexes = (state: GameState, defender: Unit, attackers: Unit[]): HexCoord[] => {
   return neighborsOf(defender.position).filter((coord) => {
     const hex = state.map.get(coordKey(coord));
     if (!hex) return false;
@@ -2790,14 +2791,17 @@ const computeLegalRetreatHexes = (state: GameState, defender: Unit, attackers: U
     const enemyCity = (hex.features.city || hex.features.capital) &&
       hex.features.controller !== undefined && hex.features.controller !== defender.side && hex.features.controller !== "neutral";
     if (enemyCity) return false;
-    if (isFortHex(state, coord)) return false; // non può occupare un forte (5.3.5)
+    // 5.3.5.1: vietata la ritirata in un forte NEMICO. In un hex con forte amico
+    // ci si può ritirare: semplicemente non lo si occupa (5.3.5).
+    const fortHere = fortOnHex(state, coord);
+    if (fortHere && fortHere.side !== defender.side) return false;
     if (hasEnemyNonFortUnit(state, coord, defender.side)) return false;
-    // EZOC retreat prohibition: vietato a meno che non contenga friendly city/fort E ci sia un hex gap
+    // 5.3.5.1: in un hex con EZOC solo se contiene città o forte amico.
+    const friendlyCityOrFort =
+      Boolean(fortHere && fortHere.side === defender.side) ||
+      Boolean((hex.features.city || hex.features.capital) && hex.features.controller === defender.side);
     const ezocHere = isEnemyZoc(state, coord, defender.side);
-    if (ezocHere) {
-      const friendlyCityOrFort = (hex.features.city || hex.features.capital) && hex.features.controller === defender.side;
-      if (!friendlyCityOrFort) return false;
-    }
+    if (ezocHere && !friendlyCityOrFort) return false;
     // stacking: a ground defender cannot retreat into any hex already occupied by
     // another ground unit, even friendly. Air units do not block ground entry.
     const groundOcc = getGroundUnitOnHex(state, coord);
@@ -3491,10 +3495,22 @@ export const getEligibleCombatEventMarkers = (
 };
 
 // 6.2.3: una air unit può supportare se entro 5 hex dal difensore E stessa nazionalità di un attaccante o difensore
+// 6.2.3: "The air unit must be in a hex and of the same nationality as the
+// defending unit or one of the attacking ground units." Chi difende può quindi
+// impegnare solo aerei della nazionalità del difensore, chi attacca solo aerei
+// della nazionalità di una delle unità attaccanti.
+const matchesAirSupportNationality = (air: Unit, defender: Unit, attackerNationalities: string[]): boolean => {
+  const allowed = (air.side === defender.side ? [defender.country || ""] : attackerNationalities).filter(Boolean);
+  // Dati incompleti (unità senza nazionalità): non restringiamo.
+  if (allowed.length === 0 || !air.country) return true;
+  return allowed.includes(air.country);
+};
+
 const isLegalAirSupporter = (_state: GameState, air: Unit, defender: Unit, _attackerNationalities: string[]): boolean => {
   if (air.type !== UnitType.AIR) return false;
   if (air.status === UnitStatus.DESTROYED) return false;
   if (sortiesFor(air) >= GAME_RULES.AIR.MAX_SORTIES) return false;
+  if (!matchesAirSupportNationality(air, defender, _attackerNationalities)) return false;
   if (isFna1942Scenario(_state.scenarioId) && air.id === FNA_AXIS_AIR_SUPPORT_ID) {
     return air.side === Side.AXIS &&
       (_state.fnaAxisAirSortiesUsed || 0) < 2 &&
@@ -4967,6 +4983,9 @@ const computeAirDefenderDrm = (
   let drm = 0;
   if (defender.country === "Germany") drm += 2;
   if (["UK", "USA"].includes(defender.country || "")) drm += 1;
+  // Player Aid, Air Combat DRM: il -2 del bomber è nella colonna
+  // "Attacker or Defender", quindi vale anche quando il bomber difende.
+  if (defender.bomber) drm -= 2;
   if (supplyStateOf(defender) === SupplyState.LOW) drm -= 2;
   if (state.weather === WeatherType.POOR) drm -= 2;
   if (
@@ -5903,8 +5922,20 @@ export const performSupplyCheck = (state: GameState, side: Side): GameState => {
         nextSupply = SupplyState.FULL;
       }
     } else {
-      // limited
-      nextSupply = SupplyState.LOW;
+      // 7.3.1: una Limited Supply Source rifornisce fino a DUE unità, dando a
+      // ciascuna Low Supply. Oltre la capacità l'unità resta senza rifornimento
+      // e il suo stato peggiora di un livello come da 7.2.
+      const lssKey = coordKey(trace.sourceCoord);
+      const usedLss = portUsage.get(lssKey) || 0;
+      if (usedLss >= 2) {
+        const cur = supplyStateOf(unit);
+        nextSupply = cur === SupplyState.FULL ? SupplyState.LOW : SupplyState.NO;
+        supplySourceType = undefined;
+        notes.push(`${unit.name}: fonte limitata già satura (2 unità)`);
+      } else {
+        portUsage.set(lssKey, usedLss + 1);
+        nextSupply = SupplyState.LOW;
+      }
     }
 
     if (nextSupply !== supplyStateOf(unit)) {
